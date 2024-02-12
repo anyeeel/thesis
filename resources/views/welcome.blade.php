@@ -4,12 +4,22 @@
   	<title>Login</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
-
+	<link rel="stylesheet"
+          href=
+"https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
+    <link rel="stylesheet"
+          href=
+"https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity=
+"sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+          crossorigin="anonymous">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-	
 	<link rel="stylesheet" href="{{ asset('assets/css/login.css') }}">
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
 
 	</head>
@@ -63,17 +73,18 @@
                                 @enderror
 		      		</div>
 
-	            <div class="form-group d-flex">
-	              <input type="password" id="password" type="password" class="form-control rounded-left @error('password') is-invalid @enderror" name="password" placeholder="Password" required autocomplete="current-password">
-                  @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-	            </div>
+					  <div class="form-group d-flex position-relative">
+    <input type="password" id="password" class="form-control rounded-left @error('password') is-invalid @enderror" name="password" placeholder="Password" required autocomplete="current-password">
+    <i class="bi bi-eye-slash toggle-password-icon" id="togglePassword"></i>
+    @error('password')
+        <span class="invalid-feedback" role="alert">
+            <strong>{{ $message }}</strong>
+        </span>
+    @enderror
+</div>
 
 	            <div class="form-group">
-	            	<button type="submit" class="form-control btn btn-primary rounded submit px-3">{{ __('Login') }}</button>
+	            	<button type="submit" class="form-control btn btn-primary rounded submit px-3"  onclick="showSuccessAlert()">{{ __('Log In') }}</button>
 	            </div>
 	            <div class="form-group d-md-flex">
 	            	<div class="w-50">
@@ -103,6 +114,31 @@
 <script src="{{ asset('js/main.js') }}"></script>
 <script src="{{ asset('js/popper.js') }}"></script>
 
+<script>
+    const togglePassword = document.querySelector('#togglePassword');
+    const password = document.querySelector('#password');
+
+    togglePassword.addEventListener('click', () => {
+    
+        const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+        password.setAttribute('type', type);
+
+    
+        togglePassword.classList.toggle('bi-eye');
+    });
+</script>
+
+<script>
+    function showSuccessAlert() {
+        Swal.fire({
+            icon: 'success',
+            title: 'Login Successful',
+            text: 'Welcome!',
+            showConfirmButton: false,
+            timer: 1500 // Set the timer for the alert to automatically close after 1.5 seconds
+        });
+    }
+</script>
 
 	</body>
 </html>
