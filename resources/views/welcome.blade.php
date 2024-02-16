@@ -25,7 +25,7 @@
 	</head>
     @section('content')
 	<body>
-    <img src="{{ asset('assets/img/logo.png') }}" class="logo">
+    <img src="{{ asset('assets/images/iit-logo.png') }}" class="logo">
 		<p class="nmpc">MSU-IIT ENERGY<br>MANAGEMENT SYSTEM</p>
 	<!--	
 		<div class="title-container">
