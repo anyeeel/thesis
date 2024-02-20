@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\BuildingController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,5 +37,15 @@ Route::middleware('auth')->group(function () {
 Route::post('/logout', [App\Http\Controllers\Auth\AuthenticatedSessionController::class, 'destroy'])
     ->middleware('auth')
     ->name('logout');
+
+Route::resources([
+    'roles' => RoleController::class,
+    'users' => UserController::class,
+    'building' => BuildingController::class,
+]);
+
+Route::delete('/deleteRoles', [RoleController::class, 'deleteRoles'])->name('deleteRoles');
+
+Route::delete('/destroyMultiple', [UserController::class, 'destroyMultiple'])->name('destroyMultiple');
 
 require __DIR__.'/auth.php';
