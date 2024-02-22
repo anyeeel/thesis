@@ -41,7 +41,7 @@ Route::post('/logout', [App\Http\Controllers\Auth\AuthenticatedSessionController
 Route::resources([
     'roles' => RoleController::class,
     'users' => UserController::class,
-    'building' => BuildingController::class,
+    'buildings' => BuildingController::class,
 ]);
 
 Route::delete('/deleteRoles', [RoleController::class, 'deleteRoles'])->name('deleteRoles');

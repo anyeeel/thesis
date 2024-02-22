@@ -17,7 +17,7 @@
                             </li>
 
                             <li>
-                                <a href="{{ route('building.index') }}" class="waves-effect">
+                                <a href="{{ route('buildings.index') }}" class="waves-effect">
                                     <i class="bx bx-buildings"></i>
                                     <span key="t-layouts">Buildings</span>
                                 </a>
