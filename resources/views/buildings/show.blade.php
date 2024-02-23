@@ -24,6 +24,8 @@
                                     <div class="card-body">
                                         <h5 class="card-title">Floor {{ $i }}</h5>
                                         <!-- Add other floor details here if needed -->
+                                   
+                                        <a href="{{ url('/room') }}" class="btn btn-primary">View Rooms</a>
                                     </div>
                                 </div>
                             </div>
