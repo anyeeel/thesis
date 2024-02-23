@@ -84,15 +84,17 @@
                                                 <thead>
                                                     <tr>
                                                         <th scope="col">No</th>
-                                                        <th scope="col">Job Title</th>
-                                                        <th scope="col">Company Name</th>
-                                                        <th scope="col">Location</th>
-                                                        <th scope="col">Experience</th>
-                                                        <th scope="col">Position</th>
+                                                        <th scope="col">Device Name</th>
                                                         <th scope="col">Type</th>
-                                                        <th scope="col">Posted Date</th>
-                                                        <th scope="col">Last Date</th>
-                                                        <th scope="col">Status</th>
+                                                        <th scope="col">Quantity</th>
+                                                        <th scope="col">Inactive</th>
+                                                        <th scope="col">Brand</th>
+                                                        <th scope="col">Model</th>
+                                                        <th scope="col">Date Installed</th>
+                                                        <th scope="col">Life Expectancy</th>
+                                                        <th scope="col">Power</th>
+                                                        <th scope="col">Hours Used</th>
+                                                        <th scope="col">Energy (kWh)</th>
                                                         <th scope="col">Action</th>
                                                     </tr>
                                                 </thead>
@@ -102,12 +104,14 @@
                                                         <td>Magento Developer</td>
                                                         <td>Themesbrand</td>
                                                         <td>California</td>
-                                                        <td>0-2 Years</td>
+                                                        <td><span class="badge badge-soft-success">Active</span></td>
                                                         <td>2</td>
-                                                        <td><span class="badge badge-soft-success">Full Time</span></td>
+                                                        <td>EC1VA35</td>
                                                         <td>02 June 2021</td>
                                                         <td>25 June 2021</td>
                                                         <td><span class="badge bg-success">Active</span></td>
+                                                        <td>234</td>
+                                                        <td>13hrs</td>
                                                         <td>
                                                             <ul class="list-unstyled hstack gap-1 mb-0">
                                                                 <li data-bs-toggle="tooltip" data-bs-placement="top" title="View">
@@ -122,231 +126,7 @@
                                                             </ul>
                                                         </td>
                                                     </tr>
-                                                    <tr>
-                                                        <th scope="row">2</th>
-                                                        <td>Product Designer</td>
-                                                        <td>Web Technology pvt.ltd</td>
-                                                        <td>California</td>
-                                                        <td>1-2 Years</td>
-                                                        <td>3</td>
-                                                        <td><span class="badge badge-soft-danger">Part Time</span></td>
-                                                        <td>15 June 2021</td>
-                                                        <td>28 June 2021</td>
-                                                        <td><span class="badge bg-info">New</span></td>
-                                                        <td>
-                                                            <ul class="list-unstyled hstack gap-1 mb-0">
-                                                                <li data-bs-toggle="tooltip" data-bs-placement="top" title="View">
-                                                                    <a href="job-details.html" class="btn btn-sm btn-soft-primary"><i class="mdi mdi-eye-outline"></i></a>
-                                                                </li>
-                                                                <li data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
-                                                                    <a href="#" class="btn btn-sm btn-soft-info"><i class="mdi mdi-pencil-outline"></i></a>
-                                                                </li>
-                                                                <li data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
-                                                                    <a href="#jobDelete" data-bs-toggle="modal" class="btn btn-sm btn-soft-danger"><i class="mdi mdi-delete-outline"></i></a>
-                                                                </li>
-                                                            </ul>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">3</th>
-                                                        <td>Marketing Director</td>
-                                                        <td>Creative Agency</td>
-                                                        <td>Phoenix</td>
-                                                        <td>-</td>
-                                                        <td>5</td>
-                                                        <td><span class="badge badge-soft-success">Full Time</span></td>
-                                                        <td>02 June 2021</td>
-                                                        <td>25 June 2021</td>
-                                                        <td><span class="badge bg-danger">Close</span></td>
-                                                        <td>
-                                                            <ul class="list-unstyled hstack gap-1 mb-0">
-                                                                <li data-bs-toggle="tooltip" data-bs-placement="top" title="View">
-                                                                    <a href="job-details.html" class="btn btn-sm btn-soft-primary"><i class="mdi mdi-eye-outline"></i></a>
-                                                                </li>
-                                                                <li data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
-                                                                    <a href="#" class="btn btn-sm btn-soft-info"><i class="mdi mdi-pencil-outline"></i></a>
-                                                                </li>
-                                                                <li data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
-                                                                    <a href="#jobDelete" data-bs-toggle="modal" class="btn btn-sm btn-soft-danger"><i class="mdi mdi-delete-outline"></i></a>
-                                                                </li>
-                                                            </ul>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">4</th>
-                                                        <td>HTML Developer</td>
-                                                        <td>Web Technology pvt.ltd</td>
-                                                        <td>California</td>
-                                                        <td>0-4 Years</td>
-                                                        <td>8</td>
-                                                        <td><span class="badge badge-soft-success">Full Time</span></td>
-                                                        <td>02 June 2021</td>
-                                                        <td>25 June 2021</td>
-                                                        <td><span class="badge bg-success">Active</span></td>
-                                                        <td>
-                                                            <ul class="list-unstyled hstack gap-1 mb-0">
-                                                                <li data-bs-toggle="tooltip" data-bs-placement="top" title="View">
-                                                                    <a href="job-details.html" class="btn btn-sm btn-soft-primary"><i class="mdi mdi-eye-outline"></i></a>
-                                                                </li>
-                                                                <li data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
-                                                                    <a href="#" class="btn btn-sm btn-soft-info"><i class="mdi mdi-pencil-outline"></i></a>
-                                                                </li>
-                                                                <li data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
-                                                                    <a href="#jobDelete" data-bs-toggle="modal" class="btn btn-sm btn-soft-danger"><i class="mdi mdi-delete-outline"></i></a>
-                                                                </li>
-                                                            </ul>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">5</th>
-                                                        <td>Product Sales Specialist</td>
-                                                        <td>Skote Technology pvt.Ltd</td>
-                                                        <td>Louisiana</td>
-                                                        <td>5+ Years</td>
-                                                        <td>1</td>
-                                                        <td><span class="badge badge-soft-danger">Part Time</span></td>
-                                                        <td>02 June 2021</td>
-                                                        <td>25 June 2021</td>
-                                                        <td><span class="badge bg-info">New</span></td>
-                                                        <td>
-                                                            <ul class="list-unstyled hstack gap-1 mb-0">
-                                                                <li data-bs-toggle="tooltip" data-bs-placement="top" title="View">
-                                                                    <a href="job-details.html" class="btn btn-sm btn-soft-primary"><i class="mdi mdi-eye-outline"></i></a>
-                                                                </li>
-                                                                <li data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
-                                                                    <a href="#" class="btn btn-sm btn-soft-info"><i class="mdi mdi-pencil-outline"></i></a>
-                                                                </li>
-                                                                <li data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
-                                                                    <a href="#jobDelete" data-bs-toggle="modal" class="btn btn-sm btn-soft-danger"><i class="mdi mdi-delete-outline"></i></a>
-                                                                </li>
-                                                            </ul>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">6</th>
-                                                        <td>Magento Developer</td>
-                                                        <td>New Technology pvt.ltd</td>
-                                                        <td>Oakridge Lane Richardson</td>
-                                                        <td>0-2 Years</td>
-                                                        <td>2</td>
-                                                        <td><span class="badge badge-soft-info">Freelance</span></td>
-                                                        <td>02 June 2021</td>
-                                                        <td>25 June 2021</td>
-                                                        <td><span class="badge text-bg-info">New</span></td>
-                                                        <td>
-                                                            <ul class="list-unstyled hstack gap-1 mb-0">
-                                                                <li data-bs-toggle="tooltip" data-bs-placement="top" title="View">
-                                                                    <a href="job-details.html" class="btn btn-sm btn-soft-primary"><i class="mdi mdi-eye-outline"></i></a>
-                                                                </li>
-                                                                <li data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
-                                                                    <a href="#" class="btn btn-sm btn-soft-info"><i class="mdi mdi-pencil-outline"></i></a>
-                                                                </li>
-                                                                <li data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
-                                                                    <a href="#jobDelete" data-bs-toggle="modal" class="btn btn-sm btn-soft-danger"><i class="mdi mdi-delete-outline"></i></a>
-                                                                </li>
-                                                            </ul>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">7</th>
-                                                        <td>Business Associate</td>
-                                                        <td>Web Technology pvt.ltd</td>
-                                                        <td>California</td>
-                                                        <td>0-2 Years</td>
-                                                        <td>2</td>
-                                                        <td><span class="badge badge-soft-success">Full Time</span></td>
-                                                        <td>02 June 2021</td>
-                                                        <td>25 June 2021</td>
-                                                        <td><span class="badge text-bg-success">Active</span></td>
-                                                        <td>
-                                                            <ul class="list-unstyled hstack gap-1 mb-0">
-                                                                <li data-bs-toggle="tooltip" data-bs-placement="top" title="View">
-                                                                    <a href="job-details.html" class="btn btn-sm btn-soft-primary"><i class="mdi mdi-eye-outline"></i></a>
-                                                                </li>
-                                                                <li data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
-                                                                    <a href="#" class="btn btn-sm btn-soft-info"><i class="mdi mdi-pencil-outline"></i></a>
-                                                                </li>
-                                                                <li data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
-                                                                    <a href="#jobDelete" data-bs-toggle="modal" class="btn btn-sm btn-soft-danger"><i class="mdi mdi-delete-outline"></i></a>
-                                                                </li>
-                                                            </ul>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">8</th>
-                                                        <td>Magento Developer</td>
-                                                        <td>Adobe Agency</td>
-                                                        <td>California</td>
-                                                        <td>0-2 Years</td>
-                                                        <td>2</td>
-                                                        <td><span class="badge badge-soft-success">Full Time</span></td>
-                                                        <td>02 June 2021</td>
-                                                        <td>25 June 2021</td>
-                                                        <td><span class="badge text-bg-danger">Close</span></td>
-                                                        <td>
-                                                            <ul class="list-unstyled hstack gap-1 mb-0">
-                                                                <li data-bs-toggle="tooltip" data-bs-placement="top" title="View">
-                                                                    <a href="job-details.html" class="btn btn-sm btn-soft-primary"><i class="mdi mdi-eye-outline"></i></a>
-                                                                </li>
-                                                                <li data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
-                                                                    <a href="#" class="btn btn-sm btn-soft-info"><i class="mdi mdi-pencil-outline"></i></a>
-                                                                </li>
-                                                                <li data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
-                                                                    <a href="#jobDelete" data-bs-toggle="modal" class="btn btn-sm btn-soft-danger"><i class="mdi mdi-delete-outline"></i></a>
-                                                                </li>
-                                                            </ul>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">9</th>
-                                                        <td>HTML Developer</td>
-                                                        <td>Web Technology pvt.ltd</td>
-                                                        <td>California</td>
-                                                        <td>0-2 Years</td>
-                                                        <td>2</td>
-                                                        <td><span class="badge badge-soft-danger">Part Time</span></td>
-                                                        <td>02 June 2021</td>
-                                                        <td>25 June 2021</td>
-                                                        <td><span class="badge text-bg-info">New</span></td>
-                                                        <td>
-                                                            <ul class="list-unstyled hstack gap-1 mb-0">
-                                                                <li data-bs-toggle="tooltip" data-bs-placement="top" title="View">
-                                                                    <a href="job-details.html" class="btn btn-sm btn-soft-primary"><i class="mdi mdi-eye-outline"></i></a>
-                                                                </li>
-                                                                <li data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
-                                                                    <a href="#" class="btn btn-sm btn-soft-info"><i class="mdi mdi-pencil-outline"></i></a>
-                                                                </li>
-                                                                <li data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
-                                                                    <a href="#jobDelete" data-bs-toggle="modal" class="btn btn-sm btn-soft-danger"><i class="mdi mdi-delete-outline"></i></a>
-                                                                </li>
-                                                            </ul>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">10</th>
-                                                        <td>Marketing Director</td>
-                                                        <td>Web Technology pvt.ltd</td>
-                                                        <td>California</td>
-                                                        <td>0-2 Years</td>
-                                                        <td>2</td>
-                                                        <td><span class="badge badge-soft-warning">Internship</span></td>
-                                                        <td>02 June 2021</td>
-                                                        <td>25 June 2021</td>
-                                                        <td><span class="badge text-bg-success">Active</span></td>
-                                                        <td>
-                                                            <ul class="list-unstyled hstack gap-1 mb-0">
-                                                                <li data-bs-toggle="tooltip" data-bs-placement="top" title="View">
-                                                                    <a href="job-details.html" class="btn btn-sm btn-soft-primary"><i class="mdi mdi-eye-outline"></i></a>
-                                                                </li>
-                                                                <li data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
-                                                                    <a href="#" class="btn btn-sm btn-soft-info"><i class="mdi mdi-pencil-outline"></i></a>
-                                                                </li>
-                                                                <li data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
-                                                                    <a href="#jobDelete" data-bs-toggle="modal" class="btn btn-sm btn-soft-danger"><i class="mdi mdi-delete-outline"></i></a>
-                                                                </li>
-                                                            </ul>
-                                                        </td>
-                                                    </tr>
+
                                                 </tbody>
                                             </table>
                                         </div>
