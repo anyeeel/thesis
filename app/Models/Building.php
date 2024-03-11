@@ -10,6 +10,7 @@ class Building extends Model
     use HasFactory;
 
     protected $fillable = [
+        'id',
         'building_name',
         'num_of_floors',
         // Add other fillable attributes as needed

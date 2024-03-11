@@ -94,9 +94,7 @@
                                                                 </div>
                                                                 <div class="d-flex">
                                                                     <div class="overflow-hidden me-auto">               
-                                                                        <h5 class="font-size-14 text-truncate mb-1"><a href="{{ route('floors.index', ['buildingId' => $building->id]) }}" class="text-body">{{ $building->building_name }}</a></h5>
-                                                                        <!-- <a href="{{ route('floors.index', ['buildingId' => $building->id]) }}">View Floors</a> -->
-
+                                                                        <h5 class="font-size-14 text-truncate mb-1"><a href="{{ route('buildings.show', $building->building_name) }}" class="text-body">{{ $building->building_name }}</a></h5>
                                                                         <p class="text-muted text-truncate mb-0">{{ $building->num_of_floors }} Floors</p>
                                                                     </div>
                                                                     <div class="align-self-end ms-2">
@@ -126,9 +124,11 @@
                                 </div>
                             </div>
                         </div>
-                    </div>            
+                    </div>
+            
                     <!--  end row -->
 
+                    
                     <div class="row">
                         <div class="col-12">
                             <div class="text-center my-3">
@@ -226,9 +226,9 @@
                 </form>
             </div>
         </div>
-</div>
+    </div>
 
-<script>
+    <script>
     document.addEventListener('DOMContentLoaded', function () {
         // Get all input fields in the form
         const inputs = document.querySelectorAll('.form-control');
@@ -273,5 +273,5 @@
         });
     });
 
-</script>
+    </script>
 @endsection

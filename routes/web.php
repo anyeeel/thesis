@@ -1,11 +1,14 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\BuildingController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
-// use App\Http\Controllers\RoomController;
+use App\Http\Controllers\BuildingController;
+use App\Http\Controllers\FloorController;
+use App\Http\Controllers\RoomController;
+use App\Http\Controllers\ElectricalDeviceController;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -43,20 +46,16 @@ Route::resources([
     'roles' => RoleController::class,
     'users' => UserController::class,
     'buildings' => BuildingController::class,
-    // 'rooms' => RoomController::class,
+    'floors' => FloorController::class,
+    'rooms' => RoomController::class,
+    'devices' => DeviceController::class,
 ]);
 
 Route::delete('/deleteRoles', [RoleController::class, 'deleteRoles'])->name('deleteRoles');
 
 Route::delete('/destroyMultiple', [UserController::class, 'destroyMultiple'])->name('destroyMultiple');
 
-// Route::get('{floor}/rooms', 'App\Http\Controllers\RoomController@index')->name('rooms.index');
-
-
-// Front-End lang muna, walang backend na route
-Route::get('/room', function () {
-    return view('room.index');
-});
+Route::get('floors/{building_id}', [FloorController::class, 'index'])->name('floors.index');
 
 Route::get('/room/show', function () {
     return view('room.show');

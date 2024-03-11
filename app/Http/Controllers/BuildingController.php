@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Building;
+use App\Models\Floor;
 
 class BuildingController extends Controller
 {
@@ -38,12 +39,10 @@ class BuildingController extends Controller
 
     public function show($buildingName)
     {
-        // Find the building by its name
+        
         $building = Building::where('building_name', $buildingName)->firstOrFail();
-    
-        // Assuming you have a 'show' view for the floor page
-        // You can pass the building data to the view and return it
-        return view('buildings.show', compact('building'));
+
+        return view('floors.index', compact('building'));
     }
     
 
