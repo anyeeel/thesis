@@ -11,6 +11,7 @@ class CreateFloorsTable extends Migration
         Schema::create('floors', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('building_id'); // Add the building_id column
+            $table->integer('floor_number'); // Add the floor_number column
             $table->string('name');
             $table->timestamps();
             

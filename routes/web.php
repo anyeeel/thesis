@@ -57,11 +57,11 @@ Route::delete('/destroyMultiple', [UserController::class, 'destroyMultiple'])->n
 
 Route::get('floors/{building_id}', [FloorController::class, 'index'])->name('floors.index');
 
-
 Route::get('/room/show', function () {
     return view('room.show');
 });
 
 
+Route::get('{building_id}/{floor_id}/rooms', [RoomController::class, 'index'])->name('rooms.index');
 
 require __DIR__.'/auth.php';

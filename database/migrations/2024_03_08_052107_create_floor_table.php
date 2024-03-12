@@ -10,11 +10,11 @@ class CreateFloorTable extends Migration
     {
         Schema::create('floor', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('building_id'); // Add the building_id column
+            $table->unsignedBigInteger('building_id');
             $table->string('name');
+            $table->integer('floor_number'); // Add the floor_number column
             $table->timestamps();
             
-            // Add foreign key constraint
             $table->foreign('building_id')->references('id')->on('buildings')->onDelete('cascade');
         });
     }
