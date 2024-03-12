@@ -6,7 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\BuildingController;
 use App\Http\Controllers\FloorController;
 use App\Http\Controllers\RoomController;
-use App\Http\Controllers\ElectricalDeviceController;
+use App\Http\Controllers\DeviceController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -56,6 +56,7 @@ Route::delete('/deleteRoles', [RoleController::class, 'deleteRoles'])->name('del
 Route::delete('/destroyMultiple', [UserController::class, 'destroyMultiple'])->name('destroyMultiple');
 
 Route::get('floors/{building_id}', [FloorController::class, 'index'])->name('floors.index');
+
 
 Route::get('/room/show', function () {
     return view('room.show');

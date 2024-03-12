@@ -406,7 +406,7 @@ body[data-layout=horizontal] .footer {
 #sidebar-menu ul li a {
   display: block;
   padding: 0.625rem 1.5rem;
-  color: #545a6d;
+  color: #ffffff;
   position: relative;
   font-size: 13px;
   -webkit-transition: all 0.4s;
@@ -419,7 +419,7 @@ body[data-layout=horizontal] .footer {
   font-size: 1.25rem;
   line-height: 1.40625rem;
   vertical-align: middle;
-  color: #7f8387;
+  color: #ffffff;
   -webkit-transition: all 0.4s;
   transition: all 0.4s;
 }
@@ -2011,6 +2011,7 @@ body[data-layout=horizontal][data-layout-size=boxed] .container-fluid, body[data
   max-height: 100%; /* Needed for vertical scroll to trigger */
   scrollbar-width: none;
   padding: 0px !important;
+  background-color: #722410 !important;
 }
 
 .simplebar-content-wrapper::-webkit-scrollbar,
