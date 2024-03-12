@@ -1,10 +1,14 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\ProductController;
+use App\Http\Controllers\BuildingController;
+use App\Http\Controllers\FloorController;
+use App\Http\Controllers\RoomController;
+use App\Http\Controllers\ElectricalDeviceController;
+use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -18,15 +22,41 @@ use App\Http\Controllers\ProductController;
 */
 
 Route::get('/', function () {
-    return view('auth.login');
+    return view('welcome');
 });
 
-Auth::routes();
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
+    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile/destroy', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+
+// Logout
+Route::post('/logout', [App\Http\Controllers\Auth\AuthenticatedSessionController::class, 'destroy'])
+    ->middleware('auth')
+    ->name('logout');
 
 Route::resources([
     'roles' => RoleController::class,
     'users' => UserController::class,
-    'products' => ProductController::class,
+    'buildings' => BuildingController::class,
+    'floors' => FloorController::class,
+    'rooms' => RoomController::class,
+    'devices' => DeviceController::class,
 ]);
+
+Route::delete('/deleteRoles', [RoleController::class, 'deleteRoles'])->name('deleteRoles');
+
+Route::delete('/destroyMultiple', [UserController::class, 'destroyMultiple'])->name('destroyMultiple');
+
+Route::get('{building_id/floors}', [FloorController::class, 'index'])->name('floors.index');
+
+Route::get('{building_id}/{floor_id}/rooms', [RoomController::class, 'index'])->name('rooms.index');
+
+require __DIR__.'/auth.php';

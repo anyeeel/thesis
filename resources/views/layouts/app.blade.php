@@ -1,51 +1,73 @@
-<!doctype html>
-<html lang="en">
-
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
-        
-        <meta charset="utf-8" />
-        <title>CCS Energy Consumption Repository</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
-        <meta content="Themesbrand" name="author" />
-        <!-- App favicon -->
-        <link rel="shortcut icon" href="assets/images/favicon.ico">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+
+        <title>{{ config('app.name', 'ECRMS') }}</title>
+
+        <!-- Fonts -->
+        <!-- <link rel="preconnect" href="https://fonts.bunny.net">
+        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" /> -->
 
         <!-- Bootstrap Css -->
-        <link href="assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
+
         <!-- Icons Css -->
-        <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
         <!-- App Css-->
-        <link href="assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('assets/css/app.min.css') }}" rel="stylesheet" type="text/css" />
+
         <!-- App js -->
-        <script src="assets/js/plugin.js"></script>
+        <script src="{{ asset('assets/js/plugin.js') }}"></script>
+        <script src="{{ asset('assets/js/login.js') }}"></script>
+
+        <!-- Sweetalert -->
+        <link rel="stylesheet" href="{{ asset('assets/libs/sweetalert2/sweetalert2.min.css') }}" type="text/css"></link>
+        <script src="{{ asset('assets/libs/sweetalert2/sweetalert2.min.js') }}"></script>
+
+
+        <!-- Scripts -->
+        <!-- @vite(['resources/css/app.css', 'resources/js/app.js']) -->
 
     </head>
-
-    <body data-sidebar="dark">
+    
+    <body data-sidebar="light">
         <div id="app">
             <main class="py-4">
                 @yield('content')
             </main>
         </div>
 
-        <!-- Right bar overlay-->
-        <div class="rightbar-overlay"></div>
+        
+        <!-- JAVASCRIPT -->
+        <script src="{{ asset('assets/libs/jquery/jquery.min.js') }}"></script>
+        <script src="{{ asset('assets/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+        <script src="{{ asset('assets/libs/metismenu/metisMenu.min.js') }}"></script>
+        <script src="{{ asset('assets/libs/simplebar/simplebar.min.js') }}"></script>
+        <script src="{{ asset('assets/libs/node-waves/waves.min.js') }}"></script>
 
-    <!-- JAVASCRIPT -->
-    <script src="assets/libs/jquery/jquery.min.js"></script>
-    <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/libs/metismenu/metisMenu.min.js"></script>
-    <script src="assets/libs/simplebar/simplebar.min.js"></script>
-    <script src="assets/libs/node-waves/waves.min.js"></script>
 
-    <!-- apexcharts -->
-    <script src="assets/libs/apexcharts/apexcharts.min.js"></script>
+        <script src="{{ asset('assets/js/pages/table-editable.int.js') }}"></script>
+        <!--tinymce js-->
+        <script src="{{ asset('assets/libs/tinymce/tinymce.min.js') }}"></script>
+        <!-- init js -->
+        <script src="{{ asset('assets/js/pages/form-editor.init.js') }}"></script>
+        <!-- apexcharts -->
+        <script src="{{ asset('assets/libs/apexcharts/apexcharts.min.js') }}"></script>
+        <!-- dashboard init -->
+        <script src="{{ asset('assets/js/pages/dashboard.init.js') }}"></script>
+        <!-- apexcharts -->
+        <script src="{{ asset('assets/libs/apexcharts/apexcharts.min.js') }}"></script>
+        <!-- dashboard charts init -->
+        <script src="{{ asset('assets/js/pages/dashboard-blog.init.js') }}"></script>
+        <!-- Modal -->
+        <script src="{{ asset('assets/js/pages/modal.init.js') }}"></script>
+        <!-- dragula plugins -->
+        <script src="{{ asset('assets/libs/dragula/dragula.min.js') }}"></script>
 
-    <!-- dashboard blog init -->
-    <script src="assets/js/pages/dashboard-blog.init.js"></script>
-
-    <script src="assets/js/app.js"></script>
-
+        <!-- App js -->
+        <script src="{{ asset('assets/js/app.js') }}"></script>
     </body>
 </html>

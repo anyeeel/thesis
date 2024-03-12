@@ -25,7 +25,7 @@
 	</head>
     @section('content')
 	<body>
-    <img src="{{ asset('assets/img/logo.png') }}" class="logo">
+    <img src="{{ asset('assets/images/iit-logo.png') }}" class="logo">
 		<p class="nmpc">MSU-IIT ENERGY<br>MANAGEMENT SYSTEM</p>
 	<!--	
 		<div class="title-container">
@@ -90,7 +90,7 @@
 	            	<div class="w-50">
 	            		<label class="checkbox-wrap checkbox-primary">Remember Me
 									  <input type="checkbox" checked>
-									  <span class="checkmark"></span>
+									  <!-- <span class="checkmark"></span> -->
 									</label>
 								</div>
 								<div class="w-50 text-md-right">
@@ -128,7 +128,17 @@
     });
 </script>
 
-
+<script>
+    function showSuccessAlert() {
+        Swal.fire({
+            icon: 'success',
+            title: 'Login Successful',
+            text: 'Welcome!',
+            showConfirmButton: false,
+            timer: 1500 // Set the timer for the alert to automatically close after 1.5 seconds
+        });
+    }
+</script>
 
 	</body>
 </html>
