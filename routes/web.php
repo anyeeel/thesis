@@ -6,7 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\BuildingController;
 use App\Http\Controllers\FloorController;
 use App\Http\Controllers\RoomController;
-use App\Http\Controllers\ElectricalDeviceController;
+use App\Http\Controllers\ElectricalDevicesController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -48,7 +48,7 @@ Route::resources([
     'buildings' => BuildingController::class,
     'floors' => FloorController::class,
     'rooms' => RoomController::class,
-    'devices' => DeviceController::class,
+    
 ]);
 
 Route::delete('/deleteRoles', [RoleController::class, 'deleteRoles'])->name('deleteRoles');
@@ -57,6 +57,6 @@ Route::delete('/destroyMultiple', [UserController::class, 'destroyMultiple'])->n
 
 Route::get('{building_id/floors}', [FloorController::class, 'index'])->name('floors.index');
 
-Route::get('{building_id}/{floor_id}/rooms', [RoomController::class, 'index'])->name('rooms.index');
+Route::get('rooms', 'RoomController@index')->name('rooms.index');
 
 require __DIR__.'/auth.php';

@@ -10,6 +10,7 @@ class CreateDevicesTable extends Migration
     {
         Schema::create('devices', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('room_id');
             $table->string('name');
             $table->string('type');
             $table->integer('quantity');
