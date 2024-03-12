@@ -12,8 +12,9 @@ class FloorController extends Controller
     {
         $buildingId = $request->input('buildingId');
         $building = Building::where('id', $buildingId)->first();
+        $floor = Floor::where('building_id', $buildingId)->get();
         // $floors = $building->floors;
-        return view('floors.index', ['building' => $building]);
+        return view('floors.index', ['building' => $building, 'floors' => $floor]);
     }
 
     public function create()

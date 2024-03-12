@@ -9,11 +9,14 @@ use Illuminate\Http\Request;
 
 class RoomController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $rooms = Building::all();
-        return view('rooms.index', compact('rooms'));
+        $floor_id = $request->input('floor_id');
+        $floor = Floor::where('id', $floor_id)->first();
+        $rooms = Room::where('floor_id', $floor_id)->get();
+        return view('rooms.index', ['floor' => $floor, 'rooms' => $rooms]);
     }
+
 
     public function create()
     {
@@ -22,29 +25,35 @@ class RoomController extends Controller
 
     public function store(Request $request)
     {
-        Building::create($request->all());
-        return redirect()->route('rooms.index')->with('success','Building created successfully.');
+        dd ($request->all());
+        $room = new Room();
+        
+        $room->name = $request->input('room_name');
+        $room->floor_id = $request->input('floor_id'); 
+        $room->save();
+
+        return redirect()->route('rooms.index')->with('success', 'Room created successfully.');
     }
 
-    public function show(Building $building)
+    public function show(Room $rooms)
     {
-        return view('rooms.show', compact('building'));
+        return view('rooms.show', compact('rooms'));
     }
 
-    public function edit(Building $building)
+    public function edit(Room $rooms)
     {
-        return view('rooms.edit', compact('building'));
+        return view('rooms.edit', compact('rooms'));
     }
 
-    public function update(Request $request, Building $building)
+    public function update(Request $request, Room $rooms)
     {
         $building->update($request->all());
-        return redirect()->route('rooms.index')->with('success','Building updated successfully');
+        return redirect()->route('rooms.index')->with('success','Room updated successfully');
     }
 
-    public function destroy(Building $building)
+    public function destroy(Room $rooms)
     {
         $building->delete();
-        return redirect()->route('rooms.index')->with('success','Building deleted successfully');
+        return redirect()->route('rooms.index')->with('success','Room deleted successfully');
     }
 }

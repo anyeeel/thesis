@@ -17,8 +17,8 @@
 
                                 <div class="page-title-right">
                                     <ol class="breadcrumb m-0">
-                                        <li class="breadcrumb-item"><a href="{{ route ('buildings.index') }}">Buildings</a></li>
-                                        <li class="breadcrumb-item active">Files</li>
+                                        <li class="breadcrumb-item"><a href="{{ route('buildings.index') }}">Buildings</a></li>
+                                        <li class="breadcrumb-item active">Rooms</li>
                                     </ol>
                                 </div>
 
@@ -35,7 +35,7 @@
                                         <div class="row mb-3">
                                             <div class="col-xl-3 col-sm-6">
                                                 <div class="mt-2">
-                                                    <h5>Files</h5>
+                                                    <h5>Rooms</h5>
                                                 </div>
                                             </div>
                                             <div class="col-xl-9 col-sm-6">
@@ -53,7 +53,7 @@
                                                         </a>
                                                         
                                                         <div class="dropdown-menu dropdown-menu-end">
-                                                            <a class="dropdown-item" href="#">Share Files</a>
+                                                            <a class="dropdown-item" href="#">Share Rooms</a>
                                                             <a class="dropdown-item" href="#">Share with me</a>
                                                             <a class="dropdown-item" href="#">Other Actions</a>
                                                         </div>
@@ -65,7 +65,7 @@
 
                                     <div>
                                         <div class="row">
-                                            @foreach($buildings as $building)
+                                            @foreach($rooms as $room)
                                                 <div class="col-xl-4 col-sm-6">
                                                     <div class="card shadow-none border">
                                                         <div class="card-body p-3">
@@ -77,12 +77,12 @@
                                                                         </a>
                                                                         
                                                                         <div class="dropdown-menu dropdown-menu-end">                                                         
-                                                                            <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editBuildingModal{{ $building->id }}">Edit</a>                                                                   
+                                                                            <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editRoomModal{{ $room->id }}">Edit</a>                                                                   
                                                                             <div class="dropdown-divider"></div>               
-                                                                            <form action="{{ route('buildings.destroy', $building->id) }}" method="POST">
+                                                                            <form action="{{ route('rooms.destroy', $room->id) }}" method="POST">
                                                                                 @csrf
                                                                                 @method('DELETE')
-                                                                                <button type="submit" class="dropdown-item text-danger" onclick="return confirm('Are you sure you want to delete this building?')">Remove</button>
+                                                                                <button type="submit" class="dropdown-item text-danger" onclick="return confirm('Are you sure you want to delete this room?')">Remove</button>
                                                                             </form>
                                                                         </div>
                                                                     </div>
@@ -94,11 +94,11 @@
                                                                 </div>
                                                                 <div class="d-flex">
                                                                     <div class="overflow-hidden me-auto">               
-                                                                        <h5 class="font-size-14 text-truncate mb-1"><a href="{{ route('buildings.show', $building->building_name) }}" class="text-body">{{ $building->building_name }}</a></h5>
-                                                                        <p class="text-muted text-truncate mb-0">{{ $building->num_of_floors }} Floors</p>
+                                                                        <h5 class="font-size-14 text-truncate mb-1"><a href="{{ route('rooms.show', $room->room_name) }}" class="text-body">{{ $rooms->room_name }}</a></h5>
+                                                                        <p class="text-muted text-truncate mb-0">{{ $rooms->room_description }}</p>
                                                                     </div>
                                                                     <div class="align-self-end ms-2">
-                                                                        <p class="text-muted mb-0">20,123 kWh</p>
+                                                                        <p class="text-muted mb-0">{{ $rooms->room_capacity }} Capacity</p>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -108,9 +108,9 @@
                                             @endforeach
 
                                             <div class="col-xl-4 col-sm-6">
-                                                <div class="card shadow-none border" id="building">
+                                                <div class="card shadow-none border" id="room">
                                                     <div class="card-body p-3 d-flex align-items-center justify-content-center">
-                                                        <a class="addBldg" role="button" aria-haspopup="true" data-bs-toggle="modal" data-bs-target=".bs-example-modal-center" data-bs-toggle="tooltip" data-bs-placement="top" title="Add Building">
+                                                        <a class="addRoom" role="button" aria-haspopup="true" data-bs-toggle="modal" data-bs-target=".bs-example-modal-center" data-bs-toggle="tooltip" data-bs-placement="top" title="Add Room">
                                                             <i class="bx bx-plus-medical"></i>
                                                         </a>                                               
                                                     </div>                                        
@@ -160,35 +160,28 @@
     </div>
     <!-- end layout-wrapper -->
 
- <!-- add building -->
+ <!-- add room -->
     <div class="modal fade bs-example-modal-center" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Add Building</h5>
+                    <h5 class="modal-title">Add Room</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="addBuildingForm" action="{{ route('buildings.store') }}" method="POST">
+                    <form id="addRoomForm" action="{{ route('rooms.store') }}" method="POST">
                         @csrf
                         <div class="modal-body">
                             <div class="row mb-3">
-                                <label for="bldgName" class="col-sm-2 col-form-label">Building Name:</label>
+                                <label for="roomName" class="col-sm-2 col-form-label">Room Name:</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="bldgName" name="building_name">
+                                    <input type="text" class="form-control" id="roomName" name="room_name">
                                 </div>
                             </div>
-                            <div class="row mb-3">
-                                <label for="numOfFloors" class="col-sm-2 col-form-label">Number of Floors:</label>
-                                <div class="col-sm-10">
-                                    <input type="number" class="form-control" id="numOfFloors" name="num_of_floors">
-                                </div>
-                            </div>
-                        </div>
 
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                            <button type="submit" class="btn btn-primary">Add Building</button>
+                            <button type="submit" class="btn btn-primary">Add Room</button>
                         </div>
                     </form>
                 </div>
@@ -198,25 +191,22 @@
 
     <div id="successMessage" class="alert alert-success" role="alert" style="display: none;"></div>
 
-<!-- edit building -->
-<div class="modal fade bs-example-modal-center" id="editBuildingModal{{ $building->id }}" tabindex="-1" aria-labelledby="editBuildingModal{{ $building->id }}Label" aria-hidden="true">
+<!-- edit room -->
+@foreach($rooms as $room)
+    <div class="modal fade bs-example-modal-center" id="editRoomModal{{ $room->id }}" tabindex="-1" aria-labelledby="editRoomModal{{ $room->id }}Label" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="editBuildingModal{{ $building->id }}Label">Edit Building</h5>
+                    <h5 class="modal-title" id="editRoomModal{{ $room->id }}Label">Edit Room</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="{{ route('buildings.update', $building->id) }}" method="POST">
+                <form action="{{ route('rooms.update', $room->id) }}" method="POST">
                     @csrf
                     @method('PUT')
                     <div class="modal-body">
                         <div class="mb-3">
-                            <label for="editBuildingName" class="form-label">Building Name</label>
-                            <input type="text" class="form-control" id="editBuildingName" name="building_name" value="{{ $building->building_name }}">
-                        </div>
-                        <div class="mb-3">
-                            <label for="editNumOfFloors" class="form-label">Number of Floors</label>
-                            <input type="number" class="form-control" id="editNumOfFloors" name="num_of_floors" value="{{ $building->num_of_floors }}">
+                            <label for="editRoomName" class="form-label">Room Name</label>
+                            <input type="text" class="form-control" id="editRoomName" name="room_name" value="{{ $room->room_name }}">
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -227,6 +217,7 @@
             </div>
         </div>
     </div>
+@endforeach
 
     <script>
     document.addEventListener('DOMContentLoaded', function () {
@@ -253,17 +244,17 @@
     })
 
     $(document).ready(function() {
-        $('#addBuildingForm').on('submit', function(e) {
+        $('#addRoomForm').on('submit', function(e) {
             e.preventDefault();
             $.ajax({
                 type: "POST",
                 url: $(this).attr('action'),
                 data: $(this).serialize(),
                 success: function(response) {
-                    $('#addBuildingForm')[0].reset();
+                    $('#addRoomForm')[0].reset();
                     $('.bs-example-modal-center').modal('hide');
                     $('#successMessage').text(response.success).show();
-                    // You may need to reload the building list here
+                    // You may need to reload the room list here
                 },
                 error: function(error) {
                     console.log(error);

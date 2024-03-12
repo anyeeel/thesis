@@ -11,23 +11,25 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                                <h4 class="mb-sm-0 font-size-18">Floors of {{ $building->building_name }}</h4>
+                                <h4 class="mb-sm-0 font-size-18">Floors of</h4>
                             </div>
                         </div>
                     </div>
                     <!-- end page title -->
 
                     <div class="row">
-                        @for ($i = 1; $i <= $building->num_of_floors; $i++)
+                        @forelse ($floors as $index=>$floor) 
                             <div class="col-xl-4">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h5 class="card-title">Floor {{ $i }}</h5>                                      
-                                        <a href="{{ route('rooms.index') }}" class="btn btn-primary">View Rooms</a>
+                                        <h5 class="card-title">Floor {{ $floor->id }}</h5>                                      
+                                        <a href="{{ route('rooms.index', $floor->id) }}" class="btn btn-primary">View Rooms</a>
+
                                     </div>
                                 </div>
                             </div>
-                        @endfor
+                            @empty
+                        @endforelse
 
                     </div>
                 </div> <!-- container-fluid -->

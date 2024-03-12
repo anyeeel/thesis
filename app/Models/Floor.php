@@ -6,7 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Floor extends Model
 {
-    protected $fillable = ['name'];
+    protected $fillable = [
+        'building_id',
+        'name'
+    ];
 
     public function building()
     {

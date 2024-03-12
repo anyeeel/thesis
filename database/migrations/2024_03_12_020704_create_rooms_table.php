@@ -10,13 +10,17 @@ class CreateRoomsTable extends Migration
     {
         Schema::create('rooms', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('floor_id'); // Add floor_id column to associate with floors
             $table->string('name');
             $table->timestamps();
+            
+            $table->foreign('floor_id')->references('id')->on('floors')->onDelete('cascade');
         });
     }
-
+    
     public function down()
     {
         Schema::dropIfExists('rooms');
     }
+    
 }
