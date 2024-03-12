@@ -55,12 +55,7 @@ Route::delete('/deleteRoles', [RoleController::class, 'deleteRoles'])->name('del
 
 Route::delete('/destroyMultiple', [UserController::class, 'destroyMultiple'])->name('destroyMultiple');
 
-Route::get('floors/{building_id}', [FloorController::class, 'index'])->name('floors.index');
-
-Route::get('/room/show', function () {
-    return view('room.show');
-});
-
+Route::get('{building_id/floors}', [FloorController::class, 'index'])->name('floors.index');
 
 Route::get('{building_id}/{floor_id}/rooms', [RoomController::class, 'index'])->name('rooms.index');
 
