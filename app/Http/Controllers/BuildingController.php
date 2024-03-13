@@ -33,6 +33,13 @@ class BuildingController extends Controller
         // Create a new Building instance with the validated data
         $building = Building::create($validatedData);
 
+        for ($i = 1; $i <= $validatedData['num_of_floors']; $i++) {
+            $floors = new Floor();
+            $floors->building_id = $building->id;
+            $floors->name = 'Floor ' . $i;
+            $floors->save();
+        }
+
         // Optionally, you can return a response or redirect to another page
         return redirect()->route('buildings.index')->with('success', 'Building added successfully');
     }

@@ -18,12 +18,12 @@
                     <!-- end page title -->
 
                     <div class="row">
-                        @forelse ($floors as $index=>$floor) 
+                        @forelse ($floors as $floor) 
                             <div class="col-xl-4">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h5 class="card-title">Floor {{ $floor->id }}</h5>                                      
-                                        <a href="{{ route('rooms.index', $floor->id) }}" class="btn btn-primary">View Rooms</a>
+                                        <h5 class="card-title">{{ $floor->name }}</h5>                                      
+                                        <a href="{{ route('rooms.index') }}?floor_id={{ $floor->id }}" class="btn btn-primary">View Rooms</a>
 
                                     </div>
                                 </div>
