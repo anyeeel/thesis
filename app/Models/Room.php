@@ -15,5 +15,10 @@ class Room extends Model
     {
         return $this->belongsTo(Floor::class);
     }
+
+    public function devices()
+    {
+        return $this->hasMany(Devices::class);
+    }
 }
 

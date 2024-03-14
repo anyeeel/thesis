@@ -27,4 +27,9 @@ class Devices extends Model
     {
         return $this->power * $this->hours_used / 1000;
     }
+
+    public function room()
+    {
+        return $this->belongsTo(Room::class);
+    }
 }

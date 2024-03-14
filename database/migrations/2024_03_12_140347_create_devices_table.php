@@ -22,6 +22,8 @@ class CreateDevicesTable extends Migration
             $table->integer('hours_used'); // in hours
             $table->float('energy')->virtualAs('power * hours_used / 1000'); // in kWh
             $table->timestamps();
+
+            $table->foreign('room_id')->references('id')->on('rooms')->onDelete('cascade');
         });
     }
 

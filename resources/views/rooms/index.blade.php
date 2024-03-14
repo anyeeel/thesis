@@ -97,9 +97,7 @@
                                                                                             <div class="d-flex">
                                                                                                 <div class="overflow-hidden me-auto">               
                                                                                                     <div class="overflow-hidden me-auto">               
-                                                                                                    <h5 class="font-size-14 text-truncate mb-1">
-                                    <a href="{{ route('devices.index') }}">{{ $room->name }}</a>
-                                </h5>
+                                                                                                    <h5 class="font-size-14 text-truncate mb-1"><a href="{{ route('buildings.index') }}" class="text-decoration-none"> {{ $room->name }}</a></h5>
                                                                                                     </div>
                                                                                                 </div>
                                                                                                 <div class="align-self-end ms-2">
