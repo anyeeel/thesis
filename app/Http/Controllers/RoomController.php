@@ -10,6 +10,11 @@ use Illuminate\Http\Request;
 
 class RoomController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index(Request $request)
     {
         $floorId = $request->query('floor_id');

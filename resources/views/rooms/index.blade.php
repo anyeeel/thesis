@@ -38,28 +38,6 @@
                                                     <h5>Rooms</h5>
                                                 </div>
                                             </div>
-                                            <div class="col-xl-9 col-sm-6">
-                                                <form class="mt-4 mt-sm-0 float-sm-end d-flex align-items-center">
-                                                    <div class="search-box mb-2 me-2">
-                                                        <div class="position-relative">
-                                                            <input type="text" class="form-control bg-light border-light rounded" placeholder="Search...">
-                                                            <i class="bx bx-search-alt search-icon"></i>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="dropdown mb-0">
-                                                        <a class="btn btn-link text-muted mt-n2" role="button" data-bs-toggle="dropdown" aria-haspopup="true">
-                                                            <i class="mdi mdi-dots-vertical font-size-20"></i>
-                                                        </a>
-                                                        
-                                                        <div class="dropdown-menu dropdown-menu-end">
-                                                            <a class="dropdown-item" href="#">Share Rooms</a>
-                                                            <a class="dropdown-item" href="#">Share with me</a>
-                                                            <a class="dropdown-item" href="#">Other Actions</a>
-                                                        </div>
-                                                    </div>
-                                                </form>
-                                            </div>
                                         </div>
                                     </div>
 
@@ -130,36 +108,10 @@
                             </div>
                         </div>
                     </div>
-            
                     <!--  end row -->
-
-                    
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="text-center my-3">
-                                <a href="javascript:void(0);" class="text-success"><i class="bx bx-loader bx-spin font-size-18 align-middle me-2"></i> Load more </a>
-                            </div>
-                        </div> <!-- end col-->
-                    </div>
-                    <!-- end row -->
                 </div> <!-- container-fluid -->
             </div>
             <!-- End Page-content -->
-            
-            <footer class="footer">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <script>document.write(new Date().getFullYear())</script> © Skote.
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="text-sm-end d-none d-sm-block">
-                                Design & Develop by Themesbrand
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </footer>
         </div>
         <!-- end main content-->
     </div>

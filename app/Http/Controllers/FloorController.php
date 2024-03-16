@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 
 class FloorController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index($buildingId)
     {
         $building = Building::where('id', $buildingId)->first();

@@ -13,12 +13,11 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                                <h4 class="mb-sm-0 font-size-18">Buildings</h4>
+                                <h4 class="mb-sm-0 font-size-18">Buildings List</h4>
 
                                 <div class="page-title-right">
                                     <ol class="breadcrumb m-0">
                                         <li class="breadcrumb-item"><a href="{{ route ('buildings.index') }}">Buildings</a></li>
-                                        <li class="breadcrumb-item active">Files</li>
                                     </ol>
                                 </div>
 
@@ -31,37 +30,15 @@
                         <div class="w-100">
                             <div class="card">
                                 <div class="card-body">
-                                    <div>
+                                    <!-- <div>
                                         <div class="row mb-3">
                                             <div class="col-xl-3 col-sm-6">
                                                 <div class="mt-2">
-                                                    <h5>Files</h5>
+                                                    <h5>Buildings List</h5>
                                                 </div>
                                             </div>
-                                            <div class="col-xl-9 col-sm-6">
-                                                <form class="mt-4 mt-sm-0 float-sm-end d-flex align-items-center">
-                                                    <div class="search-box mb-2 me-2">
-                                                        <div class="position-relative">
-                                                            <input type="text" class="form-control bg-light border-light rounded" placeholder="Search...">
-                                                            <i class="bx bx-search-alt search-icon"></i>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="dropdown mb-0">
-                                                        <a class="btn btn-link text-muted mt-n2" role="button" data-bs-toggle="dropdown" aria-haspopup="true">
-                                                            <i class="mdi mdi-dots-vertical font-size-20"></i>
-                                                        </a>
-                                                        
-                                                        <div class="dropdown-menu dropdown-menu-end">
-                                                            <a class="dropdown-item" href="#">Share Files</a>
-                                                            <a class="dropdown-item" href="#">Share with me</a>
-                                                            <a class="dropdown-item" href="#">Other Actions</a>
-                                                        </div>
-                                                    </div>
-                                                </form>
-                                            </div>
                                         </div>
-                                    </div>
+                                    </div> -->
 
                                     <div>
                                         <div class="row">
@@ -100,7 +77,7 @@
                                                                         <p class="text-muted text-truncate mb-0">{{ $building->num_of_floors }} Floors</p>
                                                                     </div>
                                                                     <div class="align-self-end ms-2">
-                                                                        <p class="text-muted mb-0">20,123 kWh</p>
+                                                                        <p class="text-muted mb-0">Calculating... kWh</p>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -128,33 +105,9 @@
                         </div>
                     </div>            
                     <!--  end row -->
-
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="text-center my-3">
-                                <a href="javascript:void(0);" class="text-success"><i class="bx bx-loader bx-spin font-size-18 align-middle me-2"></i> Load more </a>
-                            </div>
-                        </div> <!-- end col-->
-                    </div>
-                    <!-- end row -->
                 </div> <!-- container-fluid -->
             </div>
             <!-- End Page-content -->
-            
-            <footer class="footer">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <script>document.write(new Date().getFullYear())</script> © Skote.
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="text-sm-end d-none d-sm-block">
-                                Design & Develop by Themesbrand
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </footer>
         </div>
         <!-- end main content-->
     </div>
