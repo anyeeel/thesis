@@ -18,7 +18,9 @@
                                 <div class="page-title-right">
                                     <ol class="breadcrumb m-0">
                                         <li class="breadcrumb-item"><a href="{{ route('buildings.index') }}">Buildings</a></li>
+                                        <li class="breadcrumb-item"><a href="{{ route('floors.index', ['floor_id']) }}" >Floors</a></li>
                                         <li class="breadcrumb-item active">Rooms</li>
+                                        
                                     </ol>
                                 </div>
 
@@ -35,7 +37,7 @@
                                         <div class="row mb-3">
                                             <div class="col-xl-3 col-sm-6">
                                                 <div class="mt-2">
-                                                    <h5>Rooms</h5>
+                                                    <h5></h5>
                                                 </div>
                                             </div>
                                         </div>
@@ -43,52 +45,49 @@
 
                                     <div>
                                         <div class="row">
-                                        
-                                                                                       
-                                                                        @foreach($rooms as $room)
-                                                                            <div class="col-xl-4 col-sm-6">
-                                                                                <div class="card shadow-none border">
-                                                                                    <div class="card-body p-3">
-                                                                                        <div>
-                                                                                            <div class="float-end ms-2">
-                                                                                                <div class="dropdown mb-2">
-                                                                                                    <a class="font-size-16 text-muted" role="button" data-bs-toggle="dropdown" aria-haspopup="true">
-                                                                                                        <i class="mdi mdi-dots-horizontal"></i>
-                                                                                                    </a>
-                                                                                                    
-                                                                                                    <div class="dropdown-menu dropdown-menu-end">                                                         
-                                                                                                        <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editRoomModal{{ $room->id }}">Edit</a>                                                                   
-                                                                                                        <div class="dropdown-divider"></div>               
-                                                                                                        <form action="{{ route('rooms.destroy', $room->id) }}" method="POST">
-                                                                                                            @csrf
-                                                                                                            @method('DELETE')
-                                                                                                            <button type="submit" class="dropdown-item text-danger" onclick="return confirm('Are you sure you want to delete this room?')">Remove</button>
-                                                                                                        </form>
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                            <div class="avatar-xs me-3 mb-3">
-                                                                                                <div class="avatar-title bg-transparent rounded">
-                                                                                                    <i class="bx bxs-folder font-size-24 text-warning"></i>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                            <div class="d-flex">
-                                                                                                <div class="overflow-hidden me-auto">               
-                                                                                                    <div class="overflow-hidden me-auto">               
-                                                                                                    <h5 class="font-size-14 text-truncate mb-1"><a href="{{ route('buildings.index') }}" class="text-decoration-none"> {{ $room->name }}</a></h5>
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                                <div class="align-self-end ms-2">
-                                                                                                    <p class="text-muted mb-0">20,123 kWh</p>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        @endforeach
-                                                                        <!-- You can display any room details here -->
-  
+                                            @foreach($rooms as $room)
+                                                <div class="col-xl-4 col-sm-6">
+                                                    <div class="card shadow-none border">
+                                                        <div class="card-body p-3">
+                                                            <div>
+                                                                <div class="float-end ms-2">
+                                                                    <div class="dropdown mb-2">
+                                                                        <a class="font-size-16 text-muted" role="button" data-bs-toggle="dropdown" aria-haspopup="true">
+                                                                            <i class="mdi mdi-dots-horizontal"></i>
+                                                                        </a>
+                                                                        
+                                                                        <div class="dropdown-menu dropdown-menu-end">                                                         
+                                                                            <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editRoomModal{{ $room->id }}">Edit</a>                                                                   
+                                                                            <div class="dropdown-divider"></div>               
+                                                                            <form action="{{ route('rooms.destroy', $room->id) }}" method="POST">
+                                                                                @csrf
+                                                                                @method('DELETE')
+                                                                                <button type="submit" class="dropdown-item text-danger" onclick="return confirm('Are you sure you want to delete this room?')">Remove</button>
+                                                                            </form>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="avatar-xs me-3 mb-3">
+                                                                    <div class="avatar-title bg-transparent rounded">
+                                                                        <i class="bx bxs-folder font-size-24 text-warning"></i>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="d-flex">
+                                                                    <div class="overflow-hidden me-auto">               
+                                                                        <div class="overflow-hidden me-auto">               
+                                                                        <h5 class="font-size-14 text-truncate mb-1"><a href="{{ route('buildings.index') }}" class="text-decoration-none"> {{ $room->name }}</a></h5>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="align-self-end ms-2">
+                                                                        <p class="text-muted mb-0">20,123 kWh</p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                            <!-- You can display any room details here -->
 
                                             <div class="col-xl-4 col-sm-6">
                                                 <div class="card shadow-none border" id="room">
@@ -100,7 +99,6 @@
                                                 </div>
                                             </div>
                                             <!-- end col -->
-
                                         </div>
                                         <!-- end row -->
                                     </div>
@@ -149,33 +147,33 @@
 
     <div id="successMessage" class="alert alert-success" role="alert" style="display: none;"></div>
 
-<!-- edit room -->
-@foreach($rooms as $room)
-    <div class="modal fade bs-example-modal-center" id="editRoomModal{{ $room->id }}" tabindex="-1" aria-labelledby="editRoomModal{{ $room->id }}Label" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="editRoomModal{{ $room->id }}Label">Edit Room</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <form action="{{ route('rooms.update', $room->id) }}" method="POST">
-                    @csrf
-                    @method('PUT')
-                    <div class="modal-body">
-                        <div class="mb-3">
-                            <label for="editRoomName" class="form-label">Room Name</label>
-                            <input type="text" class="form-control" id="editRoomName" name="room_name" value="{{ $room->room_name }}">
+    <!-- edit room -->
+    @foreach($rooms as $room)
+        <div class="modal fade bs-example-modal-center" id="editRoomModal{{ $room->id }}" tabindex="-1" aria-labelledby="editRoomModal{{ $room->id }}Label" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editRoomModal{{ $room->id }}Label">Edit Room</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form action="{{ route('rooms.update', $room->id) }}" method="POST">
+                        @csrf
+                        @method('PUT')
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <label for="editRoomName" class="form-label">Room Name</label>
+                                <input type="text" class="form-control" id="editRoomName" name="room_name" value="{{ $room->room_name }}">
+                            </div>
                         </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Save changes</button>
-                    </div>
-                </form>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
-@endforeach
+    @endforeach
 
     <script>
     document.addEventListener('DOMContentLoaded', function () {
