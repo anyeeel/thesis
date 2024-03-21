@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models; 
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -8,8 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Devices extends Model
 {
     use HasFactory;
+
     protected $fillable = [
-        'room_id', 
+        'room_id',
         'name',
         'type',
         'quantity',
@@ -18,10 +19,13 @@ class Devices extends Model
         'installed_date',
         'life_expectancy',
         'power',
-        'hours_used'
+        'hours_used',
+        'energy', // Adding 'energy' attribute to the $fillable array
     ];
 
     protected $appends = ['energy'];
+
+    protected $hidden = ['energy'];
 
     public function getEnergyAttribute()
     {

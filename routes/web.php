@@ -60,6 +60,6 @@ Route::get('{buildingId}/floors', [FloorController::class, 'index'])->name('floo
 
 Route::get('rooms', [RoomController::class, 'index'])->name('rooms.index');
 
-Route::get('{roomId}/devices', [DeviceController::class, 'index'])->name('devices.index');
+Route::get('{room_id}/devices', [DeviceController::class, 'index'])->name('devices.index');
 
 require __DIR__.'/auth.php';
