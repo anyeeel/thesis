@@ -29,7 +29,7 @@ class Devices extends Model
 
     public function getEnergyAttribute()
     {
-        return $this->power * $this->hours_used / 1000;
+        return $this->quantity * $this->power * $this->hours_used / 1000;
     }
 
     public function room()

@@ -63,10 +63,6 @@
                                                 <th scope="col">Device Name</th>
                                                 <th scope="col">Type</th>
                                                 <th scope="col">Quantity</th>
-                                                <th scope="col">Brand</th>
-                                                <th scope="col">Model</th>
-                                                <th scope="col">Date Installed</th>
-                                                <th scope="col">Life Expectancy (years)</th>
                                                 <th scope="col">Power (watts)</th>
                                                 <th scope="col">Hours Used</th>
                                                 <th scope="col">Energy (kWh)</th>
@@ -79,28 +75,22 @@
                                                 <th scope="row">{{ $loop->iteration }}</th>
                                                 <td>{{ $device->name }}</td>
                                                 <td>{{ $device->type }}</td>
-                                                <td>{{ $device->quantity }}</td>
-                                                <td>{{ $device->brand }}</td>
-                                                <td>{{ $device->model }}</td>
-                                                <td>{{ $device->installed_date }}</td>
-                                                <td>{{ $device->life_expectancy }}</td>
+                                                <td>{{ $device->quantity }}</td>                                            
                                                 <td>{{ $device->power }}</td>
                                                 <td>{{ $device->hours_used }}</td>
                                                 <td>{{ $device->energy }}</td>
                                                 <td>
                                                     <ul class="list-unstyled hstack gap-1 mb-0">
-                                                        <li data-bs-toggle="tooltip" data-bs-placement="top"
-                                                            title="View">
-                                                            <a href="{{ route('devices.show', $device->id) }}"
-                                                                class="btn btn-sm btn-soft-primary"><i
-                                                                    class="mdi mdi-eye-outline"></i></a>
-                                                        </li>
-                                                        <li data-bs-toggle="tooltip" data-bs-placement="top"
-                                                            title="Edit">
-                                                            <a href="{{ route('devices.edit', $device->id) }}"
-                                                                class="btn btn-sm btn-soft-info"><i
-                                                                    class="mdi mdi-pencil-outline"></i></a>
-                                                        </li>
+                                                        <!-- View button in the loop -->
+<li data-bs-toggle="tooltip" data-bs-placement="top" title="View">
+    <button type="button" class="btn btn-sm btn-soft-primary" data-bs-toggle="modal" data-bs-target="#viewDeviceModal{{ $device->id }}">
+        <i class="mdi mdi-eye-outline"></i>
+    </button>
+</li>
+
+                                                        <!-- Edit button in the loop -->
+<a href="#" class="btn btn-sm btn-soft-info" data-bs-toggle="modal" data-bs-target="#editDeviceModal{{ $device->id }}"><i class="mdi mdi-pencil-outline"></i></a>
+
                                                         <li data-bs-toggle="tooltip" data-bs-placement="top"
                                                             title="Delete">
                                                             <form
@@ -191,6 +181,136 @@
                     </form>
                 </div>
             </div>
+</div>
+</div>
+<!-- Add this modal at the end of your blade file, after the modal for adding new devices -->
+
+<!-- Modal for editing device -->
+<!-- Modal for editing device -->
+@foreach($devices as $device)
+<div class="modal fade" id="editDeviceModal{{ $device->id }}" tabindex="-1" role="dialog" aria-labelledby="editDeviceModalLabel{{ $device->id }}" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editDeviceModalLabel{{ $device->id }}">Edit Device</h5>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="editDeviceForm{{ $device->id }}" action="{{ route('devices.update', $device->id) }}" method="POST">
+                @csrf
+                @method('PUT')
+                <div class="modal-body">
+                    <!-- Device Name -->
+                    <div class="mb-3">
+                        <label for="editDeviceName{{ $device->id }}" class="form-label">Device Name</label>
+                        <input type="text" class="form-control" id="editDeviceName{{ $device->id }}" name="name" value="{{ $device->name }}" required>
+                    </div>
+                    <!-- Type -->
+                    <div class="mb-3">
+                        <label for="editDeviceType{{ $device->id }}" class="form-label">Type</label>
+                        <input type="text" class="form-control" id="editDeviceType{{ $device->id }}" name="type" value="{{ $device->type }}" required>
+                    </div>
+                    <!-- Quantity -->
+                    <div class="mb-3">
+                        <label for="editDeviceQuantity{{ $device->id }}" class="form-label">Quantity</label>
+                        <input type="number" class="form-control" id="editDeviceQuantity{{ $device->id }}" name="quantity" value="{{ $device->quantity }}" required>
+                    </div>
+                    <!-- Brand -->
+                    <div class="mb-3">
+                        <label for="editDeviceBrand{{ $device->id }}" class="form-label">Brand</label>
+                        <input type="text" class="form-control" id="editDeviceBrand{{ $device->id }}" name="brand" value="{{ $device->brand }}" required>
+                    </div>
+                    <!-- Model -->
+                    <div class="mb-3">
+                        <label for="editDeviceModel{{ $device->id }}" class="form-label">Model</label>
+                        <input type="text" class="form-control" id="editDeviceModel{{ $device->id }}" name="model" value="{{ $device->model }}" required>
+                    </div>
+                    <!-- Installed Date -->
+                    <div class="mb-3">
+                        <label for="editDeviceInstalledDate{{ $device->id }}" class="form-label">Date Installed</label>
+                        <input type="date" class="form-control" id="editDeviceInstalledDate{{ $device->id }}" name="installed_date" value="{{ $device->installed_date }}" required>
+                    </div>
+                    <!-- Life Expectancy -->
+                    <div class="mb-3">
+                        <label for="editDeviceLifeExpectancy{{ $device->id }}" class="form-label">Life Expectancy (years)</label>
+                        <input type="number" class="form-control" id="editDeviceLifeExpectancy{{ $device->id }}" name="life_expectancy" value="{{ $device->life_expectancy }}" required>
+                    </div>
+                    <!-- Power -->
+                    <div class="mb-3">
+                        <label for="editDevicePower{{ $device->id }}" class="form-label">Power (watts)</label>
+                        <input type="number" class="form-control" id="editDevicePower{{ $device->id }}" name="power" value="{{ $device->power }}" required>
+                    </div>
+                    <!-- Hours Used -->
+                    <div class="mb-3">
+                        <label for="editDeviceHoursUsed{{ $device->id }}" class="form-label">Hours Used</label>
+                        <input type="number" class="form-control" id="editDeviceHoursUsed{{ $device->id }}" name="hours_used" value="{{ $device->hours_used }}" required>
+                    </div>
+                    
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
         </div>
+    </div>
+</div>
+@endforeach
+
+<!-- Modal for viewing device details -->
+@foreach($devices as $device)
+<div class="modal fade" id="viewDeviceModal{{ $device->id }}" tabindex="-1" role="dialog" aria-labelledby="viewDeviceModalLabel{{ $device->id }}" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="viewDeviceModalLabel{{ $device->id }}">View Device Details</h5>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Display all device details here -->
+                <p><strong>Name:</strong> {{ $device->name }}</p>
+                <p><strong>Type:</strong> {{ $device->type }}</p>
+                <p><strong>Quantity:</strong> {{ $device->quantity }}</p>
+                <p><strong>Brand:</strong> {{ $device->brand }}</p>
+                <p><strong>Model:</strong> {{ $device->model }}</p>
+                <p><strong>Date Installed:</strong> {{ $device->installed_date }}</p>
+                <p><strong>Life Expectancy:</strong> {{ $device->life_expectancy }} years</p>
+                <!-- Add more device details as needed -->
+            </div>
+            <div class="modal-footer">
+               <p>Need to change in this date</p>
+            </div>
+        </div>
+    </div>
+</div>
+@endforeach
+
+
+<script>
+    $(document).ready(function() {
+        // Handle form submission for each device edit modal
+        @foreach($devices as $device)
+        $('#editDeviceForm{{ $device->id }}').on('submit', function(e) {
+            e.preventDefault();
+            $.ajax({
+                type: "POST",
+                url: $(this).attr('action'),
+                data: $(this).serialize(),
+                success: function(response) {
+                    $('#editDeviceModal{{ $device->id }}').modal('hide');
+                    // You may need to reload the devices list or update the specific device row here
+                },
+                error: function(error) {
+                    console.log(error);
+                    // Handle errors here
+                }
+            });
+        });
+        @endforeach
+    });
+</script>
 
 @endsection

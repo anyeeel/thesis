@@ -45,4 +45,27 @@
             return redirect()->route('devices.index', ['room_id' => $room_id])->with('success', 'Device added successfully!');
         }
     
+        public function show(Devices $device)
+        {
+            return view('devices.show', compact('device'));
+        }
+
+        public function edit(Devices $device)
+        {
+            return view('devices.edit', compact('device'));
+        }
+
+        public function update(Request $request, Devices $device)
+        {
+            $device->update($request->all());
+            return redirect()->route('devices.index', ['room_id' => $device->room_id])->with('success','Device updated successfully');
+        }
+
+        public function destroy($id)
+        {
+            $device = Devices::findOrFail($id);
+            $room_id = $device->room_id;
+            $device->delete();
+            return redirect()->route('devices.index', ['room_id' => $room_id])->with('success','Device deleted successfully');
+        }
 }

@@ -24,7 +24,7 @@
                                     <div class="card-body">
                                         <h5 class="card-title">{{ $floor->name }}</h5>                                      
                                         <a href="{{ route('rooms.index') }}?floor_id={{ $floor->id }}" class="btn btn-primary">View Rooms</a>
-
+                                        <p class="text-muted mb-0">{{ number_format($floor->totalEnergy(), 2) }} kWh</p>
                                     </div>
                                 </div>
                             </div>

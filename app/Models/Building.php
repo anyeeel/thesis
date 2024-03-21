@@ -20,4 +20,16 @@ class Building extends Model
     {
         return $this->hasMany(Floor::class);
     }
+
+    public function totalEnergy()
+    {
+        $totalEnergy = 0;
+
+        // Iterate over each floor and sum up the energy consumption
+        foreach ($this->floors as $floor) {
+            $totalEnergy += $floor->totalEnergy();
+        }
+
+        return $totalEnergy;
+    }
 }

@@ -100,7 +100,8 @@
                                                                         <p class="text-muted text-truncate mb-0">{{ $building->num_of_floors }} Floors</p>
                                                                     </div>
                                                                     <div class="align-self-end ms-2">
-                                                                        <p class="text-muted mb-0">20,123 kWh</p>
+                                                                        <!-- Display total energy consumption for the room -->
+                                                                        <p class="text-muted mb-0">{{ number_format($building->totalEnergy(), 2) }} kWh</p>
                                                                     </div>
                                                                 </div>
                                                             </div>

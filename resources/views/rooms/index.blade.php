@@ -97,12 +97,13 @@
                                                                                             <div class="d-flex">
                                                                                                 <div class="overflow-hidden me-auto">               
                                                                                                     <div class="overflow-hidden me-auto">               
-                                                                                                    <h5 class="font-size-14 text-truncate mb-1"><a href="{{ route('devices.index', ['roomId' => $room->id]) }}" class="text-decoration-none"> {{ $room->name }}</a></h5>
+                                                                                                    <h5 class="font-size-14 text-truncate mb-1"><a href="{{ route('devices.index', ['room_id' => $room->id]) }}" class="text-decoration-none"> {{ $room->name }}</a></h5>
 
                                                                                                     </div>
                                                                                                 </div>
                                                                                                 <div class="align-self-end ms-2">
-                                                                                                    <p class="text-muted mb-0">20,123 kWh</p>
+                                                                                                    <!-- Display total energy consumption for the room -->
+                                                                                                    <p class="text-muted mb-0">{{ number_format($room->totalEnergy(), 2) }} kWh</p>
                                                                                                 </div>
                                                                                             </div>
                                                                                         </div>
@@ -110,7 +111,6 @@
                                                                                 </div>
                                                                             </div>
                                                                         @endforeach
-                                                                        <!-- You can display any room details here -->
   
 
                                             <div class="col-xl-4 col-sm-6">
