@@ -39,9 +39,10 @@ class RoomController extends Controller
         return redirect()->back();
     }
 
-    public function show(Room $rooms)
+    public function show($id)
     {
-        return view('rooms.show', compact('rooms'));
+        $room = Room::findOrFail($id);
+        return view('rooms.show', compact('room'));
     }
 
     public function edit(Room $rooms)
@@ -55,9 +56,10 @@ class RoomController extends Controller
         return redirect()->route('rooms.index')->with('success','Room updated successfully');
     }
 
-    public function destroy(Room $rooms)
+    public function destroy($id)
     {
-        $building->delete();
-        return redirect()->route('rooms.index')->with('success','Room deleted successfully');
+        $room = Room::findOrFail($id);
+        $room->delete();
+        return redirect()->back();
     }
 }
