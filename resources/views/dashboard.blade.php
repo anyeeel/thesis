@@ -12,14 +12,32 @@
 
             <div class="page-content">
                 <div class="container-fluid">
-                    <div class="card">
-                        <div class="card-body">
-                       <div class="row">
-                        <h4>Bar Chart</h4>
-                        <canvas id="energyChart" width="800" height="200"></canvas>
-                        </div><!--end row-->
-                        </div>
-                        </div>
+                <div class="card">
+                                    <div class="card-body">
+                                        <div class="d-flex flex-wrap align-items-start">
+                                            <h5 class="card-title me-2">Line Chart</h5>
+                                            <div class="ms-auto">
+                                                <div class="toolbar d-flex flex-wrap gap-2 text-end">
+                                                    <button type="button" class="btn btn-light btn-sm">
+                                                        ALL
+                                                    </button>
+                                                    <button type="button" class="btn btn-light btn-sm">
+                                                        1M
+                                                    </button>
+                                                    <button type="button" class="btn btn-light btn-sm">
+                                                        6M
+                                                    </button>
+                                                    <button type="button" class="btn btn-light btn-sm active">
+                                                        1Y
+                                                    </button>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="apex-charts" data-colors='["--bs-primary", "--bs-warning"]' id="area-chart" dir="ltr"></div>
+                                    </div>
+                                </div>
 
 
                         <div class="row">
@@ -102,174 +120,97 @@
                         </div><!--end row-->
 
                         <div class="row">
-                            <div class="col-lg-8">
-                                <div class="card">
-                                    <div class="card-body">
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-sm-flex flex-wrap">
+                    <h4 class="card-title mb-4">Bar Chart</h4>
+                    <div class="ms-auto">
+                        <ul class="nav nav-pills">
+                            <li class="nav-item">
+                                <a class="nav-link" href="javascript:void(0);">Week</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="javascript:void(0);">Month</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" href="javascript:void(0);">Year</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Move the chart here -->
+                <div class="row">
+                
+                    <canvas id="energyChart" max-width="400" height="360"></canvas>
+                </div><!-- end row -->
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+    <div class="card">
+            <div class="card-body">
                                         <div class="d-sm-flex flex-wrap">
-                                            <h4 class="card-title mb-4">Statistics Applications</h4>
+                                            <h4 class="card-title mb-4">Stacked Bar Chart</h4>
                                             <div class="ms-auto">
                                                 <ul class="nav nav-pills">
                                                     <li class="nav-item">
-                                                        <a class="nav-link" href="javascript:void(0);">Week</a>
+                                                        <a class="nav-link" href="#">Week</a>
                                                     </li>
                                                     <li class="nav-item">
-                                                        <a class="nav-link" href="javascript:void(0);">Month</a>
+                                                        <a class="nav-link" href="#">Month</a>
                                                     </li>
                                                     <li class="nav-item">
-                                                        <a class="nav-link active" href="javascript:void(0);">Year</a>
+                                                        <a class="nav-link active" href="#">Year</a>
                                                     </li>
                                                 </ul>
                                             </div>
                                         </div>
+                                        
+                                        <div id="stacked-column-chart" class="apex-charts" data-colors='["--bs-primary", "--bs-warning", "--bs-success"]' dir="ltr"></div>
+                                    </div>
+                             
+                            </div>
+</div>
+</div>
 
-                                        <div data-colors='["--bs-primary", "--bs-success", "--bs-warning", "--bs-info"]' dir="ltr" id="chart"></div>
+<div class="row">
+                            <div class="col-xl-6">
+                                <div class="card">
+                                    <div class="card-body">
+        
+                                        <h4 class="card-title mb-4">Pie Chart</h4>
+        
+                                        <div class="row text-center">
+                                            <div class="col-4">
+                                                <h5 class="mb-0">2536</h5>
+                                                <p class="text-muted text-truncate">Activated</p>
+                                            </div>
+                                            <div class="col-4">
+                                                <h5 class="mb-0">69421</h5>
+                                                <p class="text-muted text-truncate">Pending</p>
+                                            </div>
+                                            <div class="col-4">
+                                                <h5 class="mb-0">89854</h5>
+                                                <p class="text-muted text-truncate">Deactivated</p>
+                                            </div>
+                                        </div>
+        
+                                        <canvas id="pie" data-colors='["--bs-success", "#ebeff2"]' class="chartjs-chart"></canvas>
+        
                                     </div>
                                 </div>
-                            </div><!--end col-->
-                            <div class="col-lg-4">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="d-flex">
-                                            <div>
-                                                <h4 class="card-title mb-3">Invite your friends to Skote</h4>
-                                                <p class="text-muted">Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally.</p>
-                                                <div>
-                                                    <a href="javascript:void(0);" class="btn btn-primary btn-sm"><i class='bx bx-user-plus align-middle'></i> Invite Friends</a>
-                                                </div>
-                                            </div>
-                                            <div>
-                                                <img src="assets/images/jobs.png" alt="" height="130">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div><!--end card-->
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h4 class="card-title mb-3">Popular Candidate</h4>
-                                        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-                                            <div class="carousel-inner">
-                                                <div class="carousel-item active" data-bs-interval="3000">
-                                                    <div class="bg-light p-3 d-flex mb-3 rounded">
-                                                        <img src="assets/images/users/avatar-4.jpg" alt="" class="avatar-sm rounded me-3">
-                                                        <div class="flex-grow-1">
-                                                            <h5 class="font-size-15 mb-2"><a href="candidate-overview.html" class="text-body">Stephen Hadley</a> <span class="badge badge-soft-info">Freelance</span></h5>
-                                                            <p class="mb-0 text-muted"><i class="bx bx-map text-body align-middle"></i> Germany</p>
-                                                        </div>
-                                                        <div>
-                                                            <div class="dropdown">
-                                                                <button class="btn btn-soft-primary" type="button" id="dropdownMenuButton11" data-bs-toggle="dropdown" aria-expanded="false">
-                                                                    <i class='bx bx-dots-vertical-rounded'></i>
-                                                                </button>
-                                                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton11">
-                                                                    <li><a class="dropdown-item" href="candidate-overview.html">View Details</a></li>
-                                                                    <li><a class="dropdown-item" href="#">Download CV</a></li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="bg-light p-3 d-flex">
-                                                        <img src="assets/images/users/avatar-2.jpg" alt="" class="avatar-sm rounded me-3">
-                                                        <div class="flex-grow-1">
-                                                            <h5 class="font-size-15 mb-2"><a href="candidate-overview.html" class="text-body">Charles Brown</a> <span class="badge badge-soft-success">Full Time</span></h5>
-                                                            <p class="mb-0 text-muted"><i class="bx bx-map text-body align-middle"></i> Cambodia</p>
-                                                        </div>
-                                                        <div>
-                                                            <div class="dropdown">
-                                                                <button class="btn btn-soft-primary" type="button" id="dropdownMenuButton12" data-bs-toggle="dropdown" aria-expanded="false">
-                                                                    <i class='bx bx-dots-vertical-rounded'></i>
-                                                                </button>
-                                                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton12">
-                                                                    <li><a class="dropdown-item" href="candidate-overview.html">View Details</a></li>
-                                                                    <li><a class="dropdown-item" href="#">Download CV</a></li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="carousel-item" data-bs-interval="3000">
-                                                    <div class="bg-light p-3 d-flex mb-3 rounded">
-                                                        <img src="assets/images/users/avatar-1.jpg" alt="" class="avatar-sm rounded me-3">
-                                                        <div class="flex-grow-1">
-                                                            <h5 class="font-size-15 mb-2"><a href="candidate-overview.html" class="text-body">Adam Miller</a> <span class="badge badge-soft-warning">Internship</span></h5>
-                                                            <p class="mb-0 text-muted"><i class="bx bx-map text-body align-middle"></i> Australia</p>
-                                                        </div>
-                                                        <div>
-                                                            <div class="dropdown">
-                                                                <button class="btn btn-soft-primary" type="button" id="dropdownMenuButton13" data-bs-toggle="dropdown" aria-expanded="false">
-                                                                    <i class='bx bx-dots-vertical-rounded'></i>
-                                                                </button>
-                                                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton13">
-                                                                    <li><a class="dropdown-item" href="candidate-overview.html">View Details</a></li>
-                                                                    <li><a class="dropdown-item" href="#">Download CV</a></li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="bg-light p-3 d-flex">
-                                                        <img src="assets/images/users/avatar-3.jpg" alt="" class="avatar-sm rounded me-3">
-                                                        <div class="flex-grow-1">
-                                                            <h5 class="font-size-15 mb-2"><a href="candidate-overview.html" class="text-body">Keith Gonzales</a> <span class="badge badge-soft-info">Freelance</span></h5>
-                                                            <p class="mb-0 text-muted"><i class="bx bx-map text-body align-middle"></i> Belgium</p>
-                                                        </div>
-                                                        <div>
-                                                            <div class="dropdown">
-                                                                <button class="btn btn-soft-primary" type="button" id="dropdownMenuButton14" data-bs-toggle="dropdown" aria-expanded="false">
-                                                                    <i class='bx bx-dots-vertical-rounded'></i>
-                                                                </button>
-                                                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton14">
-                                                                    <li><a class="dropdown-item" href="candidate-overview.html">View Details</a></li>
-                                                                    <li><a class="dropdown-item" href="#">Download CV</a></li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="carousel-item" data-bs-interval="3000">
-                                                    <div class="bg-light p-3 d-flex mb-3 rounded">
-                                                        <img src="assets/images/users/avatar-4.jpg" alt="" class="avatar-sm rounded me-3">
-                                                        <div class="flex-grow-1">
-                                                            <h5 class="font-size-15 mb-2"><a href="candidate-overview.html" class="text-body">Bonnie Harney</a> <span class="badge badge-soft-success">Full Timer</span></h5>
-                                                            <p class="mb-0 text-muted"><i class="bx bx-map text-body align-middle"></i> Syria</p>
-                                                        </div>
-                                                        <div>
-                                                            <div class="dropdown">
-                                                                <button class="btn btn-soft-primary" type="button" id="dropdownMenuButton15" data-bs-toggle="dropdown" aria-expanded="false">
-                                                                    <i class='bx bx-dots-vertical-rounded'></i>
-                                                                </button>
-                                                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton15">
-                                                                    <li><a class="dropdown-item" href="candidate-overview.html">View Details</a></li>
-                                                                    <li><a class="dropdown-item" href="#">Download CV</a></li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="bg-light p-3 d-flex">
-                                                        <img src="assets/images/users/avatar-2.jpg" alt="" class="avatar-sm rounded me-3">
-                                                        <div class="flex-grow-1">
-                                                            <h5 class="font-size-15 mb-2"><a href="candidate-overview.html" class="text-body">Dolores Minter</a> <span class="badge badge-soft-danger">Part Time</span></h5>
-                                                            <p class="mb-0 text-muted"><i class="bx bx-map text-body align-middle"></i> San Marino</p>
-                                                        </div>
-                                                        <div>
-                                                            <div class="dropdown">
-                                                                <button class="btn btn-soft-primary" type="button" id="dropdownMenuButton16" data-bs-toggle="dropdown" aria-expanded="false">
-                                                                    <i class='bx bx-dots-vertical-rounded'></i>
-                                                                </button>
-                                                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton16">
-                                                                    <li><a class="dropdown-item" href="candidate-overview.html">View Details</a></li>
-                                                                    <li><a class="dropdown-item" href="#">Download CV</a></li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div><!--end card-->
-                            </div><!--end col-->
-                        </div><!--end row-->
+                            </div> <!-- end col -->
+</div>
 
 
+
+
+                            </div>
+                            
+                            <!-- end col -->
 
                     </div> <!-- container-fluid -->
                 </div>
