@@ -65,52 +65,58 @@
 
                                     <div>
                                         <div class="row">
-                                            @foreach($rooms as $room)
-                                                <div class="col-xl-4 col-sm-6">
-                                                    <div class="card shadow-none border">
-                                                        <div class="card-body p-3">
-                                                            <div>
-                                                                <div class="float-end ms-2">
-                                                                    <div class="dropdown mb-2">
-                                                                        <a class="font-size-16 text-muted" role="button" data-bs-toggle="dropdown" aria-haspopup="true">
-                                                                            <i class="mdi mdi-dots-horizontal"></i>
-                                                                        </a>
-                                                                        
-                                                                        <div class="dropdown-menu dropdown-menu-end">                                                         
-                                                                            <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editRoomModal{{ $room->id }}">Edit</a>                                                                   
-                                                                            <div class="dropdown-divider"></div>               
-                                                                            <form action="{{ route('rooms.destroy', $room->id) }}" method="POST">
-                                                                                @csrf
-                                                                                @method('DELETE')
-                                                                                <button type="submit" class="dropdown-item text-danger" onclick="return confirm('Are you sure you want to delete this room?')">Remove</button>
-                                                                            </form>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="avatar-xs me-3 mb-3">
-                                                                    <div class="avatar-title bg-transparent rounded">
-                                                                        <i class="bx bxs-folder font-size-24 text-warning"></i>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="d-flex">
-                                                                    <div class="overflow-hidden me-auto">               
-                                                                        <h5 class="font-size-14 text-truncate mb-1"><a href="{{ route('rooms.show', $room->room_name) }}" class="text-body">{{ $rooms->room_name }}</a></h5>
-                                                                        <p class="text-muted text-truncate mb-0">{{ $rooms->room_description }}</p>
-                                                                    </div>
-                                                                    <div class="align-self-end ms-2">
-                                                                        <p class="text-muted mb-0">{{ $rooms->room_capacity }} Capacity</p>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            @endforeach
+                                        
+                                                                                       
+                                                                        @foreach($rooms as $room)
+                                                                            <div class="col-xl-4 col-sm-6">
+                                                                                <div class="card shadow-none border">
+                                                                                    <div class="card-body p-3">
+                                                                                        <div>
+                                                                                            <div class="float-end ms-2">
+                                                                                                <div class="dropdown mb-2">
+                                                                                                    <a class="font-size-16 text-muted" role="button" data-bs-toggle="dropdown" aria-haspopup="true">
+                                                                                                        <i class="mdi mdi-dots-horizontal"></i>
+                                                                                                    </a>
+                                                                                                    
+                                                                                                    <div class="dropdown-menu dropdown-menu-end">                                                         
+                                                                                                        <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editRoomModal{{ $room->id }}">Edit</a>                                                                   
+                                                                                                        <div class="dropdown-divider"></div>               
+                                                                                                        <form action="{{ route('rooms.destroy', $room->id) }}" method="POST">
+                                                                                                            @csrf
+                                                                                                            @method('DELETE')
+                                                                                                            <button type="submit" class="dropdown-item text-danger" onclick="return confirm('Are you sure you want to delete this room?')">Remove</button>
+                                                                                                        </form>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="avatar-xs me-3 mb-3">
+                                                                                                <div class="avatar-title bg-transparent rounded">
+                                                                                                    <i class="bx bxs-folder font-size-24 text-warning"></i>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="d-flex">
+                                                                                                <div class="overflow-hidden me-auto">               
+                                                                                                    <div class="overflow-hidden me-auto">               
+                                                                                                    <h5 class="font-size-14 text-truncate mb-1"><a href="{{ route('devices.index', ['room_id' => $room->id]) }}" class="text-decoration-none"> {{ $room->name }}</a></h5>
+
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <div class="align-self-end ms-2">
+                                                                                                    <!-- Display total energy consumption for the room -->
+                                                                                                    <p class="text-muted mb-0">{{ number_format($room->totalEnergy(), 2) }} kWh</p>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        @endforeach
+  
 
                                             <div class="col-xl-4 col-sm-6">
                                                 <div class="card shadow-none border" id="room">
                                                     <div class="card-body p-3 d-flex align-items-center justify-content-center">
-                                                        <a class="addRoom" role="button" aria-haspopup="true" data-bs-toggle="modal" data-bs-target=".bs-example-modal-center" data-bs-toggle="tooltip" data-bs-placement="top" title="Add Room">
+                                                        <a class="addRoom" role="button" aria-haspopup="true" data-bs-toggle="modal" data-bs-target=".bs-example-modal-center" data-bs-toggle="tooltip" data-bs-placement="top" data-floor-id="{{ $floorId }}" title="Add Room" >
                                                             <i class="bx bx-plus-medical"></i>
                                                         </a>                                               
                                                     </div>                                        
@@ -176,6 +182,7 @@
                                 <label for="roomName" class="col-sm-2 col-form-label">Room Name:</label>
                                 <div class="col-sm-10">
                                     <input type="text" class="form-control" id="roomName" name="room_name">
+                                    <input type="hidden" name="floor_id" value="{{ $floorId }}">
                                 </div>
                             </div>
 
@@ -242,6 +249,11 @@
     var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
         return new bootstrap.Tooltip(tooltipTriggerEl)
     })
+
+    $('.modal').on('shown.bs.modal', function () {
+    var id = $(this).data('floor-id');
+    console.log(id);
+});
 
     $(document).ready(function() {
         $('#addRoomForm').on('submit', function(e) {

@@ -8,9 +8,8 @@ use Illuminate\Http\Request;
 
 class FloorController extends Controller
 {
-    public function index(Request $request)
+    public function index($buildingId)
     {
-        $buildingId = $request->input('buildingId');
         $building = Building::where('id', $buildingId)->first();
         $floor = Floor::where('building_id', $buildingId)->get();
         // $floors = $building->floors;

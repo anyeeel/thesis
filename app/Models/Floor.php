@@ -20,4 +20,15 @@ class Floor extends Model
     {
         return $this->hasMany(Room::class);
     }
+
+    public function totalEnergy()
+    {
+        $totalEnergy = 0;
+
+        foreach ($this->rooms as $room) {
+            $totalEnergy += $room->totalEnergy();
+        }
+
+        return $totalEnergy;
+    }
 }

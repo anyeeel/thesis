@@ -94,13 +94,14 @@
                                                                 </div>
                                                                 <div class="d-flex">
                                                                     <div class="overflow-hidden me-auto">               
-                                                                        <h5 class="font-size-14 text-truncate mb-1"><a href="{{ route('floors.index', ['building_id' => $building->id]) }}" class="text-body">{{ $building->building_name }}</a></h5>
-
+                                                                    <h5 class="font-size-14 text-truncate mb-1"><a href="{{ route('floors.index', $building->id) }}" class="text-body">{{ $building->building_name }}</a></h5>
+                                                                        <!-- <a href="{{ route('floors.index', ['buildingId' => $building->id]) }}">View Floors</a> -->
 
                                                                         <p class="text-muted text-truncate mb-0">{{ $building->num_of_floors }} Floors</p>
                                                                     </div>
                                                                     <div class="align-self-end ms-2">
-                                                                        <p class="text-muted mb-0">20,123 kWh</p>
+                                                                        <!-- Display total energy consumption for the room -->
+                                                                        <p class="text-muted mb-0">{{ number_format($building->totalEnergy(), 2) }} kWh</p>
                                                                     </div>
                                                                 </div>
                                                             </div>
