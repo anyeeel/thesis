@@ -29,7 +29,7 @@ class Room extends Model
         // Loop through each device in the room and calculate energy consumption
         foreach ($this->devices as $device) {
             // Calculate energy consumption for each device
-            $deviceEnergy = $device->quantity * $device->power * $device->hours_used / 1000; // in kWh
+            $deviceEnergy = $device->active_quantity * $device->power * $device->hours_used / 1000; // in kWh
     
             // Add device energy consumption to the total
             $totalEnergy += $deviceEnergy;
