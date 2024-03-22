@@ -14,8 +14,9 @@ class BuildingController extends Controller
         $buildings = Building::all();
         
         // Pass the buildings data to the index view
-        return view('buildings.index', compact('buildings'));
+        return view('buildings.index', ['buildings' => $buildings]);
     }
+
 
     public function create()
     {
@@ -94,4 +95,15 @@ class BuildingController extends Controller
     }
 
     // Other methods like store, show, edit, update, destroy, etc.
+    public function dashboard()
+    {
+        $buildings = Building::all();
+        $buildingEnergyData = [];
+    
+        foreach ($buildings as $building) {
+            $buildingEnergyData[$building->building_name] = $building->totalEnergy();
+        }
+    
+        return view('dashboard', compact('buildingEnergyData'));
+    }
 }
