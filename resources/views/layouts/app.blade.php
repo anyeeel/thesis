@@ -23,6 +23,8 @@
         <script src="{{ asset('assets/js/plugin.js') }}"></script>
         <script src="{{ asset('assets/js/login.js') }}"></script>
 
+
+
         <!-- Sweetalert -->
         <link rel="stylesheet" href="{{ asset('assets/libs/sweetalert2/sweetalert2.min.css') }}" type="text/css"></link>
         <script src="{{ asset('assets/libs/sweetalert2/sweetalert2.min.js') }}"></script>

@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+namespace App\Models;
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -13,14 +15,15 @@ class Devices extends Model
         'room_id',
         'name',
         'type',
-        'quantity',
+        'active_quantity', // Adding active_quantity to the fillable array
+        'inactive_quantity', // Adding inactive_quantity to the fillable array
         'brand',
         'model',
         'installed_date',
         'life_expectancy',
         'power',
         'hours_used',
-        'energy', // Adding 'energy' attribute to the $fillable array
+        'energy',
     ];
 
     protected $appends = ['energy'];
@@ -29,7 +32,7 @@ class Devices extends Model
 
     public function getEnergyAttribute()
     {
-        return $this->quantity * $this->power * $this->hours_used / 1000;
+        return $this->active_quantity * $this->power * $this->hours_used / 1000;
     }
 
     public function room()
