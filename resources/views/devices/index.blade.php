@@ -5,6 +5,7 @@
 
     @include('layouts.header')
     @include('layouts.sidebar')
+    
     <div class="main-content">
         <div class="page-content">
             <div class="container-fluid">
@@ -136,15 +137,30 @@
                     <form id="addDeviceForm" action="{{ route('devices.store') }}" method="POST">
                         @csrf
                          <input type="hidden" name="room_id" value="{{ $room_id }}">
-                        <div class="modal-body">
+                        <div class="modal-body" style="max-height: 400px; overflow-y: auto;">
                             <div class="mb-3">
                                 <label for="deviceName" class="form-label">Device Name</label>
                                 <input type="text" class="form-control" id="deviceName" name="name" required>
                             </div>
-                            <div class="mb-3">
+                          
+                          <!---  <div class="mb-3">
                                 <label for="deviceType" class="form-label">Type</label>
                                 <input type="text" class="form-control" id="deviceType" name="type" required>
+                            </div>-->
+
+                            <div class="mb-3">
+                            <label for="deviceType" class="form-label">Type</label>
+                             <select class="form-select" id="deviceType" name="type" required>
+                             <option value="" selected disabled>Select a type</option>
+                             <option value="HVAC">HVAC</option>
+                             <option value="lighting">Lighting System</option>
+                             <option value="output">Output Device</option>
+                             <option value="appliance">Appliance</option>
+                             <option value="Desktop">Desktop</option>
+     
+                             </select>
                             </div>
+
                             <div class="mb-3">
                                 <label for="deviceQuantity" class="form-label">Quantity</label>
                                 <input type="number" class="form-control" id="deviceQuantity" name="quantity" required>
@@ -280,7 +296,22 @@
                 <p><strong>Life Expectancy:</strong> {{ $device->life_expectancy }} years</p>
                 <!-- Add more device details as needed -->
             </div>
+
+        
+            <?php
+
+        $installedDate = strtotime($device->installed_date); // Convert the installed date to a timestamp
+        $dateExpectancy = $device->life_expectancy; // Life expectancy of the device in years
+
+        // Calculate the replacement date by adding the life expectancy to the installed date
+        $replacementDate = strtotime("+$dateExpectancy years", $installedDate);
+
+        // Format the replacement date in a desired format (e.g., 'Y-m-d' for YYYY-MM-DD)
+        $formattedReplacementDate = date('Y-m-d', $replacementDate);
+            ?>
+
             <div class="modal-footer">
+            <strong>{{ $formattedReplacementDate }}</strong>
                <p>Need to change in this date</p>
             </div>
         </div>
