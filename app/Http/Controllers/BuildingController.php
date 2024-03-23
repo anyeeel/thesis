@@ -101,9 +101,14 @@ class BuildingController extends Controller
         $buildingEnergyData = [];
     
         foreach ($buildings as $building) {
-            $buildingEnergyData[$building->building_name] = $building->totalEnergy();
+            $floorsData = [];
+            foreach ($building->floors as $floor) {
+                $floorsData[$floor->name] = $floor->totalEnergy();
+            }
+            $buildingEnergyData[$building->building_name] = $floorsData;
         }
     
         return view('dashboard', compact('buildingEnergyData'));
     }
+    
 }

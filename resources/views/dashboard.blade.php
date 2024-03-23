@@ -168,9 +168,9 @@
                                                 </ul>
                                             </div>
                                         </div>
-                                        
-                                        <div id="stacked-column-chart" class="apex-charts" data-colors='["--bs-primary", "--bs-warning", "--bs-success"]' dir="ltr"></div>
-                                    </div>
+                                        <div class="chart-container">
+  <canvas id="stacked-bar-chart"></canvas>
+</div>
                              
                             </div>
 </div>
@@ -300,30 +300,45 @@
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
-        var ctx = document.getElementById('energyChart').getContext('2d');
-        var buildingEnergyData = @json($buildingEnergyData);
+    // Extracting data passed from controller
+    const buildingEnergyData = @json($buildingEnergyData);
 
-        var chartData = {
-            labels: Object.keys(buildingEnergyData),
-            datasets: [{
-                label: 'Total Energy Consumption',
-                backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                borderColor: 'rgba(54, 162, 235, 1)',
-                borderWidth: 1,
-                data: Object.values(buildingEnergyData)
-            }]
-        };
+    // Creating labels and datasets for Chart.js
+    const labels = Object.keys(buildingEnergyData);
+    const datasets = [];
 
-        var energyChart = new Chart(ctx, {
-            type: 'bar',
-            data: chartData,
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
-        });
-    </script>
+    Object.keys(buildingEnergyData[labels[0]]).forEach((floor, index) => {
+      const data = labels.map((building) => buildingEnergyData[building][floor]);
+      datasets.push({
+        label: floor,
+        backgroundColor: `rgba(${Math.random() * 255},${Math.random() * 255},${Math.random() * 255},0.5)`,
+        data: data
+      });
+    });
+
+    // Configuration for the chart
+    const config = {
+      type: 'bar',
+      data: {
+        labels: labels,
+        datasets: datasets
+      },
+      options: {
+        scales: {
+          x: {
+            stacked: true
+          },
+          y: {
+            stacked: true
+          }
+        }
+      }
+    };
+
+    // Create the chart
+    const stackedBarChart = new Chart(
+      document.getElementById('stacked-bar-chart'),
+      config
+    );
+  </script>
 @endsection
