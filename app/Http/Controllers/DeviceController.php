@@ -29,13 +29,14 @@
         public function store(Request $request)
         {
             
-        
+
             // Validate incoming request data
             $validatedData = $request->validate([
                 'room_id' => 'required|exists:rooms,id',
                 'name' => 'required|string',
                 'type' => 'required|string',
-                'quantity' => 'required|integer',
+                'active_quantity' => 'required|integer',
+                'inactive_quantity' => 'required|integer',
                 'brand' => 'required|string',
                 'model' => 'required|string',
                 'installed_date' => 'required|date',

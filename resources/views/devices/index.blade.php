@@ -71,7 +71,8 @@
                                                 <th scope="col">No</th>
                                                 <th scope="col">Device Name</th>
                                                 <th scope="col">Type</th>
-                                                <th scope="col">Quantity</th>
+                                                <th scope="col">No. of Active</th>
+                                                <th scope="col">No. of Inactive</th>
                                                 <th scope="col">Power (watts)</th>
                                                 <th scope="col">Hours Used</th>
                                                 <th scope="col">Energy (kWh)</th>
@@ -84,52 +85,53 @@
                                                 <th scope="row">{{ $loop->iteration }}</th>
                                                 <td>{{ $device->name }}</td>
                                                 <td>{{ $device->type }}</td>
-                                                <td>{{ $device->quantity }}</td>                                            
+                                                <td>{{ $device->active_quantity }}</td> 
+                                                <td>{{ $device->inactive_quantity }}</td>                                           
                                                 <td>{{ $device->power }}</td>
                                                 <td>{{ $device->hours_used }}</td>
                                                 <td>{{ $device->energy }}</td>
                                                 <td>
                                                     <ul class="list-unstyled hstack gap-1 mb-0">
                                                         <!-- View button in the loop -->
-                                                        <li data-bs-toggle="tooltip" data-bs-placement="top" title="View">
-                                                            <button type="button" class="btn btn-sm btn-soft-primary" data-bs-toggle="modal" data-bs-target="#viewDeviceModal{{ $device->id }}">
-                                                                <i class="mdi mdi-eye-outline"></i>
-                                                            </button>
-                                                        </li>
+                                                                                                        <li data-bs-toggle="tooltip" data-bs-placement="top" title="View">
+                                                                                                            <button type="button" class="btn btn-sm btn-soft-primary" data-bs-toggle="modal" data-bs-target="#viewDeviceModal{{ $device->id }}">
+                                                                                                                <i class="mdi mdi-eye-outline"></i>
+                                                                                                            </button>
+                                                                                                        </li>
 
-                                                                                                                <!-- Edit button in the loop -->
-                                                        <a href="#" class="btn btn-sm btn-soft-info" data-bs-toggle="modal" data-bs-target="#editDeviceModal{{ $device->id }}"><i class="mdi mdi-pencil-outline"></i></a>
+                                                                                                                                                                <!-- Edit button in the loop -->
+                                                                                                        <a href="#" class="btn btn-sm btn-soft-info" data-bs-toggle="modal" data-bs-target="#editDeviceModal{{ $device->id }}"><i class="mdi mdi-pencil-outline"></i></a>
 
-                                                        <li data-bs-toggle="tooltip" data-bs-placement="top"
-                                                            title="Delete">
-                                                            <form
-                                                                action="{{ route('devices.destroy', $device->id) }}"
-                                                                method="POST">
-                                                                @csrf
-                                                                @method('DELETE')
-                                                                <button type="submit"
-                                                                    class="btn btn-sm btn-soft-danger"><i
-                                                                        class="mdi mdi-delete-outline"></i></button>
-                                                            </form>
-                                                        </li>
-                                                    </ul>
-                                                </td>
-                                            </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> <!-- container-fluid -->
-        </div> <!-- end page-content -->
+                                                                                                        <li data-bs-toggle="tooltip" data-bs-placement="top"
+                                                                                                            title="Delete">
+                                                                                                            <form
+                                                                                                                action="{{ route('devices.destroy', $device->id) }}"
+                                                                                                                method="POST">
+                                                                                                                @csrf
+                                                                                                                @method('DELETE')
+                                                                                                                <button type="submit"
+                                                                                                                    class="btn btn-sm btn-soft-danger"><i
+                                                                                                                        class="mdi mdi-delete-outline"></i></button>
+                                                                                                            </form>
+                                                                                                        </li>
+                                                                                                    </ul>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                            @endforeach
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div> <!-- container-fluid -->
+                                                        </div> <!-- end page-content -->
 
-        <!-- Modal for adding new device -->
+                                                        <!-- Modal for adding new device -->
 
-    </div> <!-- end page-content -->
-</div> <!-- end main-content -->
+                                                    </div> <!-- end page-content -->
+    </div> <!-- end main-content -->
 
 <!-- Modal for adding new device -->
 <div class="modal fade" id="addDeviceModal" tabindex="-1" role="dialog" aria-labelledby="addDeviceModalLabel"
@@ -144,7 +146,7 @@
                     </div>
                     <form id="addDeviceForm" action="{{ route('devices.store') }}" method="POST">
                         @csrf
-                         <input type="hidden" name="room_id" value="{{ $room_id }}">
+                        <input type="hidden" name="room_id" value="{{ $room_id }}">
                         <div class="modal-body">
                             <div class="mb-3">
                                 <label for="deviceName" class="form-label">Device Name</label>
@@ -155,8 +157,12 @@
                                 <input type="text" class="form-control" id="deviceType" name="type" required>
                             </div>
                             <div class="mb-3">
-                                <label for="deviceQuantity" class="form-label">Quantity</label>
-                                <input type="number" class="form-control" id="deviceQuantity" name="quantity" required>
+                                <label for="deviceActive" class="form-label">No. of Active</label>
+                                <input type="number" class="form-control" id="deviceActive" name="active_quantity" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="deviceInactive" class="form-label">No. of Inactive</label>
+                                <input type="number" class="form-control" id="deviceInactive" name="inactive_quantity" required>
                             </div>
                             <div class="mb-3">
                                 <label for="deviceBrand" class="form-label">Brand</label>
@@ -192,9 +198,7 @@
             </div>
 </div>
 </div>
-<!-- Add this modal at the end of your blade file, after the modal for adding new devices -->
 
-<!-- Modal for editing device -->
 <!-- Modal for editing device -->
 @foreach($devices as $device)
 <div class="modal fade" id="editDeviceModal{{ $device->id }}" tabindex="-1" role="dialog" aria-labelledby="editDeviceModalLabel{{ $device->id }}" aria-hidden="true">
@@ -220,10 +224,15 @@
                         <label for="editDeviceType{{ $device->id }}" class="form-label">Type</label>
                         <input type="text" class="form-control" id="editDeviceType{{ $device->id }}" name="type" value="{{ $device->type }}" required>
                     </div>
-                    <!-- Quantity -->
+                    <!-- Active Quantity -->
                     <div class="mb-3">
-                        <label for="editDeviceQuantity{{ $device->id }}" class="form-label">Quantity</label>
-                        <input type="number" class="form-control" id="editDeviceQuantity{{ $device->id }}" name="quantity" value="{{ $device->quantity }}" required>
+                        <label for="editDeviceActive{{ $device->id }}" class="form-label">No. of Active</label>
+                        <input type="number" class="form-control" id="editDeviceActive{{ $device->id }}" name="active_quantity" value="{{ $device->active_quantity }}" required>
+                    </div>
+                    <!-- Inactive Quantity -->
+                    <div class="mb-3">
+                        <label for="editDeviceInactive{{ $device->id }}" class="form-label">No. of Inactive</label>
+                        <input type="number" class="form-control" id="editDeviceInactive{{ $device->id }}" name="inactive_quantity" value="{{ $device->inactive_quantity }}" required>
                     </div>
                     <!-- Brand -->
                     <div class="mb-3">
@@ -282,7 +291,8 @@
                 <!-- Display all device details here -->
                 <p><strong>Name:</strong> {{ $device->name }}</p>
                 <p><strong>Type:</strong> {{ $device->type }}</p>
-                <p><strong>Quantity:</strong> {{ $device->quantity }}</p>
+                <p><strong>No. of Active:</strong> {{ $device->active_quantity }}</p>
+                <p><strong>No. of Inactive:</strong> {{ $device->inactive_quantity }}</p>
                 <p><strong>Brand:</strong> {{ $device->brand }}</p>
                 <p><strong>Model:</strong> {{ $device->model }}</p>
                 <p><strong>Date Installed:</strong> {{ $device->installed_date }}</p>

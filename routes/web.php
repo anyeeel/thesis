@@ -61,4 +61,6 @@ Route::get('rooms', [RoomController::class, 'index'])->name('rooms.index');
 
 Route::get('{room_id}/devices', [DeviceController::class, 'index'])->name('devices.index');
 
+Route::get('/dashboard', [BuildingController::class, 'dashboard'])->name('dashboard');
+
 require __DIR__.'/auth.php';
