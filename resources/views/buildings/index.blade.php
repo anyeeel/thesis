@@ -153,34 +153,36 @@
     <div id="successMessage" class="alert alert-success" role="alert" style="display: none;"></div>
 
 <!-- edit building -->
+@isset($building)
 <div class="modal fade bs-example-modal-center" id="editBuildingModal{{ $building->id }}" tabindex="-1" aria-labelledby="editBuildingModal{{ $building->id }}Label" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="editBuildingModal{{ $building->id }}Label">Edit Building</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <form action="{{ route('buildings.update', $building->id) }}" method="POST">
-                    @csrf
-                    @method('PUT')
-                    <div class="modal-body">
-                        <div class="mb-3">
-                            <label for="editBuildingName" class="form-label">Building Name</label>
-                            <input type="text" class="form-control" id="editBuildingName" name="building_name" value="{{ $building->building_name }}">
-                        </div>
-                        <div class="mb-3">
-                            <label for="editNumOfFloors" class="form-label">Number of Floors</label>
-                            <input type="number" class="form-control" id="editNumOfFloors" name="num_of_floors" value="{{ $building->num_of_floors }}">
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Save changes</button>
-                    </div>
-                </form>
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editBuildingModal{{ $building->id }}Label">Edit Building</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
+            <form action="{{ route('buildings.update', $building->id) }}" method="POST">
+                @csrf
+                @method('PUT')
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="editBuildingName" class="form-label">Building Name</label>
+                        <input type="text" class="form-control" id="editBuildingName" name="building_name" value="{{ $building->building_name }}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="editNumOfFloors" class="form-label">Number of Floors</label>
+                        <input type="number" class="form-control" id="editNumOfFloors" name="num_of_floors" value="{{ $building->num_of_floors }}">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
         </div>
+    </div>
 </div>
+@endisset
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {

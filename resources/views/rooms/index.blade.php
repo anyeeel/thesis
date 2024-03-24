@@ -13,13 +13,17 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                                <h4 class="mb-sm-0 font-size-18">Rooms</h4>
+                                @foreach($floor as $floor)
+                                <h4 class="mb-sm-0 font-size-18">Rooms of {{ $floor->name}} </h4>
+                                @endforeach
 
                                 <div class="page-title-right">
                                     <ol class="breadcrumb m-0">
                                         <li class="breadcrumb-item"><a href="{{ route('buildings.index') }}">Buildings</a></li>
-                                        <li class="breadcrumb-item"><a href="{{ route('floors.index', ['floor_id']) }}" >Floors</a></li>
-                                        <li class="breadcrumb-item active">Rooms</li>
+                                        @foreach($building as $building)
+                                        <li class="breadcrumb-item"><a href="">{{ $building->building_name }}</a></li>
+                                        @endforeach
+                                        <li class="breadcrumb-item"><a href="" >{{ $floor->name}}</a></li>
                                         
                                     </ol>
                                 </div>

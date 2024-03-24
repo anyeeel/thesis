@@ -5,10 +5,10 @@
             <div class="navbar-brand-box">
                 <a href="{{ url('/') }}" class="logo logo-dark">
                     <span class="logo-sm">
-                        <img src="" alt="" height="27">
+                        <img src="{{ asset('assets/images/1.png') }}" alt="" height="27">
                     </span>
                     <span class="logo-lg">
-                        <img src="" alt="" height="35">
+                        <img src="{{ asset('assets/images/iit-logo-light.png') }}" alt="" height="35">
                     </span>
                 </a>
 
