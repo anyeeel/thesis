@@ -62,6 +62,20 @@ Route::get('rooms', [RoomController::class, 'index'])->name('rooms.index');
 
 Route::get('{room_id}/devices', [DeviceController::class, 'index'])->name('devices.index');
 
-Route::get('/dashboard', [BuildingController::class, 'dashboard'])->name('dashboard');
+Route::get('/dashboard', function () {
+    // Call the dashboard method of BuildingController
+    $buildingController = new BuildingController();
+    $buildingData = $buildingController->dashboard();
+
+    // Call the dashboard method of DeviceController
+    $deviceController = new DeviceController();
+    $deviceData = $deviceController->dashboard();
+
+    // Merge the data from both controllers
+    $mergedData = array_merge($buildingData->getData(), $deviceData->getData());
+
+    // Pass the merged data to the dashboard view
+    return view('dashboard')->with($mergedData);
+})->middleware(['auth', 'verified'])->name('dashboard');
 
 require __DIR__.'/auth.php';

@@ -183,22 +183,8 @@
         
                                         <h4 class="card-title mb-4">Pie Chart</h4>
         
-                                        <div class="row text-center">
-                                            <div class="col-4">
-                                                <h5 class="mb-0">2536</h5>
-                                                <p class="text-muted text-truncate">Activated</p>
-                                            </div>
-                                            <div class="col-4">
-                                                <h5 class="mb-0">69421</h5>
-                                                <p class="text-muted text-truncate">Pending</p>
-                                            </div>
-                                            <div class="col-4">
-                                                <h5 class="mb-0">89854</h5>
-                                                <p class="text-muted text-truncate">Deactivated</p>
-                                            </div>
-                                        </div>
-        
-                                        <canvas id="pie" data-colors='["--bs-success", "#ebeff2"]' class="chartjs-chart"></canvas>
+                                
+                                        <canvas id="pieChart" class="chartjs-chart"></canvas>
         
                                     </div>
                                 </div>
@@ -300,6 +286,48 @@
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
+            document.addEventListener("DOMContentLoaded", function () {
+            // Retrieve data passed from the controller
+            var labels = @json($labels);
+            var data = @json($data);
+
+            // Define predefined colors for device types
+            var predefinedColors = [
+                'rgba(255, 99, 132, 0.6)',
+                'rgba(54, 162, 235, 0.6)',
+                'rgba(255, 206, 86, 0.6)',
+                'rgba(75, 192, 192, 0.6)',
+                'rgba(153, 102, 255, 0.6)',
+                'rgba(255, 159, 64, 0.6)'
+                // Add more colors as needed
+            ];
+
+            // Map device types to predefined colors
+            var backgroundColors = labels.map(function(label, index) {
+                // Use modulo operation to repeat colors if there are more labels than predefined colors
+                return predefinedColors[index % predefinedColors.length];
+            });
+
+            // Get the canvas element
+            var ctx = document.getElementById('pieChart').getContext('2d');
+
+            // Create the pie chart
+            var myPieChart = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        data: data,
+                        backgroundColor: backgroundColors
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false
+                }
+            });
+        });
+        
     // Extracting data passed from controller
     const buildingEnergyData = @json($buildingEnergyData);
 
@@ -340,5 +368,8 @@
       document.getElementById('stacked-bar-chart'),
       config
     );
+
+
+
   </script>
 @endsection

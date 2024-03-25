@@ -69,4 +69,19 @@
             $device->delete();
             return redirect()->route('devices.index', ['room_id' => $room_id])->with('success','Device deleted successfully');
         }
+
+        public function dashboard()
+    {
+        // Retrieve data for the pie chart (total energy consumption by device types)
+        $deviceTypes = Devices::groupBy('type')
+            ->selectRaw('type, SUM(power * hours_used) AS total_energy_consumption')
+            ->get();
+
+        // Prepare data for Chart.js
+        $labels = $deviceTypes->pluck('type');
+        $data = $deviceTypes->pluck('total_energy_consumption');
+
+        // Pass data to the dashboard view
+        return view('dashboard')->with(compact('labels', 'data'));
+    }
 }
