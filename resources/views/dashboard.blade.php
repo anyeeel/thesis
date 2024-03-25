@@ -20,7 +20,7 @@
                                     <div class="card-body">
                                         <div class="d-flex">
                                             <div class="flex-grow-1">
-                                                <p class="text-muted fw-medium">Job View</p>
+                                                <p class="text-muted fw-medium">Overall Energy Consumption</p>
                                                 <h4 class="mb-0">14,487</h4>
                                             </div>
                                 
@@ -34,12 +34,13 @@
                                     </div>
                                 </div>
                             </div><!--end col-->
+
                             <div class="col-lg-3">
                                 <div class="card mini-stats-wid">
                                     <div class="card-body">
                                         <div class="d-flex">
                                             <div class="flex-grow-1">
-                                                <p class="text-muted fw-medium">New Application</p>
+                                                <p class="text-muted fw-medium">Overall No. of Devices</p>
                                                 <h4 class="mb-0">7,402</h4>
                                             </div>
                             
@@ -53,12 +54,13 @@
                                     </div>
                                 </div>
                             </div><!--end col-->
+
                             <div class="col-lg-3">
                                 <div class="card mini-stats-wid">
                                     <div class="card-body">
                                         <div class="d-flex">
                                             <div class="flex-grow-1">
-                                                <p class="text-muted fw-medium">Total Approved</p>
+                                                <p class="text-muted fw-medium">Overall No. of Buildings</p>
                                                 <h4 class="mb-0">12,487</h4>
                                             </div>
                             
@@ -72,6 +74,7 @@
                                     </div>
                                 </div>
                             </div><!--end col-->
+                            
                             <div class="col-lg-3">
                                 <div class="card mini-stats-wid">
                                     <div class="card-body">
@@ -118,12 +121,17 @@
                                         </div>
                                          <div class="apex-charts" data-colors='["--bs-primary", "--bs-warning"]' id="area-chart" dir="ltr"></div>
                                     </div>
-                                </div>
-
+                             </div>
+           
+    <div class="row">
+    <div class="col-xl-6">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title mb-4">Pie Chart</h4>
+                                        <canvas id="pieChart" class="chartjs-chart"></canvas>
             </div>
         </div>
-    </div>
-    <div class="row">
+    </div> <!-- end col -->
     <div class="col-lg-6">
         <div class="card">
             <div class="card-body">
@@ -150,34 +158,17 @@
       
     </div>
 </div>
-</div>
+    </div>
 
-                    <div class="row">
-                            <div class="col-xl-6">
-                                <div class="card">
-                                    <div class="card-body">
-        
-                                        <h4 class="card-title mb-4">Pie Chart</h4>
-        
-                                
-                                        <canvas id="pieChart" class="chartjs-chart"></canvas>
-        
-                                    </div>
-                                </div>
-                            </div> <!-- end col -->
-</div>
-</div>
-
-
-
-
-                            </div>
-                            </div>
-                            
                             <!-- end col -->
 
-                    </div> <!-- container-fluid -->
-                </div>
+         </div> <!-- container-fluid -->
+  </div>
+  
+</div>
+
+            
+                    
                 <!-- End Page-content -->
 
                 
