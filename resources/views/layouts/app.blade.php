@@ -29,10 +29,6 @@
         <link rel="stylesheet" href="{{ asset('assets/libs/sweetalert2/sweetalert2.min.css') }}" type="text/css"></link>
         <script src="{{ asset('assets/libs/sweetalert2/sweetalert2.min.js') }}"></script>
 
-
-        <!-- Scripts -->
-        <!-- @vite(['resources/css/app.css', 'resources/js/app.js']) -->
-
     </head>
     
     <body data-sidebar="light">

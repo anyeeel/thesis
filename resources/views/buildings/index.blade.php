@@ -13,12 +13,11 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                                <h4 class="mb-sm-0 font-size-18">Buildings</h4>
+                                <h4 class="mb-sm-0 font-size-18">Buildings List</h4>
 
                                 <div class="page-title-right">
                                     <ol class="breadcrumb m-0">
                                         <li class="breadcrumb-item"><a href="{{ route ('buildings.index') }}">Buildings</a></li>
-                                        <li class="breadcrumb-item active">Files</li>
                                     </ol>
                                 </div>
 
@@ -31,37 +30,15 @@
                         <div class="w-100">
                             <div class="card">
                                 <div class="card-body">
-                                    <div>
+                                    <!-- <div>
                                         <div class="row mb-3">
                                             <div class="col-xl-3 col-sm-6">
                                                 <div class="mt-2">
-                                                    <h5>Files</h5>
+                                                    <h5>Buildings List</h5>
                                                 </div>
                                             </div>
-                                            <div class="col-xl-9 col-sm-6">
-                                                <form class="mt-4 mt-sm-0 float-sm-end d-flex align-items-center">
-                                                    <div class="search-box mb-2 me-2">
-                                                        <div class="position-relative">
-                                                            <input type="text" class="form-control bg-light border-light rounded" placeholder="Search...">
-                                                            <i class="bx bx-search-alt search-icon"></i>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="dropdown mb-0">
-                                                        <a class="btn btn-link text-muted mt-n2" role="button" data-bs-toggle="dropdown" aria-haspopup="true">
-                                                            <i class="mdi mdi-dots-vertical font-size-20"></i>
-                                                        </a>
-                                                        
-                                                        <div class="dropdown-menu dropdown-menu-end">
-                                                            <a class="dropdown-item" href="#">Share Files</a>
-                                                            <a class="dropdown-item" href="#">Share with me</a>
-                                                            <a class="dropdown-item" href="#">Other Actions</a>
-                                                        </div>
-                                                    </div>
-                                                </form>
-                                            </div>
                                         </div>
-                                    </div>
+                                    </div> -->
 
                                     <div>
                                         <div class="row">
@@ -94,8 +71,8 @@
                                                                 </div>
                                                                 <div class="d-flex">
                                                                     <div class="overflow-hidden me-auto">               
-                                                                    <h5 class="font-size-14 text-truncate mb-1"><a href="{{ route('floors.index', $building->id) }}" class="text-body">{{ $building->building_name }}</a></h5>
-                                                                        <!-- <a href="{{ route('floors.index', ['buildingId' => $building->id]) }}">View Floors</a> -->
+                                                                        <h5 class="font-size-14 text-truncate mb-1"><a href="{{ route('floors.index', ['building_id' => $building->id]) }}" class="text-body">{{ $building->building_name }}</a></h5>
+
 
                                                                         <p class="text-muted text-truncate mb-0">{{ $building->num_of_floors }} Floors</p>
                                                                     </div>
@@ -129,33 +106,9 @@
                         </div>
                     </div>            
                     <!--  end row -->
-
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="text-center my-3">
-                                <a href="javascript:void(0);" class="text-success"><i class="bx bx-loader bx-spin font-size-18 align-middle me-2"></i> Load more </a>
-                            </div>
-                        </div> <!-- end col-->
-                    </div>
-                    <!-- end row -->
                 </div> <!-- container-fluid -->
             </div>
             <!-- End Page-content -->
-            
-            <footer class="footer">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <script>document.write(new Date().getFullYear())</script> © Skote.
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="text-sm-end d-none d-sm-block">
-                                Design & Develop by Themesbrand
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </footer>
         </div>
         <!-- end main content-->
     </div>
@@ -200,34 +153,36 @@
     <div id="successMessage" class="alert alert-success" role="alert" style="display: none;"></div>
 
 <!-- edit building -->
+@isset($building)
 <div class="modal fade bs-example-modal-center" id="editBuildingModal{{ $building->id }}" tabindex="-1" aria-labelledby="editBuildingModal{{ $building->id }}Label" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="editBuildingModal{{ $building->id }}Label">Edit Building</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <form action="{{ route('buildings.update', $building->id) }}" method="POST">
-                    @csrf
-                    @method('PUT')
-                    <div class="modal-body">
-                        <div class="mb-3">
-                            <label for="editBuildingName" class="form-label">Building Name</label>
-                            <input type="text" class="form-control" id="editBuildingName" name="building_name" value="{{ $building->building_name }}">
-                        </div>
-                        <div class="mb-3">
-                            <label for="editNumOfFloors" class="form-label">Number of Floors</label>
-                            <input type="number" class="form-control" id="editNumOfFloors" name="num_of_floors" value="{{ $building->num_of_floors }}">
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Save changes</button>
-                    </div>
-                </form>
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editBuildingModal{{ $building->id }}Label">Edit Building</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
+            <form action="{{ route('buildings.update', $building->id) }}" method="POST">
+                @csrf
+                @method('PUT')
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="editBuildingName" class="form-label">Building Name</label>
+                        <input type="text" class="form-control" id="editBuildingName" name="building_name" value="{{ $building->building_name }}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="editNumOfFloors" class="form-label">Number of Floors</label>
+                        <input type="number" class="form-control" id="editNumOfFloors" name="num_of_floors" value="{{ $building->num_of_floors }}">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
         </div>
+    </div>
 </div>
+@endisset
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {

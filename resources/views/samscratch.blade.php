@@ -8,20 +8,20 @@
             <div class="page-content">
                 <div class="container-fluid">
                     <!-- start page title -->
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                                <h4 class="mb-sm-0 font-size-18">Floors of {{ $building->building_name}}</h4>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                                    <h4 class="mb-sm-0 font-size-18">Floors of {{ $building->building_name }}</h4>
 
-                                <div class="page-title-right">
-                                    <ol class="breadcrumb m-0">
-                                        <li class="breadcrumb-item"><a href="{{ route ('buildings.index') }}">Buildings</a></li>
-                                        <li class="breadcrumb-item active"><a href="">{{ $building->building_name}}</a></li>
-                                    </ol>
+                                    <div class="page-title-right">
+                                        <ol class="breadcrumb m-0">
+                                            <li class="breadcrumb-item"><a href="{{ route ('buildings.index') }}">Buildings</a></li>
+                                            <li class="breadcrumb-item active">Floors</li>
+                                        </ol>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
                     <!-- end page title -->
 
                     <div class="row">
@@ -49,7 +49,7 @@
                                                                     <div class="card-body">
                                                                         <h5 class="card-title">{{ $floor->name }}</h5>                             
                                                                         <a href="{{ route('rooms.index') }}?floor_id={{ $floor->id }}" class="btn btn-primary">View Rooms</a>
-                                                                        <p class="text-muted mb-0">{{ number_format($floor->totalEnergy(), 2) }} kWh</p>
+
                                                                     </div>
                                                                 </div>
                                                             </div>

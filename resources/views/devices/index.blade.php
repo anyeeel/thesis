@@ -12,11 +12,20 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                            <h4 class="mb-sm-0 font-size-18">Devices List</h4>
+                            @foreach($room as $room)
+                            <h4 class="mb-sm-0 font-size-18">{{ $room->name}} Devices</h4>
+                            @endforeach
+
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
-                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Devices</a></li>
-                                    <li class="breadcrumb-item active">Devices List</li>
+                                <li class="breadcrumb-item"><a href="{{ route('buildings.index') }}">Buildings</a></li>
+                                        @foreach($building as $building)
+                                        <li class="breadcrumb-item"><a href="">{{ $building->building_name }}</a></li>
+                                        @endforeach
+                                        @foreach($floor as $floor)
+                                        <li class="breadcrumb-item"><a href="">{{ $floor->name }}</a></li>
+                                        @endforeach
+                                        <li class="breadcrumb-item">{{ $room->name}}</li>
                                 </ol>
                             </div>
                         </div>
@@ -85,14 +94,14 @@
                                                 <td>
                                                     <ul class="list-unstyled hstack gap-1 mb-0">
                                                         <!-- View button in the loop -->
-                                                <li data-bs-toggle="tooltip" data-bs-placement="top" title="View">
-                                                    <button type="button" class="btn btn-sm btn-soft-primary" data-bs-toggle="modal" data-bs-target="#viewDeviceModal{{ $device->id }}">
-                                                        <i class="mdi mdi-eye-outline"></i>
-                                                    </button>
-                                                </li>
+                                                                                                        <li data-bs-toggle="tooltip" data-bs-placement="top" title="View">
+                                                                                                            <button type="button" class="btn btn-sm btn-soft-primary" data-bs-toggle="modal" data-bs-target="#viewDeviceModal{{ $device->id }}">
+                                                                                                                <i class="mdi mdi-eye-outline"></i>
+                                                                                                            </button>
+                                                                                                        </li>
 
-                                                                                                        <!-- Edit button in the loop -->
-                                                <a href="#" class="btn btn-sm btn-soft-info" data-bs-toggle="modal" data-bs-target="#editDeviceModal{{ $device->id }}"><i class="mdi mdi-pencil-outline"></i></a>
+                                                                                                                                                                <!-- Edit button in the loop -->
+                                                                                                        <a href="#" class="btn btn-sm btn-soft-info" data-bs-toggle="modal" data-bs-target="#editDeviceModal{{ $device->id }}"><i class="mdi mdi-pencil-outline"></i></a>
 
                                                                                                         <li data-bs-toggle="tooltip" data-bs-placement="top"
                                                                                                             title="Delete">

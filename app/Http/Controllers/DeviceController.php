@@ -6,15 +6,24 @@
     use Illuminate\Http\Request;
     use App\Models\Devices;
     use App\Models\Room;
+    use App\Models\Floor;
+    use App\Models\Building;
     
     
     class DeviceController extends Controller
     {
         public function index(Request $request, $room_id)
         {
-            
             $devices = Devices::where('room_id', $room_id)->get();
-            return view('devices.index', ['room_id' => $room_id, 'devices' => $devices]);
+            $room = Room::where('id', $room_id)->get();
+
+            $floorId = Room::where('id', $room_id)->pluck('floor_id')->first();
+            $floor = Floor::where('id', $floorId)->get();
+
+            $buildingId = Floor::where('id', $floorId)->pluck('building_id')->first();
+            $building = Building::where('id', $buildingId)->get();
+    
+            return view('devices.index', ['room_id' => $room_id, 'devices' => $devices, 'room' => $room, 'floorId' => $floorId, 'floor'=> $floor, 'buildingId' => $buildingId, 'building'=> $building]);
         }
     
         public function store(Request $request)

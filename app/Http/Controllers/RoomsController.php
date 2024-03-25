@@ -7,6 +7,11 @@ use App\Models\Room; // Assuming Room model is in this namespace
 
 class RoomController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index()
     {
         // Fetch all rooms from the database

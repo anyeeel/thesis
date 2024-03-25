@@ -44,9 +44,9 @@
                 </li>
                 @endcan
 
-            </ul>
-        </div>
-        <!-- Sidebar -->
-    </div>
-</div>
-<!-- Left Sidebar End -->
+                        </ul>
+                    </div>
+                    <!-- Sidebar -->
+                </div>
+            </div>
+            <!-- Left Sidebar End -->
