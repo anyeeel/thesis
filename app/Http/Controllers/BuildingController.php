@@ -95,20 +95,20 @@ class BuildingController extends Controller
     }
 
     // Other methods like store, show, edit, update, destroy, etc.
-    public function dashboard()
-    {
-        $buildings = Building::all();
-        $buildingEnergyData = [];
-    
-        foreach ($buildings as $building) {
-            $floorsData = [];
-            foreach ($building->floors as $floor) {
-                $floorsData[$floor->name] = $floor->totalEnergy();
-            }
-            $buildingEnergyData[$building->building_name] = $floorsData;
+public function dashboard()
+{
+    $buildings = Building::all();
+    $buildingEnergyData = [];
+
+    foreach ($buildings as $building) {
+        $floorsData = [];
+        foreach ($building->floors as $floor) {
+            $floorsData[$floor->name] = $floor->totalEnergy();
         }
-    
-        return view('dashboard', compact('buildingEnergyData'));
+        $buildingEnergyData[$building->building_name] = $floorsData;
     }
-    
+
+    return view('dashboard', compact('buildingEnergyData'));
+}
+
 }
