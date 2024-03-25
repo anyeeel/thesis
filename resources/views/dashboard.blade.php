@@ -12,35 +12,9 @@
 
             <div class="page-content">
                 <div class="container-fluid">
-                <div class="card">
-                                    <div class="card-body">
-                                        <div class="d-flex flex-wrap align-items-start">
-                                            <h5 class="card-title me-2">Line Chart</h5>
-                                            <div class="ms-auto">
-                                                <div class="toolbar d-flex flex-wrap gap-2 text-end">
-                                                    <button type="button" class="btn btn-light btn-sm">
-                                                        ALL
-                                                    </button>
-                                                    <button type="button" class="btn btn-light btn-sm">
-                                                        1M
-                                                    </button>
-                                                    <button type="button" class="btn btn-light btn-sm">
-                                                        6M
-                                                    </button>
-                                                    <button type="button" class="btn btn-light btn-sm active">
-                                                        1Y
-                                                    </button>
-                                                    
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="apex-charts" data-colors='["--bs-primary", "--bs-warning"]' id="area-chart" dir="ltr"></div>
-                                    </div>
-                                </div>
 
-
-                        <div class="row">
+                    <!-- TOtal consumption card-->
+                <div class="row">
                             <div class="col-lg-3">
                                 <div class="card mini-stats-wid">
                                     <div class="card-body">
@@ -119,64 +93,66 @@
                             </div><!--end col-->
                         </div><!--end row-->
 
-                        <div class="row">
+
+                             <div class="card">
+                                    <div class="card-body">
+                                        <div class="d-flex flex-wrap align-items-start">
+                                            <h5 class="card-title me-2">Line Chart</h5>
+                                            <div class="ms-auto">
+                                                <div class="toolbar d-flex flex-wrap gap-2 text-end">
+                                                    <button type="button" class="btn btn-light btn-sm">
+                                                        ALL
+                                                    </button>
+                                                    <button type="button" class="btn btn-light btn-sm">
+                                                        1M
+                                                    </button>
+                                                    <button type="button" class="btn btn-light btn-sm">
+                                                        6M
+                                                    </button>
+                                                    <button type="button" class="btn btn-light btn-sm active">
+                                                        1Y
+                                                    </button>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                         <div class="apex-charts" data-colors='["--bs-primary", "--bs-warning"]' id="area-chart" dir="ltr"></div>
+                                    </div>
+                                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="row">
     <div class="col-lg-6">
         <div class="card">
             <div class="card-body">
                 <div class="d-sm-flex flex-wrap">
-                    <h4 class="card-title mb-4">Bar Chart</h4>
+                    <h4 class="card-title mb-4">Stacked Bar Chart</h4>
                     <div class="ms-auto">
                         <ul class="nav nav-pills">
                             <li class="nav-item">
-                                <a class="nav-link" href="javascript:void(0);">Week</a>
+                                <a class="nav-link" href="#">Week</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="javascript:void(0);">Month</a>
+                                <a class="nav-link" href="#">Month</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" href="javascript:void(0);">Year</a>
+                                <a class="nav-link active" href="#">Year</a>
                             </li>
                         </ul>
                     </div>
                 </div>
-
-                <!-- Move the chart here -->
-                <div class="row">
-                
-                    <canvas id="energyChart" max-width="400" height="360"></canvas>
-                </div><!-- end row -->
-            </div>
+            <div class="chart-container">
+                <canvas id="stacked-bar-chart"></canvas>
+            </div>                       
         </div>
+      
     </div>
-
-    <div class="col-lg-6">
-    <div class="card">
-            <div class="card-body">
-                                        <div class="d-sm-flex flex-wrap">
-                                            <h4 class="card-title mb-4">Stacked Bar Chart</h4>
-                                            <div class="ms-auto">
-                                                <ul class="nav nav-pills">
-                                                    <li class="nav-item">
-                                                        <a class="nav-link" href="#">Week</a>
-                                                    </li>
-                                                    <li class="nav-item">
-                                                        <a class="nav-link" href="#">Month</a>
-                                                    </li>
-                                                    <li class="nav-item">
-                                                        <a class="nav-link active" href="#">Year</a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="chart-container">
-  <canvas id="stacked-bar-chart"></canvas>
-</div>
-                             
-                            </div>
 </div>
 </div>
 
-<div class="row">
+                    <div class="row">
                             <div class="col-xl-6">
                                 <div class="card">
                                     <div class="card-body">
@@ -204,10 +180,12 @@
                                 </div>
                             </div> <!-- end col -->
 </div>
+</div>
 
 
 
 
+                            </div>
                             </div>
                             
                             <!-- end col -->

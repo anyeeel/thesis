@@ -424,7 +424,7 @@ body[data-layout=horizontal] .footer {
   transition: all 0.4s;
 }
 #sidebar-menu ul li a:hover {
-  color: #383c40;
+  color: #403838;
 }
 #sidebar-menu ul li a:hover i {
   color: #383c40;
@@ -463,22 +463,22 @@ body[data-layout=horizontal] .footer {
 }
 
 .mm-active {
-  color: #556ee6 !important;
+  color: #620000 !important;
 }
 .mm-active > a {
-  color: #556ee6 !important;
+  color: #620000 !important;
 }
 .mm-active > a i {
-  color: #556ee6 !important;
+  color: #620000 !important;
 }
 .mm-active .active {
-  color: #556ee6 !important;
+  color: #620000 !important;
 }
 .mm-active .active i {
-  color: #556ee6 !important;
+  color: #620000 !important;
 }
 .mm-active > i {
-  color: #556ee6 !important;
+  color: #620000 !important;
 }
 
 @media (max-width: 992px) {
