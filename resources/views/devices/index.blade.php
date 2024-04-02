@@ -296,7 +296,7 @@
 <!-- Modal for viewing device details -->
 @foreach($devices as $device)
 <div class="modal fade" id="viewDeviceModal{{ $device->id }}" tabindex="-1" role="dialog" aria-labelledby="viewDeviceModalLabel{{ $device->id }}" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="viewDeviceModalLabel{{ $device->id }}">View Device Details</h5>
