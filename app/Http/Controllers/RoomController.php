@@ -10,11 +10,22 @@ use Illuminate\Http\Request;
 
 class RoomController extends Controller
 {
-    public function index(Request $request)
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
+    public function index(Request $request)     
     {
         $floorId = $request->query('floor_id');
+        $floor = Floor::where('id', $floorId)->get();
         $rooms = Room::where('floor_id', $floorId)->get();
-        return view('rooms.index', ['floorId' => $floorId, 'rooms' => $rooms]);
+
+        $buildingId = Floor::where('id', $floorId)->pluck('building_id')->first();
+        $building = Building::where('id', $buildingId)->get();
+
+
+        return view('rooms.index', ['floorId' => $floorId, 'rooms' => $rooms, 'floor' => $floor, 'building' => $building]);
     }
 
 
