@@ -232,8 +232,15 @@
                             </div>
                             <!-- Type -->
                             <div class="mb-3">
-                                <label for="editDeviceType{{ $device->id }}" class="form-label">Type</label>
-                                <input type="text" class="form-control" id="editDeviceType{{ $device->id }}" name="type" value="{{ $device->type }}" required>
+                                <label for="deviceType" class="form-label">Type</label>
+                                <select class="form-select" id="deviceType" name="type" required>
+                                    <option value="" selected disabled>Select a type</option>
+                                    <option value="HVAC">HVAC</option>
+                                    <option value="lighting">Lighting System</option>
+                                    <option value="output">Output Device</option>
+                                    <option value="appliance">Appliance</option>
+                                    <option value="Desktop">Desktop</option>
+                                </select>
                             </div>
                             <!-- Active Quantity -->
                             <div class="mb-3">
@@ -305,17 +312,22 @@
                 </button>
             </div>
             <div class="modal-body">
-                <!-- Display all device details here -->
-                <p><strong>Name:</strong> {{ $device->name }}</p>
-                <p><strong>Type:</strong> {{ $device->type }}</p>
-                <p><strong>No. of Active:</strong> {{ $device->active_quantity }}</p>
-                <p><strong>No. of Inactive:</strong> {{ $device->inactive_quantity }}</p>
-                <p><strong>Brand:</strong> {{ $device->brand }}</p>
-                <p><strong>Model:</strong> {{ $device->model }}</p>
-                <p><strong>Date Installed:</strong> {{ $device->installed_date }}</p>
-                <p><strong>Life Expectancy:</strong> {{ $device->life_expectancy }} years</p>
-                <!-- Add more device details as needed -->
-            </div>
+    <div class="row">
+        <div class="col-md-6">
+            <p><strong>Name:</strong> {{ $device->name }}</p>
+            <p><strong>Type:</strong> {{ $device->type }}</p>
+            <p><strong>No. of Active:</strong> {{ $device->active_quantity }}</p>
+            <p><strong>No. of Inactive:</strong> {{ $device->inactive_quantity }}</p>
+        </div>
+        <div class="col-md-6">
+            <p><strong>Brand:</strong> {{ $device->brand }}</p>
+            <p><strong>Model:</strong> {{ $device->model }}</p>
+            <p><strong>Date Installed:</strong> {{ $device->installed_date }}</p>
+            <p><strong>Life Expectancy:</strong> {{ $device->life_expectancy }} years</p>
+        </div>
+    </div>
+</div>
+
 
         
             <?php

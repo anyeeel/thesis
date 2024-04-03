@@ -70,27 +70,7 @@
                                     @empty
                                     @endforelse
 
-                                    <div class="col-xl-4 col-sm-6" >
-                                        <div class="border p-3 rounded mt-4" >
-                                            <div class="d-flex align-items-center mb-3">
-                                                <h5 class="font-size-14 mb-0"></h5>
-                                            </div>
-
-                                            <div class="row">
-                                                <div class="col-lg-6">
-                                                    <div class="text-muted mt-3">
-                                                        <p class="mb-0"></p>
-                                                        
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="card-body p-3 d-flex align-items-center justify-content-center" >
-                                                <a class="addBldg" role="button" aria-haspopup="true" data-bs-toggle="modal" data-bs-target=".bs-example-modal-center" data-bs-toggle="tooltip" data-bs-placement="top" title="Add Building">
-                                                    <i class="bx bx-plus-medical"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
+                                  
                                     <!-- end col -->
                                 </div>
 
