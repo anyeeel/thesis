@@ -10,134 +10,135 @@
     <!-- ============================================================== -->
     <div class="main-content">
 
-            <div class="page-content">
-                <div class="container-fluid">
+        <div class="page-content">
+            <div class="container-fluid">
 
-                    <!-- TOtal consumption card-->
+                <!-- TOtal consumption card-->
                 <div class="row">
-                            <div class="col-lg-3">
-                                <div class="card mini-stats-wid">
-                                    <div class="card-body">
-                                        <div class="d-flex">
-                                            <div class="flex-grow-1">
-                                                <p class="text-muted fw-medium">Overall Energy Consumption</p>
-                                                <h4 class="mb-0">14,487</h4>
-                                            </div>
-                                
-                                            <div class="flex-shrink-0 align-self-center">
-                                                <div data-colors='["--bs-success", "--bs-transparent"]' dir="ltr" id="eathereum_sparkline_charts"></div>
-                                            </div>
-                                        </div>
+                    <div class="col-lg-3">
+                        <div class="card mini-stats-wid">
+                            <div class="card-body">
+                                <div class="d-flex">
+                                    <div class="flex-grow-1">
+                                        <p class="text-muted fw-medium">Overall Energy Consumption</p>
+                                        <h4 class="mb-0">14,487</h4>
                                     </div>
-                                    <div class="card-body border-top py-3">
-                                        <p class="mb-0"> <span class="badge badge-soft-success me-1"><i class="bx bx-trending-up align-bottom me-1"></i> 18.89%</span> Increase last month</p>
+
+                                    <div class="flex-shrink-0 align-self-center">
+                                        <div data-colors='["--bs-success", "--bs-transparent"]' dir="ltr" id="eathereum_sparkline_charts"></div>
                                     </div>
                                 </div>
-                            </div><!--end col-->
+                            </div>
+                            <div class="card-body border-top py-3">
+                                <p class="mb-0"> <span class="badge badge-soft-success me-1"><i class="bx bx-trending-up align-bottom me-1"></i> 18.89%</span> Increase last month</p>
+                            </div>
+                        </div>
+                    </div><!--end col-->
 
-                            <div class="col-lg-3">
-                                <div class="card mini-stats-wid">
-                                    <div class="card-body">
-                                        <div class="d-flex">
-                                            <div class="flex-grow-1">
-                                                <p class="text-muted fw-medium">Overall No. of Devices</p>
-                                                <h4 class="mb-0">7,402</h4>
-                                            </div>
-                            
-                                            <div class="flex-shrink-0 align-self-center">
-                                                <div data-colors='["--bs-success", "--bs-transparent"]' dir="ltr" id="new_application_charts"></div>
-                                            </div>
-                                        </div>
+                    <div class="col-lg-3">
+                        <div class="card mini-stats-wid">
+                            <div class="card-body">
+                                <div class="d-flex">
+                                    <div class="flex-grow-1">
+                                        <p class="text-muted fw-medium">Overall No. of Devices</p>
+                                        <h4 class="mb-0">7,402</h4>
                                     </div>
-                                    <div class="card-body border-top py-3">
-                                        <p class="mb-0"> <span class="badge badge-soft-success me-1"><i class="bx bx-trending-up align-bottom me-1"></i> 24.07%</span> Increase last month</p>
+
+                                    <div class="flex-shrink-0 align-self-center">
+                                        <div data-colors='["--bs-success", "--bs-transparent"]' dir="ltr" id="new_application_charts"></div>
                                     </div>
                                 </div>
-                            </div><!--end col-->
+                            </div>
+                            <div class="card-body border-top py-3">
+                                <p class="mb-0"> <span class="badge badge-soft-success me-1"><i class="bx bx-trending-up align-bottom me-1"></i> 24.07%</span> Increase last month</p>
+                            </div>
+                        </div>
+                    </div><!--end col-->
 
-                            <div class="col-lg-3">
-                                <div class="card mini-stats-wid">
-                                    <div class="card-body">
-                                        <div class="d-flex">
-                                            <div class="flex-grow-1">
-                                                <p class="text-muted fw-medium">Overall No. of Buildings</p>
-                                                <h4 class="mb-0">12,487</h4>
-                                            </div>
-                            
-                                            <div class="flex-shrink-0 align-self-center">
-                                                <div data-colors='["--bs-success", "--bs-transparent"]' dir="ltr" id="total_approved_charts"></div>
-                                            </div>
-                                        </div>
+                    <div class="col-lg-3">
+                        <div class="card mini-stats-wid">
+                            <div class="card-body">
+                                <div class="d-flex">
+                                    <div class="flex-grow-1">
+                                        <p class="text-muted fw-medium">Overall No. of Buildings</p>
+                                        <h4 class="mb-0">12,487</h4>
                                     </div>
-                                    <div class="card-body border-top py-3">
-                                        <p class="mb-0"> <span class="badge badge-soft-success me-1"><i class="bx bx-trending-up align-bottom me-1"></i> 8.41%</span> Increase last month</p>
+
+                                    <div class="flex-shrink-0 align-self-center">
+                                        <div data-colors='["--bs-success", "--bs-transparent"]' dir="ltr" id="total_approved_charts"></div>
                                     </div>
                                 </div>
-                            </div><!--end col-->
-                            
-                            <div class="col-lg-3">
-                                <div class="card mini-stats-wid">
-                                    <div class="card-body">
-                                        <div class="d-flex">
-                                            <div class="flex-grow-1">
-                                                <p class="text-muted fw-medium">Total Rejected</p>
-                                                <h4 class="mb-0">12,487</h4>
-                                            </div>
-                            
-                                            <div class="flex-shrink-0 align-self-center">
-                                                <div data-colors='["--bs-danger", "--bs-transparent"]' dir="ltr" id="total_rejected_charts"></div>
-                                            </div>
-                                        </div>
+                            </div>
+                            <div class="card-body border-top py-3">
+                                <p class="mb-0"> <span class="badge badge-soft-success me-1"><i class="bx bx-trending-up align-bottom me-1"></i> 8.41%</span> Increase last month</p>
+                            </div>
+                        </div>
+                    </div><!--end col-->
+
+                    <div class="col-lg-3">
+                        <div class="card mini-stats-wid">
+                            <div class="card-body">
+                                <div class="d-flex">
+                                    <div class="flex-grow-1">
+                                        <p class="text-muted fw-medium">Total Rejected</p>
+                                        <h4 class="mb-0">12,487</h4>
                                     </div>
-                                    <div class="card-body border-top py-3">
-                                        <p class="mb-0"> <span class="badge badge-soft-danger me-1"><i class="bx bx-trending-down align-bottom me-1"></i> 20.63%</span> Decrease last month</p>
+
+                                    <div class="flex-shrink-0 align-self-center">
+                                        <div data-colors='["--bs-danger", "--bs-transparent"]' dir="ltr" id="total_rejected_charts"></div>
                                     </div>
                                 </div>
-                            </div><!--end col-->
-                        </div><!--end row-->
+                            </div>
+                            <div class="card-body border-top py-3">
+                                <p class="mb-0"> <span class="badge badge-soft-danger me-1"><i class="bx bx-trending-down align-bottom me-1"></i> 20.63%</span> Decrease last month</p>
+                            </div>
+                        </div>
+                    </div><!--end col-->
+                </div><!--end row-->
 
 
-                             <div class="card">
-                                    <div class="card-body">
-                                        <div class="d-flex flex-wrap align-items-start">
-                                            <h5 class="card-title me-2">Line Chart</h5>
-                                            <div class="ms-auto">
-                                                <div class="toolbar d-flex flex-wrap gap-2 text-end">
-                                                    <button type="button" class="btn btn-light btn-sm">
-                                                        ALL
-                                                    </button>
-                                                    <button type="button" class="btn btn-light btn-sm">
-                                                        1M
-                                                    </button>
-                                                    <button type="button" class="btn btn-light btn-sm">
-                                                        6M
-                                                    </button>
-                                                    <button type="button" class="btn btn-light btn-sm active">
-                                                        1Y
-                                                    </button>
-                                                    
-                                                </div>
-                                            </div>
-                                        </div>
-                                         <div class="apex-charts" data-colors='["--bs-primary", "--bs-warning"]' id="area-chart" dir="ltr"></div>
-                                    </div>
-                             </div>
-           
-    <div class="row">
-    <div class="col-xl-6">
-        <div class="card">
-            <div class="card-body">
-                <h4 class="card-title mb-4">Pie Chart</h4>
-                                        <canvas id="pieChart" class="chartjs-chart"></canvas>
-            </div>
-        </div>
-    </div> <!-- end col -->
-    <div class="col-lg-6">
-        <div class="card">
-            <div class="card-body">
-                <div class="d-sm-flex flex-wrap">
-                    <h4 class="card-title mb-4">Stacked Bar Chart</h4>
-                    <div class="ms-auto">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex flex-wrap align-items-start">
+                            <h5 class="card-title me-2">Line Chart</h5>
+                            <div class="ms-auto">
+                                <div class="toolbar d-flex flex-wrap gap-2 text-end">
+
+                                    <button type="button" class="btn btn-light btn-sm">
+                                        ALL
+                                    </button>
+                                    <button type="button" class="btn btn-light btn-sm">
+                                        1M
+                                    </button>
+                                    <button type="button" class="btn btn-light btn-sm">
+                                        6M
+                                    </button>
+                                    <button type="button" class="btn btn-light btn-sm active">
+                                        1Y
+                                    </button>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="apex-charts" data-colors='["--bs-primary", "--bs-warning"]' id="area-chart" dir="ltr"></div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xl-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title mb-4">Pie Chart</h4>
+                                <canvas id="pieChart" class="chartjs-chart"></canvas>
+                            </div>
+                        </div>
+                    </div> <!-- end col -->
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-sm-flex flex-wrap">
+                                    <h4 class="card-title mb-4">Stacked Bar Chart</h4>
+                                    <!-- <div class="ms-auto">
                         <ul class="nav nav-pills">
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Week</a>
@@ -149,93 +150,95 @@
                                 <a class="nav-link active" href="#">Year</a>
                             </li>
                         </ul>
-                    </div>
-                </div>
-            <div class="chart-container">
-                <canvas id="stacked-bar-chart"></canvas>
-            </div>                       
-        </div>
-      
-    </div>
-</div>
-    </div>
-
-                            <!-- end col -->
-
-         </div> <!-- container-fluid -->
-  </div>
-  
-</div>
-
-            
-                    
-                <!-- End Page-content -->
-
-                
-                <footer class="footer">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <script>document.write(new Date().getFullYear())</script> © Skote.
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="text-sm-end d-none d-sm-block">
-                                    Design & Develop by Themesbrand
+                    </div> -->
+                                </div>
+                                <div class="chart-container">
+                                    <canvas id="stacked-bar-chart" ></canvas>
                                 </div>
                             </div>
+
                         </div>
                     </div>
-                </footer>
+                </div>
+
+                <!-- end col -->
+
+            </div> <!-- container-fluid -->
+        </div>
+
+    </div>
+
+
+
+    <!-- End Page-content -->
+
+
+    <footer class="footer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-6">
+                    <script>
+                        document.write(new Date().getFullYear())
+                    </script> © Skote.
+                </div>
+                <div class="col-sm-6">
+                    <div class="text-sm-end d-none d-sm-block">
+                        Design & Develop by Themesbrand
+                    </div>
+                </div>
             </div>
-            <!-- end main content-->
+        </div>
+    </footer>
+</div>
+<!-- end main content-->
 
 </div>
 <!-- END layout-wrapper -->
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script>
-            document.addEventListener("DOMContentLoaded", function () {
-            // Retrieve data passed from the controller
-            var labels = @json($labels);
-            var data = @json($data);
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Retrieve data passed from the controller
+        var labels = @json($labels);
+        var data = @json($data);
 
-            // Define predefined colors for device types
-            var predefinedColors = [
-                'rgba(255, 99, 132, 0.6)',
-                'rgba(54, 162, 235, 0.6)',
-                'rgba(255, 206, 86, 0.6)',
-                'rgba(75, 192, 192, 0.6)',
-                'rgba(153, 102, 255, 0.6)',
-                'rgba(255, 159, 64, 0.6)'
-                // Add more colors as needed
-            ];
+        // Define predefined colors for device types
+        var predefinedColors = [
+            'rgba(255, 99, 132, 0.6)',
+            'rgba(54, 162, 235, 0.6)',
+            'rgba(255, 206, 86, 0.6)',
+            'rgba(75, 192, 192, 0.6)',
+            'rgba(153, 102, 255, 0.6)',
+            'rgba(255, 159, 64, 0.6)'
+            // Add more colors as needed
+        ];
 
-            // Map device types to predefined colors
-            var backgroundColors = labels.map(function(label, index) {
-                // Use modulo operation to repeat colors if there are more labels than predefined colors
-                return predefinedColors[index % predefinedColors.length];
-            });
-
-            // Get the canvas element
-            var ctx = document.getElementById('pieChart').getContext('2d');
-
-            // Create the pie chart
-            var myPieChart = new Chart(ctx, {
-                type: 'pie',
-                data: {
-                    labels: labels,
-                    datasets: [{
-                        data: data,
-                        backgroundColor: backgroundColors
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false
-                }
-            });
+        // Map device types to predefined colors
+        var backgroundColors = labels.map(function(label, index) {
+            // Use modulo operation to repeat colors if there are more labels than predefined colors
+            return predefinedColors[index % predefinedColors.length];
         });
-        
+
+        // Get the canvas element
+        var ctx = document.getElementById('pieChart').getContext('2d');
+
+        // Create the pie chart
+        var myPieChart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: labels,
+                datasets: [{
+                    data: data,
+                    backgroundColor: backgroundColors
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false
+            }
+        });
+    });
+
     // Extracting data passed from controller
     const buildingEnergyData = @json($buildingEnergyData);
 
@@ -255,7 +258,7 @@
     allFloors.forEach(floor => {
         const data = labels.map((building) => buildingEnergyData[building][floor] || 0);
         datasets.push({
-            label: floor, 
+            label: floor,
             backgroundColor: `rgba(${Math.random() * 255},${Math.random() * 255},${Math.random() * 255},0.5)`,
             data: data
         });
@@ -285,8 +288,5 @@
         document.getElementById('stacked-bar-chart'),
         config
     );
-
-
-
-  </script>
+</script>
 @endsection

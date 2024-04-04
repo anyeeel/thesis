@@ -20,10 +20,10 @@
                                 <ol class="breadcrumb m-0">
                                     <li class="breadcrumb-item"><a href="{{ route('buildings.index') }}">Buildings</a></li>
                                     @foreach($building as $building)
-                                    <li class="breadcrumb-item"><a href="">{{ $building->building_name }}</a></li>
+                                    <li class="breadcrumb-item"><a href="javascript:history.go(-2);">{{ $building->building_name }}</a></li>
                                     @endforeach
                                     @foreach($floor as $floor)
-                                    <li class="breadcrumb-item"><a href="">{{ $floor->name }}</a></li>
+                                    <li class="breadcrumb-item"><a href="javascript:history.back();">{{ $floor->name }}</a></li>
                                     @endforeach
                                     <li class="breadcrumb-item">{{ $room->name}}</li>
                                 </ol>

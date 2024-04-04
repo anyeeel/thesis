@@ -54,14 +54,15 @@
                                                 <div class="row">
                                                     <div class="col-lg-6">
                                                         <div class="text-muted mt-3">
-                                                            <p class="mb-0">{{ number_format($floor->totalEnergy(), 2) }} kWh</p>
+                                                            
+                                                            <a href="{{ route('rooms.index') }}?floor_id={{ $floor->id }}" class="btn btn-primary">View Rooms</a>
                                                             
                                                         </div>
                                                     </div>
 
                                                     <div class="col-lg-6 align-self-end">
                                                         <div class="float-end mt-3">
-                                                            <a href="{{ route('rooms.index') }}?floor_id={{ $floor->id }}" class="btn btn-primary">View Rooms</a>
+                                                            <p class="mb-0">{{ number_format($floor->totalEnergy(), 2) }} kWh</p>
                                                         </div>
                                                     </div>
                                                 </div>
