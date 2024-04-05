@@ -34,7 +34,9 @@
                                     </div>
                                 </div>
                             </div>
-                                <div class="apex-charts" data-colors='["--bs-primary", "--bs-warning"]' id="area-chart" dir="ltr"></div>
+                            <div id="double-line-chart-container">
+                                <canvas id="double-line-chart"></canvas>
+                            </div>
                         </div>
                     </div>          
                     <div class="row">
@@ -67,11 +69,12 @@
 <!-- END layout-wrapper -->
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
     <script>
             document.addEventListener("DOMContentLoaded", function () {
             // Retrieve data passed from the controller
-            var labels = @json($labels);
-            var data = @json($data);
+            var labels = @json($pieLabels);
+            var data = @json($pieData);
 
             // Define predefined colors for device types
             var predefinedColors = [
@@ -114,6 +117,53 @@
                     maintainAspectRatio: false
                 }
             });
+
+         // Retrieve data passed from the controller
+         var labels = @json($labels);
+            var meterData = @json($meterData);
+            var computedData = @json($computedData);
+
+            // Get the canvas element for the double line chart
+            var ctxDoubleLine = document.getElementById('double-line-chart').getContext('2d');
+
+            // Create the double line chart
+            var myDoubleLineChart = new Chart(ctxDoubleLine, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Meter Consumption',
+                        data: meterData,
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    }, {
+                        label: 'Computed Consumption',
+                        data: computedData,
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            display: true,
+                            title: {
+                                display: true,
+                                text: 'Date'
+                            }
+                        },
+                        y: {
+                            display: true,
+                            title: {
+                                display: true,
+                                text: 'Consumption'
+                            }
+                        }
+                    }
+                }
+            });
         });
         
         const buildingEnergyData = @json($buildingEnergyData);
@@ -139,7 +189,9 @@
             backgroundColor: predefinedColors[colorIndex],
             data: data
         });
+        
         });
+        
 
         // Configuration for the chart
         const config = {
@@ -165,5 +217,7 @@
         document.getElementById('stacked-bar-chart'),
         config
         );
+
+        
     </script>
 @endsection
