@@ -28,16 +28,6 @@
                     <div class="w-100">
                         <div class="card">
                             <div class="card-body">
-                                <!-- <div>
-                                        <div class="row mb-3">
-                                            <div class="col-xl-3 col-sm-6">
-                                                <div class="mt-2">
-                                                    <h5>Buildings List</h5>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div> -->
-
                                 <div class="row">
                                     @forelse ($floors as $floor)
                                         <div class="col-xl-4 col-sm-6">

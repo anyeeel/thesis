@@ -87,7 +87,7 @@
                                                                                                 </div>
                                                                                                 <div class="align-self-end ms-2">
                                                                                                     <!-- Display total energy consumption for the room -->
-                                                                                                    <p class="text-muted mb-0">{{ number_format($room->totalEnergy(), 2) }} kWh</p>
+                                                                                                    <p class="text-muted mb-0" style="white-space: nowrap;">{{ number_format($room->totalEnergy(), 2) }} kWh</p>
                                                                                                 </div>
                                                                                             </div>
                                                                                         </div>
