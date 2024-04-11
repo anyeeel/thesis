@@ -15,8 +15,8 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="d-flex flex-wrap align-items-start">
-                                <h5 class="card-title me-2">Line Chart</h5>
-                                <div class="ms-auto">
+                                <h5 class="card-title me-2">Actual vs Computed Consumption</h5>
+                                <!-- <div class="ms-auto">
                                     <div class="toolbar d-flex flex-wrap gap-2 text-end">
                                         <button type="button" class="btn btn-light btn-sm">
                                             ALL
@@ -32,10 +32,10 @@
                                         </button>
                                         
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                             <div id="double-line-chart-container">
-                                <canvas id="double-line-chart"></canvas>
+                                <canvas id="double-line-chart" height="300"></canvas>
                             </div>
                         </div>
                     </div>          
@@ -43,8 +43,8 @@
                     <div class="col-xl-6">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title mb-4">Pie Chart</h4>
-                                                        <canvas id="pieChart" class="chartjs-chart"></canvas>
+                                <h4 class="card-title mb-4">Total Consumption of Device Type</h4>
+                                <canvas id="pieChart" class="chartjs-chart"></canvas>
                             </div>
                         </div>
                     </div> <!-- end col -->
@@ -52,7 +52,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="d-sm-flex flex-wrap">
-                                    <h4 class="card-title mb-4">Stacked Bar Chart</h4>
+                                    <h4 class="card-title mb-4">Total Consumption of Buildings</h4>
                                     
                                 </div>
                             <div class="chart-container">

@@ -39,11 +39,12 @@
                 'inactive_quantity' => 'required|integer',
                 'brand' => 'required|string',
                 'model' => 'required|string',
-                'installed_date' => 'required|date',
-                'life_expectancy' => 'required|integer',
+                'installed_date' => 'nullable|date',
+                'life_expectancy' => 'nullable|integer',
                 'power' => 'required|integer',
                 'hours_used' => 'required|integer',
             ]);
+        
         
             // Calculate and set energy before storing
             
