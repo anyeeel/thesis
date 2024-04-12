@@ -24,6 +24,14 @@
                     </a>
                 </li>
 
+                <li>
+                    <a href="{{ route('energy.index') }}" class="waves-effect">
+                        <i class="bx bx-buildings"></i>
+                        <span key="t-layouts">Energy Consumption</span>
+                    </a>
+                </li>
+
+
                 @can(['create-user', 'edit-user', 'delete-user'])
                 <li class="menu-title" key="t-menu">Access</li>
 

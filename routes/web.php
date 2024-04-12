@@ -7,6 +7,7 @@ use App\Http\Controllers\BuildingController;
 use App\Http\Controllers\FloorController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\DeviceController;
+use App\Http\Controllers\EnergyConsumptionController;   
 use Illuminate\Support\Facades\Route;
 
 
@@ -70,11 +71,17 @@ Route::get('/dashboard', function () {
     $deviceController = new DeviceController();
     $deviceData = $deviceController->dashboard();
 
-    // Merge the data from both controllers
-    $mergedData = array_merge($buildingData->getData(), $deviceData->getData());
+    // Call the dashboard method of EnergyConsumptionController
+    $energyController = new EnergyConsumptionController();
+    $energyData = $energyController->dashboard();
+
+    // Merge the data from all controllers
+    $mergedData = array_merge($buildingData->getData(), $deviceData->getData(), $energyData->getData());
 
     // Pass the merged data to the dashboard view
     return view('dashboard')->with($mergedData);
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::get('/energy', [EnergyConsumptionController::class, 'index'])->name('energy.index');
 
 require __DIR__.'/auth.php';

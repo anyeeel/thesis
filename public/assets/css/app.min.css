@@ -36,5 +36,8 @@
 #numOfFloors {
     width: 85%;
     margin-left: 3rem;
+}
 
+#room {
+    height: 6.5rem;
 }
