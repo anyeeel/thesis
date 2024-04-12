@@ -15,7 +15,7 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="d-flex flex-wrap align-items-start">
-                                <h5 class="card-title me-2">Actual vs Computed Consumption</h5>
+                                <h5 class="card-title me-2">Comparison of Total Energy Consumption: Meter vs Device Consumption</h5>
                                 <!-- <div class="ms-auto">
                                     <div class="toolbar d-flex flex-wrap gap-2 text-end">
                                         <button type="button" class="btn btn-light btn-sm">
@@ -43,7 +43,7 @@
                     <div class="col-xl-6">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title mb-4">Total Consumption of Device Type</h4>
+                                <h4 class="card-title mb-4">Estimated Total Consumption of Device Type</h4>
                                 <canvas id="pieChart" class="chartjs-chart"></canvas>
                             </div>
                         </div>
@@ -52,7 +52,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="d-sm-flex flex-wrap">
-                                    <h4 class="card-title mb-4">Total Consumption of Buildings</h4>
+                                    <h4 class="card-title mb-4">Estimated Total Consumption of Buildings</h4>
                                     
                                 </div>
                             <div class="chart-container">
@@ -132,12 +132,12 @@
                 data: {
                     labels: labels,
                     datasets: [{
-                        label: 'Meter Consumption',
+                        label: 'Metered Consumption',
                         data: meterData,
                         borderColor: 'rgba(255, 99, 132, 1)',
                         backgroundColor: 'rgba(255, 99, 132, 0.2)',
                     }, {
-                        label: 'Computed Consumption',
+                        label: 'Estimated Device Energy Usage',
                         data: computedData,
                         borderColor: 'rgba(54, 162, 235, 1)',
                         backgroundColor: 'rgba(54, 162, 235, 0.2)',
