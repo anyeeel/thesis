@@ -39,8 +39,8 @@
                 'inactive_quantity' => 'required|integer',
                 'brand' => 'required|string',
                 'model' => 'required|string',
-                'installed_date' => 'required|date',
-                'life_expectancy' => 'required|integer',
+                'installed_date' => 'nullable|date',
+                'life_expectancy' => 'nullable|integer',
                 'power' => 'required|integer',
                 'hours_used' => 'required|integer',
             ]);
@@ -80,17 +80,19 @@
         }
 
         public function dashboard()
-    {
-        // Retrieve data for the pie chart (total energy consumption by device types)
-        $deviceTypes = Devices::groupBy('type')
-            ->selectRaw('type, SUM(power * hours_used) AS total_energy_consumption')
-            ->get();
-
-        // Prepare data for Chart.js
-        $labels = $deviceTypes->pluck('type');
-        $data = $deviceTypes->pluck('total_energy_consumption');
-
-        // Pass data to the dashboard view
-        return view('dashboard')->with(compact('labels', 'data'));
-    }
+        {
+            // Retrieve data for the pie chart (total energy consumption by device types)
+            $deviceTypes = Devices::selectRaw('type, SUM(active_quantity * power * hours_used / 1000) AS total_energy_consumption')
+                ->groupBy('type')
+                ->get();
+        
+            // Prepare data for Chart.js
+            $labels = $deviceTypes->pluck('type');
+            $data = $deviceTypes->pluck('total_energy_consumption');
+        
+            // Pass data to the dashboard view
+            return view('dashboard')->with(compact('labels', 'data'));
+        }
+        
 }
+

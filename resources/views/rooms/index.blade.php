@@ -105,7 +105,8 @@
                                                         </a>                                               
                                                     </div>                                        
                                                 </div>
-                                            </div>
+                                             </div>
+                                           
                                             <!-- end col -->
                                         </div>
                                         <!-- end row -->
@@ -182,6 +183,7 @@
             </div>
         </div>
     @endforeach
+   
 
     <script>
     document.addEventListener('DOMContentLoaded', function () {

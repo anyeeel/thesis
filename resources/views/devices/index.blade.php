@@ -53,12 +53,15 @@
                                 </div>
                             </div>
                             <div class="card-body border-bottom">
-                                <div class="row g-3">
-                                    <div class="col-xxl-4 col-lg-6">
-                                        <input type="search" class="form-control" id="searchInput" placeholder="Search for ...">
-                                    </div>
-                                    <!-- Add more filters if needed -->
-                                </div>
+                             <div class="row g-3">
+                             <div class="col-xxl-4 col-lg-6">
+                                 <div class="input-group mb-3">
+                                    <input type="text" class="form-control" id="searchInput" placeholder="Search devices...">
+                                       <button class="btn btn-outline-secondary" type="button" id="searchButton">Search</button>
+                                  </div>
+                            </div>
+
+                             </div>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -314,19 +317,32 @@
             <div class="modal-body">
     <div class="row">
         <div class="col-md-6">
-            <p><strong>Name:</strong> {{ $device->name }}</p>
-            <p><strong>Type:</strong> {{ $device->type }}</p>
-            <p><strong>No. of Active:</strong> {{ $device->active_quantity }}</p>
-            <p><strong>No. of Inactive:</strong> {{ $device->inactive_quantity }}</p>
+            <p><strong>Name:</strong></p>
+            <p><strong>Type:</strong></p>
+            <p><strong>No. of Active:</strong></p>
+            <p><strong>No. of Inactive:</strong></p>
         </div>
         <div class="col-md-6">
-            <p><strong>Brand:</strong> {{ $device->brand }}</p>
-            <p><strong>Model:</strong> {{ $device->model }}</p>
-            <p><strong>Date Installed:</strong> {{ $device->installed_date }}</p>
-            <p><strong>Life Expectancy:</strong> {{ $device->life_expectancy }} years</p>
+            <p>{{ $device->name }}</p>
+            <p>{{ $device->type }}</p>
+            <p>{{ $device->active_quantity }}</p>
+            <p>{{ $device->inactive_quantity }}</p>
+        </div>
+        <div class="col-md-6">
+            <p><strong>Brand:</strong></p>
+            <p><strong>Model:</strong></p>
+            <p><strong>Date Installed:</strong></p>
+            <p><strong>Life Expectancy:</strong></p>
+        </div>
+        <div class="col-md-6">
+            <p>{{ $device->brand }}</p>
+            <p>{{ $device->model }}</p>
+            <p>{{ $device->installed_date }}</p>
+            <p>{{ $device->life_expectancy }} years</p>
         </div>
     </div>
 </div>
+
 
 
         
@@ -373,6 +389,24 @@
             });
         });
         @endforeach
+    });
+</script>
+<script>
+    $(document).ready(function() {
+        // Search button click event
+        $('#searchButton').click(function() {
+            var searchText = $('#searchInput').val().toLowerCase();
+
+            // Loop through each table row and hide/show based on search text
+            $('table tbody tr').each(function() {
+                var rowText = $(this).text().toLowerCase();
+                if (rowText.includes(searchText)) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+            });
+        });
     });
 </script>
 
