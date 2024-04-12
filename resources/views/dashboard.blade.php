@@ -12,33 +12,92 @@
 
             <div class="page-content">
                 <div class="container-fluid">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="d-flex flex-wrap align-items-start">
-                                <h5 class="card-title me-2">Actual vs Computed Consumption</h5>
-                                <!-- <div class="ms-auto">
-                                    <div class="toolbar d-flex flex-wrap gap-2 text-end">
-                                        <button type="button" class="btn btn-light btn-sm">
-                                            ALL
-                                        </button>
-                                        <button type="button" class="btn btn-light btn-sm">
-                                            1M
-                                        </button>
-                                        <button type="button" class="btn btn-light btn-sm">
-                                            6M
-                                        </button>
-                                        <button type="button" class="btn btn-light btn-sm active">
-                                            1Y
-                                        </button>
-                                        
+
+                 <!-- TOtal consumption card-->
+                 <div class="row">
+                            <div class="col-lg-3">
+                                <div class="card mini-stats-wid">
+                                    <div class="card-body">
+                                        <div class="d-flex">
+                                            <div class="flex-grow-1">
+                                                <p class="text-muted fw-medium">Overall Energy Consumption</p>
+                                                <h4 class="mb-0">{{ number_format($totalDEnergy) }}</h4>
+
+                                            </div>
+                                
+                                            <div class="flex-shrink-0 align-self-center">
+                                                <div data-colors='["--bs-success", "--bs-transparent"]' dir="ltr" id="eathereum_sparkline_charts"></div>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div> -->
-                            </div>
-                            <div id="double-line-chart-container">
-                                <canvas id="double-line-chart" height="300"></canvas>
-                            </div>
-                        </div>
-                    </div>          
+                                    <div class="card-body border-top py-3">
+                                        <p class="mb-0"> <span class="badge badge-soft-success me-1"></p>
+                                    </div>
+                                </div>
+                            </div><!--end col-->
+
+                            <div class="col-lg-3">
+                                <div class="card mini-stats-wid">
+                                    <div class="card-body">
+                                        <div class="d-flex">
+                                            <div class="flex-grow-1">
+                                                <p class="text-muted fw-medium">Overall No. of Devices</p>
+                                                <h4 class="mb-0">{{ $numberOfDevices }}</h4>
+                                            </div>
+                            
+                                            <div class="flex-shrink-0 align-self-center">
+                                                <div data-colors='["--bs-success", "--bs-transparent"]' dir="ltr" id="new_application_charts"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-body border-top py-3">
+                                        <p class="mb-0"> <span class="badge badge-soft-success me-1"></p>
+                                    </div>
+                                </div>
+                            </div><!--end col-->
+
+                            <div class="col-lg-3">
+                                <div class="card mini-stats-wid">
+                                    <div class="card-body">
+                                        <div class="d-flex">
+                                            <div class="flex-grow-1">
+                                                <p class="text-muted fw-medium">Overall No. of Buildings</p>
+                                                <h4 class="mb-0"> {{ $numberOfBuildings }} </h4>
+                                            </div>
+                            
+                                            <div class="flex-shrink-0 align-self-center">
+                                                <div data-colors='["--bs-success", "--bs-transparent"]' dir="ltr" id="total_approved_charts"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-body border-top py-3">
+                                        <p class="mb-0"> <span class="badge badge-soft-success me-1"></span></p>
+                                    </div>
+                                </div>
+                            </div><!--end col-->
+                            
+                            <div class="col-lg-3">
+                                <div class="card mini-stats-wid">
+                                    <div class="card-body">
+                                        <div class="d-flex">
+                                            <div class="flex-grow-1">
+                                                <p class="text-muted fw-medium">Building with Highest Consumption</p>
+                                                <h4 class="mb-0">{{ $highestEnergyBuilding->building_name }}</h4>
+                                            </div>
+                            
+                                            <div class="flex-shrink-0 align-self-center">
+                                                <div data-colors='["--bs-danger", "--bs-transparent"]' dir="ltr" id="total_rejected_charts"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-body border-top py-3">
+                                        <p class="mb-0"><span class="badge badge-soft-danger me-1">as of</p>
+                                    </div>
+                                </div>
+                            </div><!--end col-->
+                        </div><!--end row-->
+
+                     
                     <div class="row">
                     <div class="col-xl-6">
                         <div class="card">

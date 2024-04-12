@@ -119,20 +119,41 @@ class BuildingController extends Controller
     }
 
     // Other methods like store, show, edit, update, destroy, etc.
-public function dashboard()
-{
-    $buildings = Building::all();
-    $buildingEnergyData = [];
 
-    foreach ($buildings as $building) {
-        $floorsData = [];
-        foreach ($building->floors as $floor) {
-            $floorsData[$floor->name] = $floor->totalEnergy();
+    public function dashboard()
+    {
+        $buildings = Building::all();
+    
+        // Count the number of buildings
+        $numberOfBuildings = $buildings->count();
+    
+        $buildingEnergyData = [];
+        $highestEnergyConsumption = 0;
+        $highestEnergyBuilding = null;
+    
+        foreach ($buildings as $building) {
+            $totalEnergy = 0;
+    
+            // Calculate the total energy consumption for the building
+            foreach ($building->floors as $floor) {
+                $totalEnergy += $floor->totalEnergy();
+            }
+    
+            // Store the building's energy consumption data
+            $buildingEnergyData[$building->building_name] = $totalEnergy;
+    
+            // Check if this building has the highest energy consumption
+            if ($totalEnergy > $highestEnergyConsumption) {
+                $highestEnergyConsumption = $totalEnergy;
+                $highestEnergyBuilding = $building;
+            }
         }
-        $buildingEnergyData[$building->building_name] = $floorsData;
+    
+        return view('dashboard', compact('numberOfBuildings', 'buildingEnergyData', 'highestEnergyBuilding'));
     }
+    }
+        
+    
+    
+    
 
-    return view('dashboard', compact('buildingEnergyData'));
-}
-
-}
