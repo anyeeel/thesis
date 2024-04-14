@@ -8,6 +8,7 @@
         <div class="page-content">
             <div class="container-fluid">
                 <!-- start page title -->
+               
                 <div class="row">
                     <div class="col-12">
                         <div class="page-title-box d-sm-flex align-items-center justify-content-between">
@@ -29,6 +30,19 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="row">
+
+                                <div class="d-flex justify-content-between">
+                                    <div class="page-title-right">
+                                        <div><a href="{{ route('buildings.index') }}" class="btn btn-secondary"><i class="bx bx-chevron-left"></i></a></div>
+                                    </div>
+                                    
+                                    <div class="page-title-left">
+                                        <span class="text-muted fw-medium">Total: </span>
+                                        <span class="font-size-14 mb-0">{{ number_format($building->totalEnergy(), 2) }} kWh</span>
+                                    </div>
+                                </div>
+
+
                                     @forelse ($floors as $floor)
                                         <div class="col-xl-4 col-sm-6">
                                             <div class="border p-3 rounded mt-4">
