@@ -16,21 +16,99 @@
                         <div class="col-lg-12">
                             <div class="d-flex align-items-center">
                                 
-                                <div class="ms-3 flex-grow-1">
-                                    <h5 class="mb-2 card-title">Hello, Henry Franklin</h5>
-                                    <p class="text-muted mb-0">Ready to jump back in?</p>
-                                    <!-- Live date and time display -->
-                                    
-                                </div>
+                                
                                 <!-- Live date and time display inside a box -->
-                                <div class="live-date-time-box">
-                                    <div id="currentDateTime" class="text-muted live-date-time"></div>
-                                </div>
+                                
                             </div>
                         </div><!--end col-->
                     </div><!--end row-->
 
-                    <div class="card">
+                <!-- TOtal consumption card-->
+                <div class="row">
+                            <div class="col-lg-3">
+                                <div class="card mini-stats-wid">
+                                    <div class="card-body">
+                                        <div class="d-flex">
+                                            <div class="flex-grow-1">
+                                                <p class="text-muted fw-medium">Overall Energy Consumption</p>
+                                                <h4 class="mb-0">{{ number_format($overallTotalEnergy, 2) }} kWh</h4>
+
+
+                                            </div>
+                                
+                                            <div class="flex-shrink-0 align-self-center">
+                                                <div data-colors='["--bs-success", "--bs-transparent"]' dir="ltr" id="eathereum_sparkline_charts"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-body border-top py-3">
+                                        <p class="mb-0"> <span class="badge badge-soft-success me-1"></p>
+                                    </div>
+                                </div>
+                            </div><!--end col-->
+
+                            <div class="col-lg-3">
+                                <div class="card mini-stats-wid">
+                                    <div class="card-body">
+                                        <div class="d-flex">
+                                            <div class="flex-grow-1">
+                                                <p class="text-muted fw-medium">Overall No. of Devices</p>
+                                                <h4 class="mb-0">{{ number_format($totalDevices) }}</h4>
+                                            </div>
+                            
+                                            <div class="flex-shrink-0 align-self-center">
+                                                <div data-colors='["--bs-success", "--bs-transparent"]' dir="ltr" id="new_application_charts"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-body border-top py-3">
+                                        <p class="mb-0"> <span class="badge badge-soft-success me-1"></p>
+                                    </div>
+                                </div>
+                            </div><!--end col-->
+
+                            <div class="col-lg-3">
+                                <div class="card mini-stats-wid">
+                                    <div class="card-body">
+                                        <div class="d-flex">
+                                            <div class="flex-grow-1">
+                                                <p class="text-muted fw-medium">Overall No. of Buildings</p>
+                                                <h4 class="mb-0">{{ $totalBuildings}}</h4>
+                                            </div>
+                            
+                                            <div class="flex-shrink-0 align-self-center">
+                                                <div data-colors='["--bs-success", "--bs-transparent"]' dir="ltr" id="total_approved_charts"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-body border-top py-3">
+                                        <p class="mb-0"> <span class="badge badge-soft-success me-1"></span></p>
+                                    </div>
+                                </div>
+                            </div><!--end col-->
+                            
+                            <div class="col-lg-3">
+                                <div class="card mini-stats-wid">
+                                    <div class="card-body">
+                                        <div class="d-flex">
+                                            <div class="flex-grow-1">
+                                                <p class="text-muted fw-medium" id="currentDate"></p>
+                                                <h4 class="mb-0" id="currentTime"></h4>
+                                            </div>
+                            
+                                            <div class="flex-shrink-0 align-self-center">
+                                                <div data-colors='["--bs-success", "--bs-transparent"]' dir="ltr" id="total_approved_charts"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-body border-top py-3">
+                                        <p class="mb-0"> <span class="badge badge-soft-success me-1"></span></p>
+                                    </div>
+                                </div>
+                            </div><!--end col-->
+                        </div><!--end row-->
+
+                                <div class="card">
                         <div class="card-body">
                             <div class="d-flex flex-wrap align-items-start">
                                 <h5 class="card-title me-2">Comparison of Total Energy Consumption: Meter vs Device Consumption</h5>
@@ -50,29 +128,14 @@
                                         </button>
                                         
                                     </div>
-                                </div>
-                            </div><!--end col-->
-                            
-                            <div class="col-lg-3">
-                                <div class="card mini-stats-wid">
-                                    <div class="card-body">
-                                        <div class="d-flex">
-                                            <div class="flex-grow-1">
-                                                <p class="text-muted fw-medium">Building with Highest Consumption</p>
-                                                <h4 class="mb-0">{{ $highestEnergyBuilding->building_name }}</h4>
-                                            </div>
-                            
-                                            <div class="flex-shrink-0 align-self-center">
-                                                <div data-colors='["--bs-danger", "--bs-transparent"]' dir="ltr" id="total_rejected_charts"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card-body border-top py-3">
-                                        <p class="mb-0"><span class="badge badge-soft-danger me-1">as of</p>
-                                    </div>
-                                </div>
-                            </div><!--end col-->
-                        </div><!--end row-->
+                                </div> -->
+                            </div>
+                            <div id="double-line-chart-container">
+                                <canvas id="double-line-chart" height="300"></canvas>
+                            </div>
+                        </div>
+                    </div>          
+                          
 
                      
                     <div class="row">
@@ -198,7 +261,7 @@
                     datasets: [{
                         label: 'Metered Consumption',
                         data: meterData,
-                        borderColor: 'rgba(255, 99, 132, 1)',
+                        borderColor : 'rgba(255, 99, 132, 1)',
                         backgroundColor: 'rgba(255, 99, 132, 0.2)',
                     }, {
                         label: 'Estimated Device Energy Usage',
@@ -320,17 +383,27 @@
         );
 
         function updateDateTime() {
-            var currentDate = new Date();
-            var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true };
-            var dateTimeString = currentDate.toLocaleString('en-US', options);
-            document.getElementById("currentDateTime").innerText = dateTimeString;
-        }
+    var currentDate = new Date();
 
-        // Initial update
-        updateDateTime();
+    // Date options
+    var dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    var dateString = currentDate.toLocaleDateString('en-US', dateOptions);
 
-        // Update every second
-        setInterval(updateDateTime, 1000);
+    // Time options
+    var timeOptions = { hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true };
+    var timeString = currentDate.toLocaleTimeString('en-US', timeOptions);
+
+    // Update date and time separately
+    document.getElementById("currentDate").innerText = dateString;
+    document.getElementById("currentTime").innerText = timeString;
+}
+
+// Initial update
+updateDateTime();
+
+// Update every second
+setInterval(updateDateTime, 1000);
+
 
         
      

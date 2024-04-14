@@ -81,27 +81,40 @@
         }
 
         public function dashboard()
-    {
-        // Retrieve data for the pie chart (total energy consumption by device types)
-        $deviceTypes = Devices::groupBy('type')
-            ->selectRaw('type, SUM(active_quantity * power * hours_used / 1000) AS total_energy_consumption')
-            ->get();
+        {
+            // Retrieve data for the pie chart (total energy consumption by device types)
+            $deviceTypes = Devices::groupBy('type')
+                ->selectRaw('type, SUM(active_quantity * power * hours_used / 1000) AS total_energy_consumption')
+                ->get();
+        
+            // Prepare data for Chart.js
+            $pieLabels = $deviceTypes->pluck('type');
+            $pieData = $deviceTypes->pluck('total_energy_consumption');
+        
+            // Retrieve data for the pie chart (total energy consumption by device types)
+            $device_types = Devices::groupBy('type')
+                ->selectRaw('type, COUNT(*) AS total_devices')
+                ->get();
+        
+            // Prepare data for Chart.js
+            $polarLabels = $device_types->pluck('type');
+            $polarData = $device_types->pluck('total_devices');
+        
+            // Calculate the overall total energy consumption
+            $devices = Devices::all();
+            $overallTotalEnergy = $devices->sum(function ($device) {
+                return $device->active_quantity * $device->power * $device->hours_used / 1000;
+            });
+        
+            // Get the total number of devices
+            $totalDevices = Devices::count();
+        
+            // Pass data to the dashboard view
+            return view('dashboard')->with(compact('pieLabels', 'pieData', 'polarLabels', 'polarData', 'overallTotalEnergy', 'totalDevices'));
+        }
+        
+        
 
-        // Prepare data for Chart.js
-        $pieLabels = $deviceTypes->pluck('type');
-        $pieData = $deviceTypes->pluck('total_energy_consumption');
+ 
 
-        // Retrieve data for the pie chart (total energy consumption by device types)
-        $device_types = Devices::groupBy('type')
-            ->selectRaw('type, COUNT(*) AS total_devices')
-            ->get();
-
-        // Prepare data for Chart.js
-        $polarLabels = $device_types->pluck('type');
-        $polarData = $device_types->pluck('total_devices');
-
-        // Pass data to the dashboard view
-        return view('dashboard')->with(compact('pieLabels', 'pieData', 'polarLabels', 'polarData'));
-    }
 }
-

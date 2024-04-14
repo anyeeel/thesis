@@ -56,7 +56,7 @@
                                                         </div>
                                                         <div class="avatar-xs me-3 mb-3">
                                                             <div class="avatar-title bg-transparent rounded">
-                                                                <i class="bx bxs-folder font-size-24 text-warning"></i>
+                                                                <i class="bx bx-buildings font-size-24 text-warning"></i>
                                                             </div>
                                                         </div>
                                                         <div class="d-flex">
