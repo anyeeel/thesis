@@ -21,7 +21,7 @@
                                         <div class="d-flex">
                                             <div class="flex-grow-1">
                                                 <p class="text-muted fw-medium">Overall Energy Consumption</p>
-                                                <h4 class="mb-0">{{ number_format($totalDEnergy) }}</h4>
+                                                <h4 class="mb-0"></h4>
 
                                             </div>
                                 
@@ -42,7 +42,7 @@
                                         <div class="d-flex">
                                             <div class="flex-grow-1">
                                                 <p class="text-muted fw-medium">Overall No. of Devices</p>
-                                                <h4 class="mb-0">{{ $numberOfDevices }}</h4>
+                                                <h4 class="mb-0"></h4>
                                             </div>
                             
                                             <div class="flex-shrink-0 align-self-center">
