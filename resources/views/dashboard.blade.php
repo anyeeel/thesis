@@ -17,15 +17,15 @@
                             <div class="d-flex align-items-center">
                                 
                                 <div class="ms-3 flex-grow-1">
-                                    <h5 class="mb-2 card-title">Hello, Henry Franklin</h5>
+                                    <h5 class="mb-2 card-title">Hello, {{ auth()->user()->name }}</h5>
                                     <p class="text-muted mb-0">Ready to jump back in?</p>
                                     <!-- Live date and time display -->
                                     
                                 </div>
                                 <!-- Live date and time display inside a box -->
-                                <div class="live-date-time-box">
+                                
                                     <div id="currentDateTime" class="text-muted live-date-time"></div>
-                                </div>
+                                
                             </div>
                         </div><!--end col-->
                     </div><!--end row-->
@@ -55,6 +55,8 @@
                             <div id="double-line-chart-container">
                                 <canvas id="double-line-chart" height="300"></canvas>
                             </div>
+                            <div id="legend-container" class="mt-4"></div>
+
                         </div>
                     </div>          
                     <div class="row">
@@ -99,9 +101,7 @@
                                         
                                     </div>
                                 <div class="chart-container">
-                                    <!-- Update the canvas element for the horizontal bar chart -->
-                                <canvas id="horizontal-bar-chart" class="chartjs-chart"></canvas>
-
+                                    <canvas id="stacked-bar-chart" width="400" height="255"></canvas>
                                 </div>                       
                             </div>
         
@@ -168,6 +168,7 @@
          var labels = @json($labels);
             var meterData = @json($meterData);
             var computedData = @json($computedData);
+            
 
             // Get the canvas element for the double line chart
             var ctxDoubleLine = document.getElementById('double-line-chart').getContext('2d');
@@ -204,11 +205,12 @@
                             display: true,
                             title: {
                                 display: true,
-                                text: 'Consumption'
+                                text: 'Total Consumption (kWh)'
                             }
                         }
                     }
                 }
+                
             });
         });
         
@@ -274,7 +276,6 @@
                 maintainAspectRatio: false
             }
         });
-        
 
         // Configuration for the chart
         const config = {
