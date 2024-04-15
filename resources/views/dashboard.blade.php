@@ -52,7 +52,7 @@
                                     <div class="card-body">
                                         <div class="d-flex">
                                             <div class="flex-grow-1">
-                                                <p class="text-muted fw-medium">Overall No. of Devices</p>
+                                                <p class="text-muted fw-medium">Overall No. of Active Devices</p>
                                                 <h4 class="mb-0">{{ number_format($totalDevices) }}</h4>
                                             </div>
                             

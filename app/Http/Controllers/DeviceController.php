@@ -93,7 +93,7 @@
         
             // Retrieve data for the pie chart (total energy consumption by device types)
             $device_types = Devices::groupBy('type')
-                ->selectRaw('type, COUNT(*) AS total_devices')
+                ->selectRaw('type, SUM(active_quantity + inactive_quantity) AS total_devices')  
                 ->get();
         
             // Prepare data for Chart.js
@@ -107,7 +107,7 @@
             });
         
             // Get the total number of devices
-            $totalDevices = Devices::count();
+            $totalDevices = Devices::sum('active_quantity');
         
             // Pass data to the dashboard view
             return view('dashboard')->with(compact('pieLabels', 'pieData', 'polarLabels', 'polarData', 'overallTotalEnergy', 'totalDevices'));
