@@ -19,7 +19,7 @@
                         </div>
                     </div>
                 </div>
-
+                   
                 <!-- Daily Energy Consumption Table -->
                 <div class="row">
                     <div class="col-lg-6">
@@ -79,4 +79,7 @@
         </div> <!-- end page-content -->
     </div> <!-- main-content -->
 </div> <!-- layout-wrapper -->
+
+
+
 @endsection

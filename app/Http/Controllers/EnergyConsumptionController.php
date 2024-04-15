@@ -30,4 +30,3 @@ class EnergyConsumptionController extends Controller
 
 
 }
-

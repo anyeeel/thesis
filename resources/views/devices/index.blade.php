@@ -381,5 +381,23 @@
         @endforeach
     });
 </script>
+<script>
+    $(document).ready(function() {
+        // Search button click event
+        $('#searchButton').click(function() {
+            var searchText = $('#searchInput').val().toLowerCase();
+
+            // Loop through each table row and hide/show based on search text
+            $('table tbody tr').each(function() {
+                var rowText = $(this).text().toLowerCase();
+                if (rowText.includes(searchText)) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+            });
+        });
+    });
+</script>
 
 @endsection

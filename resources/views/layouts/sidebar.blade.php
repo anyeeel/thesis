@@ -26,7 +26,7 @@
 
                 <li>
                     <a href="{{ route('energy.index') }}" class="waves-effect">
-                        <i class="bx bx-buildings"></i>
+                        <i class="bx bxs-bolt"></i>
                         <span key="t-layouts">Energy Consumption</span>
                     </a>
                 </li>

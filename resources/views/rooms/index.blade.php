@@ -36,19 +36,23 @@
                     <div class="row">
                         <div class="w-100">
                             <div class="card">
-                                <div class="card-body">
-                                    <div>
-                                        <div class="row mb-3">
-                                            <div class="col-xl-3 col-sm-6">
-                                                <div class="mt-2">
-                                                    <h5></h5>
+                                <div class="card-body">                              
+                                        <div class="row">
+                                            
+                                        <div class="d-flex justify-content-between">
+                                            <div class="d-flex justify-content-start">
+                                                <div class="page-title-right">
+                                                    <div><a href="{{ route('floors.index', ['building_id' => $building->id]) }}" class="btn btn-secondary"><i class="bx bx-chevron-left"></i></a></div>
                                                 </div>
                                             </div>
+                                            
+                                            <div class="page-title-left">
+                                                <span class="text-muted fw-medium">Total: </span>
+                                                <span class="font-size-14 mb-0">{{ number_format($floor->totalEnergy(), 2) }} kWh</span>
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <div>
-                                        <div class="row">
+
                                         
                                                                                        
                                                                         @foreach($rooms as $room)
@@ -75,7 +79,7 @@
                                                                                             </div>
                                                                                             <div class="avatar-xs me-3 mb-3">
                                                                                                 <div class="avatar-title bg-transparent rounded">
-                                                                                                    <i class="bx bxs-folder font-size-24 text-warning"></i>
+                                                                                                    <i class="bx bxs-bolt font-size-24 text-warning"></i>
                                                                                                 </div>
                                                                                             </div>
                                                                                             <div class="d-flex">
@@ -105,7 +109,8 @@
                                                         </a>                                               
                                                     </div>                                        
                                                 </div>
-                                            </div>
+                                             </div>
+                                           
                                             <!-- end col -->
                                         </div>
                                         <!-- end row -->
@@ -182,6 +187,7 @@
             </div>
         </div>
     @endforeach
+   
 
     <script>
     document.addEventListener('DOMContentLoaded', function () {
