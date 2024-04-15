@@ -139,11 +139,44 @@
 
                      
                     <div class="row">
+                    <div class="col-xl-6">
+              
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title mb-4">Estimated Total Consumption of Device Types</h4>
+                                <canvas id="pieChart" class="chartjs-chart"></canvas>
+                                <p class="text-muted mt-3"><em>Note: <br><br>Estimated Total consumption reflects user-input device usage, not meter readings.</em></p>
+                            </div>
+                        </div>
+                    </div> <!-- end col -->
+
+
+                        <div class="col-lg-6">
+    <div class="card">
+        <div class="card-body">
+            <div class="d-sm-flex flex-wrap">          
+            <h4 class="card-title mb-4">What are Device Types</h4>
+                <ul class="list-unstyled">
+                    <li><strong style="color: rgba(255, 99, 132, 0.6);">Appliance:</strong> Refrigerators, microwaves, water coolers, vending machines - These devices consume electrical power for their operation and are typically found in common areas such as break rooms, cafeterias, or dormitories.</li><br>
+                    <li><strong style="color: rgba(54, 162, 235, 0.6);">Desktop:</strong> Desktop computers, monitors, printers - These devices are powered by electricity and are commonly found in computer labs, administrative offices, and libraries.</li><br>
+                    <li><strong style="color: rgba(255, 206, 86, 0.6);">HVAC (Heating, Ventilation, and Air Conditioning):</strong> Air conditioning units, electric heaters, ventilation fans - HVAC systems require electricity to regulate temperature and air quality throughout the building.</li><br>
+                    <li><strong style="color: rgba(75, 192, 192, 0.6);">Lighting:</strong> Overhead lights, emergency exit signs, decorative lighting fixtures - Lighting fixtures are powered by electricity and play a crucial role in illuminating indoor spaces for visibility and safety.</li><br>
+                    <li><strong style="color: rgba(153, 102, 255, 0.6);">Output:</strong> Output devices are used to display information or produce tangible outputs. This category includes printers, projectors, and screens that facilitate the dissemination of information, presentations, and educational materials.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+                     
+                    </div>
+
+                    <div class="row">
                         <div class="col-xl-6">
                             <div class="card">
                                 <div class="card-body">
-                                    <h4 class="card-title mb-4">Estimated Total Consumption of Device Type</h4>
-                                    <canvas id="pieChart" class="chartjs-chart"></canvas>
+                                    <h4 class="card-title mb-4"> Total Number of Devices by Type</h4>
+                                    <canvas id="polarAreaChart" class="chartjs-chart"></canvas>
                                 </div>
                             </div>
                         </div> <!-- end col -->
@@ -160,33 +193,7 @@
                             </div>
         
                         </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-xl-6">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h4 class="card-title mb-4"> Total Number of Devices by Type</h4>
-                                    <canvas id="polarAreaChart" class="chartjs-chart"></canvas>
-                                </div>
-                            </div>
-                        </div> <!-- end col -->
-                        
-                        <div class="col-lg-6">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="d-sm-flex flex-wrap">
-                                        <h4 class="card-title mb-4"> Total Consumption of Buildings</h4>
-                                        
-                                    </div>
-                                <div class="chart-container">
-                                    <!-- Update the canvas element for the horizontal bar chart -->
-                                <canvas id="horizontal-bar-chart" class="chartjs-chart"></canvas>
-
-                                </div>                       
-                            </div>
-        
-                        </div>
+                       
                     </div>
 
                 </div>
