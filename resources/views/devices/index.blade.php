@@ -32,10 +32,27 @@
                     </div>
                 </div>
                 <!-- end page title -->
+
+               
+
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-body border-bottom">
+                            <div class="row">
+                <div class="d-flex justify-content-between">
+                                        <div class="d-flex justify-content-start">
+                                            <div class="page-title-right">
+                                                <div><a href="{{ route('rooms.index', ['floor_id' => $floor->id]) }}" class="btn btn-secondary"><i class="bx bx-chevron-left"></i></a></div>
+                                            </div>
+                                        </div>
+
+                                        <div class="page-title-left">
+                                            <span class="text-muted fw-medium">Total: </span>
+                                            <span class="font-size-14 mb-0">{{ number_format($room->totalEnergy(), 2) }} kWh</span>
+                                        </div>
+                                    </div>
+                </div>
                                 <div class="d-flex align-items-center">
                                     <h5 class="mb-0 card-title flex-grow-1">Devices List</h5>
                                     <div class="flex-shrink-0">
