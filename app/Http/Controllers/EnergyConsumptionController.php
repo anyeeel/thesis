@@ -10,8 +10,9 @@ class EnergyConsumptionController extends Controller
 {
     public function index()
     {
-        $meterConsumptions = EnergyMeterConsumption::all();
-        $computedConsumptions = EnergyComputedConsumption::all();
+       // Paginate the query results
+       $meterConsumptions = EnergyMeterConsumption::paginate(10);
+       $computedConsumptions = EnergyComputedConsumption::paginate(10);
         
         return view('energy.index', compact('meterConsumptions', 'computedConsumptions'));
     }

@@ -7,6 +7,7 @@ use App\Models\Building;
 use App\Models\Floor;
 use App\Models\Room;
 
+
 class BuildingController extends Controller
 {
     public function __construct()
@@ -145,6 +146,7 @@ class BuildingController extends Controller
     
         // Pass data to the dashboard view
         return view('dashboard', compact('totalBuildings', 'buildingEnergyData'));
+
     }
 
     public function search(Request $request)
