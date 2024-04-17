@@ -31,11 +31,27 @@
                         <div class="card">
                             <div class="card-body">
                                 <div>
+
+                                <div class="card-body border-bottom">
+                                <div class="row g-3">
+                                <div class="col-xxl-4 col-lg-6">
+                                <div class="input-group">
+                                    <input type="search" class="form-control" id="searchInput" placeholder="Search for ...">
+                                    <button class="btn btn-primary" id="searchButton">Search</button>
+                                </div>
+                            </div>
+                            <div id="searchResults"></div>
+
+                            </div>
+                          </div>
+
                                     <div class="row">
                                         @foreach($buildings as $building)
+                                        
                                         <div class="col-xl-4 col-sm-6">
                                             <div class="card shadow-none border">
                                                 <div class="card-body p-3">
+                                               
                                                     <div>
                                                         <div class="float-end ms-2">
                                                             <div class="dropdown mb-2">
@@ -88,6 +104,16 @@
                                             </div>
                                         </div>
                                         <!-- end col -->
+
+                                        <!-- Pagination Links -->
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <div class="d-flex justify-content-center">
+                                                        {{ $buildings->links() }}
+                                                    </div>
+                                                </div>
+                                            </div>
+
 
                                     </div>
                                     <!-- end row -->
@@ -241,6 +267,60 @@
             });
         });
     });
+</script>
+
+<script>
+  // Function to handle search
+function search() {
+    // Get the search query from the input field
+    var query = document.getElementById('searchInput').value;
+
+    // Send AJAX request to backend
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', '/search?query=' + encodeURIComponent(query), true);
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) {
+                // Handle successful response
+                var response = JSON.parse(xhr.responseText);
+                // Update UI with search results
+                displayResults(response.buildings);
+            } else {
+                // Handle error response
+                console.error('Error:', xhr.status);
+            }
+        }
+    };
+    xhr.send();
+}
+
+// Function to display search results
+function displayResults(buildings) {
+    // Clear previous search results
+    document.getElementById('searchResults').innerHTML = '';
+
+    // Iterate over search results and create HTML elements to display them
+    buildings.forEach(function (building) {
+        var buildingElement = document.createElement('div');
+        buildingElement.textContent = building.building_name;
+        document.getElementById('searchResults').appendChild(buildingElement);
+    });
+}
+
+// Function to handle search button click
+document.getElementById('searchButton').addEventListener('click', function () {
+    search();
+});
+
+// Add event listener to the search input field to handle live search
+document.getElementById('searchInput').addEventListener('input', function () {
+    // Call the search function when the user types in the search input field
+    search();
+});
+
 
 </script>
+
+
+
 @endsection

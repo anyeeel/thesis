@@ -84,4 +84,7 @@ Route::get('/dashboard', function () {
 
 Route::get('/energy', [EnergyConsumptionController::class, 'index'])->name('energy.index');
 
+Route::get('/search', [BuildingController::class, 'search'])->name('buildings_name.search');
+
+
 require __DIR__.'/auth.php';

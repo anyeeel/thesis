@@ -72,14 +72,16 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- <div class="card-body border-bottom">
+                            
+                            <div class="card-body border-bottom">
                                 <div class="row g-3">
                                     <div class="col-xxl-4 col-lg-6">
                                         <input type="search" class="form-control" id="searchInput"
                                             placeholder="Search for ...">
                                     </div>
                                 </div>
-                            </div> -->
+                            </div>
+
                             <div class="card-body">
                                 <div class="table-responsive">
                                 <table class="table table-bordered align-middle nowrap" style="text-align: center;">
