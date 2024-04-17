@@ -31,6 +31,13 @@
                     </a>
                 </li>
 
+                <li>
+                    <a href="{{ route('about') }}" class="waves-effect">
+                        <i class="bx bxs-group"></i>
+                        <span key="t-layouts">About Us</span>
+                    </a>
+                </li>
+
 
                 @can(['create-user', 'edit-user', 'delete-user'])
                 <li class="menu-title" key="t-menu">Access</li>

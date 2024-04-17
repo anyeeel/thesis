@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Building;
 use App\Models\Floor;
 
+
 class BuildingController extends Controller
 {
     public function __construct()
@@ -141,6 +142,7 @@ class BuildingController extends Controller
     
         // Pass data to the dashboard view
         return view('dashboard', compact('totalBuildings', 'buildingEnergyData'));
+
     }
     
 

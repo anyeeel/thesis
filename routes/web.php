@@ -8,6 +8,7 @@ use App\Http\Controllers\FloorController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\DeviceController;
 use App\Http\Controllers\EnergyConsumptionController;   
+use App\Http\Controllers\AboutController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -83,5 +84,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/energy', [EnergyConsumptionController::class, 'index'])->name('energy.index');
+Route::get('/about', [AboutController::class,'index'])->name('about');
+
 
 require __DIR__.'/auth.php';

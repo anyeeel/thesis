@@ -23,17 +23,15 @@
                         </div><!--end col-->
                     </div><!--end row-->
 
-                <!-- TOtal consumption card-->
+                <!-- Total consumption card-->
                 <div class="row">
-                            <div class="col-lg-3">
+                            <div class="col-lg-4">
                                 <div class="card mini-stats-wid">
                                     <div class="card-body">
                                         <div class="d-flex">
                                             <div class="flex-grow-1">
-                                                <p class="text-muted fw-medium">Overall Energy Consumption</p>
-                                                <h4 class="mb-0">{{ number_format($overallTotalEnergy, 2) }} kWh</h4>
-
-
+                                                <p class="text-muted fw-medium text-center">Overall Energy Consumption</p>
+                                                <h4 class="mb-0 text-center">{{ number_format($overallTotalEnergy, 2) }} kWh</h4>
                                             </div>
                                 
                                             <div class="flex-shrink-0 align-self-center">
@@ -47,13 +45,13 @@
                                 </div>
                             </div><!--end col-->
 
-                            <div class="col-lg-3">
+                            <div class="col-lg-4">
                                 <div class="card mini-stats-wid">
                                     <div class="card-body">
                                         <div class="d-flex">
                                             <div class="flex-grow-1">
-                                                <p class="text-muted fw-medium">Overall No. of Devices</p>
-                                                <h4 class="mb-0">{{ number_format($totalDevices) }}</h4>
+                                                <p class="text-muted fw-medium text-center">Overall No. of Devices</p>
+                                                <h4 class="mb-0 text-center">{{ number_format($totalDevices) }}</h4>
                                             </div>
                             
                                             <div class="flex-shrink-0 align-self-center">
@@ -67,33 +65,13 @@
                                 </div>
                             </div><!--end col-->
 
-                            <div class="col-lg-3">
+                            <div class="col-lg-4">
                                 <div class="card mini-stats-wid">
                                     <div class="card-body">
                                         <div class="d-flex">
                                             <div class="flex-grow-1">
-                                                <p class="text-muted fw-medium">Overall No. of Buildings</p>
-                                                <h4 class="mb-0">{{ $totalBuildings}}</h4>
-                                            </div>
-                            
-                                            <div class="flex-shrink-0 align-self-center">
-                                                <div data-colors='["--bs-success", "--bs-transparent"]' dir="ltr" id="total_approved_charts"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card-body border-top py-3">
-                                        <p class="mb-0"> <span class="badge badge-soft-success me-1"></span></p>
-                                    </div>
-                                </div>
-                            </div><!--end col-->
-                            
-                            <div class="col-lg-3">
-                                <div class="card mini-stats-wid">
-                                    <div class="card-body">
-                                        <div class="d-flex">
-                                            <div class="flex-grow-1">
-                                                <p class="text-muted fw-medium" id="currentDate"></p>
-                                                <h4 class="mb-0" id="currentTime"></h4>
+                                                <p class="text-muted fw-medium text-center">Overall No. of Buildings</p>
+                                                <h4 class="mb-0 text-center">{{ $totalBuildings}}</h4>
                                             </div>
                             
                                             <div class="flex-shrink-0 align-self-center">
@@ -146,7 +124,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title mb-4">Estimated Total Consumption of Device Types</h4>
-                                <canvas id="pieChart" class="chartjs-chart"></canvas>
+                                <canvas id="pieChart" class="chartjs-chart" height="400"></canvas>
                                 <p class="text-muted mt-3"><em>Note: <br><br>Estimated Total consumption reflects user-input device usage, not meter readings.</em></p>
                             </div>
                         </div>
@@ -154,21 +132,21 @@
 
 
                         <div class="col-lg-6">
-    <div class="card">
-        <div class="card-body">
-            <div class="d-sm-flex flex-wrap">          
-            <h4 class="card-title mb-4">What are Device Types</h4>
-                <ul class="list-unstyled">
-                    <li><strong style="color: rgba(255, 99, 132, 0.6);">Appliance:</strong> Refrigerators, microwaves, water coolers, vending machines - These devices consume electrical power for their operation and are typically found in common areas such as break rooms, cafeterias, or dormitories.</li><br>
-                    <li><strong style="color: rgba(54, 162, 235, 0.6);">Desktop:</strong> Desktop computers, monitors, printers - These devices are powered by electricity and are commonly found in computer labs, administrative offices, and libraries.</li><br>
-                    <li><strong style="color: rgba(255, 206, 86, 0.6);">HVAC (Heating, Ventilation, and Air Conditioning):</strong> Air conditioning units, electric heaters, ventilation fans - HVAC systems require electricity to regulate temperature and air quality throughout the building.</li><br>
-                    <li><strong style="color: rgba(75, 192, 192, 0.6);">Lighting:</strong> Overhead lights, emergency exit signs, decorative lighting fixtures - Lighting fixtures are powered by electricity and play a crucial role in illuminating indoor spaces for visibility and safety.</li><br>
-                    <li><strong style="color: rgba(153, 102, 255, 0.6);">Output:</strong> Output devices are used to display information or produce tangible outputs. This category includes printers, projectors, and screens that facilitate the dissemination of information, presentations, and educational materials.</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
+                            <div class="card ">
+                                <div class="card-body py-3">
+                                    <div class="d-sm-flex flex-wrap">          
+                                    <h4 class="card-title mb-4">What are Device Types</h4>
+                                        <ul class="list-unstyled">
+                                            <li><strong style="color: rgba(255, 99, 132, 0.6);">Appliance:</strong> Refrigerators, microwaves, water coolers, vending machines - These devices consume electrical power for their operation and are typically found in common areas such as break rooms, cafeterias, or dormitories.</li><br>
+                                            <li><strong style="color: rgba(54, 162, 235, 0.6);">Desktop:</strong> Desktop computers, monitors, printers - These devices are powered by electricity and are commonly found in computer labs, administrative offices, and libraries.</li><br>
+                                            <li><strong style="color: rgba(255, 206, 86, 0.6);">HVAC (Heating, Ventilation, and Air Conditioning):</strong> Air conditioning units, electric heaters, ventilation fans - HVAC systems require electricity to regulate temperature and air quality throughout the building.</li><br>
+                                            <li><strong style="color: rgba(75, 192, 192, 0.6);">Lighting:</strong> Overhead lights, emergency exit signs, decorative lighting fixtures - Lighting fixtures are powered by electricity and play a crucial role in illuminating indoor spaces for visibility and safety.</li><br>
+                                            <li><strong style="color: rgba(153, 102, 255, 0.6);">Output:</strong> Output devices are used to display information or produce tangible outputs. This category includes printers, projectors, and screens that facilitate the dissemination of information, presentations, and educational materials.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
                      
                     </div>
@@ -193,10 +171,64 @@
                                     <canvas id="stacked-bar-chart" width="400" height="255"></canvas>
                                 </div>                       
                             </div>
+
+                            
         
                         </div>
                        
                     </div>
+                    <div class="row">
+
+                    @foreach($buildingEnergyData as $buildingName => $floorData)
+                        <div class="col-xl-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="card-title mb-4">{{ $buildingName }} Energy Consumption by Floor</h4>
+                                    <canvas id="buildingChart_{{ $loop->index }}" class="chartjs-chart" height="400"></canvas>
+                                </div>
+                            </div>
+                        </div>
+
+                        <script>
+                            document.addEventListener("DOMContentLoaded", function () {
+                                var ctx = document.getElementById('buildingChart_{{ $loop->index }}').getContext('2d');
+
+                                
+                                new Chart(ctx, {
+                                    type: 'bar',
+                                    data: {
+                                        labels: {!! json_encode(array_keys($floorData)) !!},
+                                        datasets: [{
+                                            label: 'Energy Consumption (kWh)',
+                                            data: {!! json_encode(array_values($floorData)) !!},
+                                            backgroundColor: 'rgba(128, 0, 0, 0.6)',
+                                            borderWidth: 1
+                                        }]
+                                    },
+                                    options: {
+                                        responsive: true,
+                                        maintainAspectRatio: false,
+                                        scales: {
+                                            y: {
+                                                beginAtZero: true,
+                                                title: {
+                                                    display: true,
+                                                    text: 'Energy Consumption (kWh)'
+                                                }
+                                            },
+                                            x: {
+                                                title: {
+                                                    display: true,
+                                                    text: 'Floor'
+                                                }
+                                            }
+                                        }
+                                    }
+                                });
+                            });
+                        </script>
+                    @endforeach
+                                  
 
                 </div>
             </div> <!-- container-fluid -->
@@ -271,13 +303,14 @@
                     datasets: [{
                         label: 'Metered Consumption',
                         data: meterData,
-                        borderColor : 'rgba(255, 99, 132, 1)',
-                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                        borderColor: 'rgba(110, 6, 6, 1)', 
+                        backgroundColor: 'rgba(110, 6, 6, 0.5)', 
                     }, {
                         label: 'Estimated Device Energy Usage',
                         data: computedData,
-                        borderColor: 'rgba(54, 162, 235, 1)',
-                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                        borderColor: 'rgba(255, 206, 86, 1)', 
+                        backgroundColor: 'rgba(255, 206, 86, 0.2)', 
+
                     }]
                 },
                 options: {

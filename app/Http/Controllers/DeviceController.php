@@ -113,8 +113,4 @@
             return view('dashboard')->with(compact('pieLabels', 'pieData', 'polarLabels', 'polarData', 'overallTotalEnergy', 'totalDevices'));
         }
         
-        
-
- 
-
 }
