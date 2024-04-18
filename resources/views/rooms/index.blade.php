@@ -40,76 +40,72 @@
                                         <div class="row">
                                             
                                         <div class="d-flex justify-content-between">
-                                            <div class="d-flex justify-content-start">
+                                            <div class="d-flex justify-content-start"  style="padding-bottom: 2rem !important;">
                                                 <div class="page-title-right">
-                                                    <div><a href="{{ route('floors.index', ['building_id' => $building->id]) }}" class="btn btn-secondary"><i class="bx bx-chevron-left"></i></a></div>
+                                                    <div><a href="{{ route('floors.index', ['building_id' => $building->id]) }}"><i class="bx bx-left-arrow-alt bx-sm"></i></a></div>
                                                 </div>
                                             </div>
                                             
                                             <div class="page-title-left">
                                                 <span class="text-muted fw-medium">Total: </span>
-                                                <span class="font-size-14 mb-0">{{ number_format($floor->totalEnergy(), 2) }} kWh</span>
+                                                <span class="font-size-15 mb-0" style="color: #6e0606; font-weight: 500;">{{ number_format($floor->totalEnergy(), 2) }} kWh</span>
                                             </div>
                                         </div>
-
-
-                                        
-                                                                                       
-                                                                        @foreach($rooms as $room)
-                                                                            <div class="col-xl-4 col-sm-6">
-                                                                                <div class="card shadow-none border">
-                                                                                    <div class="card-body p-3">
-                                                                                        <div>
-                                                                                            <div class="float-end ms-2">
-                                                                                                <div class="dropdown mb-2">
-                                                                                                    <a class="font-size-16 text-muted" role="button" data-bs-toggle="dropdown" aria-haspopup="true">
-                                                                                                        <i class="mdi mdi-dots-horizontal"></i>
-                                                                                                    </a>
-                                                                                                    
-                                                                                                    <div class="dropdown-menu dropdown-menu-end">                                                         
-                                                                                                        <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editRoomModal{{ $room->id }}">Edit</a>                                                                   
-                                                                                                        <div class="dropdown-divider"></div>               
-                                                                                                        <form action="{{ route('rooms.destroy', $room->id) }}" method="POST">
-                                                                                                            @csrf
-                                                                                                            @method('DELETE')
-                                                                                                            <button type="submit" class="dropdown-item text-danger" onclick="return confirm('Are you sure you want to delete this room?')">Remove</button>
-                                                                                                        </form>
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                            <div class="avatar-xs me-3 mb-3">
-                                                                                                <div class="avatar-title bg-transparent rounded">
-                                                                                                    <i class="bx bxs-bolt font-size-24 text-warning"></i>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                            <div class="d-flex">
-                                                                                                <div class="overflow-hidden me-auto">               
-                                                                                                    <div class="overflow-hidden me-auto">               
-                                                                                                    <h5 class="font-size-14 text-truncate mb-1"><a href="{{ route('devices.index', ['room_id' => $room->id]) }}" class="text-decoration-none"> {{ $room->name }}</a></h5>
-
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                                <div class="align-self-end ms-2">
-                                                                                                    <!-- Display total energy consumption for the room -->
-                                                                                                    <p class="text-muted mb-0" style="white-space: nowrap;">{{ number_format($room->totalEnergy(), 2) }} kWh</p>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        @endforeach
-  
-
+                                                                                                
+                                        @foreach($rooms as $room)
                                             <div class="col-xl-4 col-sm-6">
-                                                <div class="card shadow-none border" id="room">
-                                                    <div class="card-body p-3 d-flex align-items-center justify-content-center">
-                                                        <a class="addRoom" role="button" aria-haspopup="true" data-bs-toggle="modal" data-bs-target=".bs-example-modal-center" data-bs-toggle="tooltip" data-bs-placement="top" data-floor-id="{{ $floorId }}" title="Add Room" >
-                                                            <i class="bx bx-plus-medical"></i>
-                                                        </a>                                               
-                                                    </div>                                        
+                                                <div class="card shadow-none border">
+                                                    <div class="card-body p-3">
+                                                        <div>
+                                                            <div class="float-end ms-2">
+                                                                <div class="dropdown mb-2">
+                                                                    <a class="font-size-16 text-muted" role="button" data-bs-toggle="dropdown" aria-haspopup="true">
+                                                                        <i class="mdi mdi-dots-horizontal"></i>
+                                                                    </a>
+                                                                    
+                                                                    <div class="dropdown-menu dropdown-menu-end">                                                         
+                                                                        <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editRoomModal{{ $room->id }}">Edit</a>                                                                   
+                                                                        <div class="dropdown-divider"></div>               
+                                                                        <form action="{{ route('rooms.destroy', $room->id) }}" method="POST" id="deleteForm{{$room->id}}">
+                                                                            @csrf
+                                                                            @method('DELETE')
+                                                                            <button type="submit" class="dropdown-item text-danger delete-room" data-room-id="{{$room->id}}">Remove</button>
+                                                                        </form>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="avatar-xs me-3 mb-3">
+                                                                <div class="avatar-title bg-transparent rounded">
+                                                                    <i class="bx bxs-bolt font-size-24 text-warning"></i>
+                                                                </div>
+                                                            </div>
+                                                            <div class="d-flex">
+                                                                <div class="overflow-hidden me-auto">               
+                                                                    <div class="overflow-hidden me-auto">               
+                                                                    <h5 class="font-size-14 text-truncate mb-1"><a href="{{ route('devices.index', ['room_id' => $room->id]) }}" class="text-decoration-none"> {{ $room->name }}</a></h5>
+
+                                                                    </div>
+                                                                </div>
+                                                                <div class="align-self-end ms-2">
+                                                                    <!-- Display total energy consumption for the room -->
+                                                                    <p class="text-muted mb-0" style="white-space: nowrap;">{{ number_format($room->totalEnergy(), 2) }} kWh</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                             </div>
+                                            </div>
+                                        @endforeach
+  
+                                        <div class="col-xl-4 col-sm-6">
+                                            <div class="card shadow-none border" id="room">
+                                                <div class="card-body p-3 d-flex align-items-center justify-content-center">
+                                                    <a class="addRoom" role="button" aria-haspopup="true" data-bs-toggle="modal" data-bs-target=".bs-example-modal-center" data-bs-toggle="tooltip" data-bs-placement="top" data-floor-id="{{ $floorId }}" title="Add Room" >
+                                                        <i class="bx bx-plus-medical"></i>
+                                                    </a>                                               
+                                                </div>                                        
+                                            </div>
+                                        </div>
                                            
                                             <!-- end col -->
                                         </div>
@@ -189,7 +185,7 @@
     @endforeach
    
 
-    <script>
+<script>
     document.addEventListener('DOMContentLoaded', function () {
         // Get all input fields in the form
         const inputs = document.querySelectorAll('.form-control');
@@ -216,9 +212,31 @@
     $('.modal').on('shown.bs.modal', function () {
     var id = $(this).data('floor-id');
     console.log(id);
-});
+    });
 
-    $(document).ready(function() {
+    document.addEventListener('DOMContentLoaded', function () {
+        // Function to handle room deletion
+        $('.delete-room').on('click', function() {
+            var room_id$= $(this).data('room-id');
+            // Show SweetAlert confirmation dialog
+            Swal.fire({
+                title: 'Are you sure?',
+                text: 'You won\'t be able to revert this!',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // If user confirms deletion, submit the form
+                    $('#deleteForm'+room_id).submit();
+                }
+            });
+            });
+        });
+
+ $(document).ready(function() {
         $('#addRoomForm').on('submit', function(e) {
             e.preventDefault();
             $.ajax({
@@ -238,6 +256,5 @@
             });
         });
     });
-
-    </script>
+</script>
 @endsection
