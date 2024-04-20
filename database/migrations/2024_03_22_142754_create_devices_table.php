@@ -17,8 +17,8 @@ class CreateDevicesTable extends Migration
             $table->integer('inactive_quantity')->default(0); // Adding inactive_quantity column
             $table->string('brand');
             $table->string('model');
-            $table->date('installed_date');
-            $table->integer('life_expectancy'); // in years
+            $table->date('installed_date')->nullable();
+            $table->integer('life_expectancy')->nullable(); // in years
             $table->integer('power'); // in watts
             $table->integer('hours_used'); // in hours
             $table->float('energy')->virtualAs('active_quantity * power * hours_used / 1000'); // in kWh

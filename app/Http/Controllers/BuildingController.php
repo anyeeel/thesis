@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Building;
 use App\Models\Floor;
 
+
 class BuildingController extends Controller
 {
     public function __construct()
@@ -76,13 +77,32 @@ class BuildingController extends Controller
             'building_name' => 'required|string|max:255',
             'num_of_floors' => 'required|integer|min:1',
         ]);
-
+    
         // Find the building by its ID
         $building = Building::findOrFail($id);
-
+    
         // Update the building with the validated data
         $building->update($validatedData);
-
+    
+        // Handle adding or removing floors
+        $currentFloorCount = $building->floors()->count();
+        $newFloorCount = $validatedData['num_of_floors'];
+        if ($newFloorCount > $currentFloorCount) {
+            // Add new floors
+            for ($i = $currentFloorCount + 1; $i <= $newFloorCount; $i++) {
+                $floor = new Floor();
+                $floor->building_id = $building->id;
+                $floor->name = 'Floor ' . $i;
+                $floor->save();
+            }
+        } elseif ($newFloorCount < $currentFloorCount) {
+            // Determine the number of floors to delete
+            $floorsToDelete = $currentFloorCount - $newFloorCount;
+        
+            // Delete excess floors starting from the most recently added
+            $building->floors()->orderBy('id', 'desc')->limit($floorsToDelete)->delete();
+        }
+    
         // Redirect back with a success message
         return redirect()->route('buildings.index')->with('success', 'Building updated successfully');
     }
@@ -100,20 +120,30 @@ class BuildingController extends Controller
     }
 
     // Other methods like store, show, edit, update, destroy, etc.
-public function dashboard()
-{
-    $buildings = Building::all();
-    $buildingEnergyData = [];
-
-    foreach ($buildings as $building) {
-        $floorsData = [];
-        foreach ($building->floors as $floor) {
-            $floorsData[$floor->name] = $floor->totalEnergy();
+    public function dashboard()
+    {
+        // Retrieve all buildings
+        $buildings = Building::all();
+    
+        // Count the total number of buildings
+        $totalBuildings = $buildings->count();
+    
+        // Prepare data for building energy consumption
+        $buildingEnergyData = [];
+    
+        // Iterate over each building to calculate energy consumption for each floor
+        foreach ($buildings as $building) {
+            $floorsData = [];
+            foreach ($building->floors as $floor) {
+                $floorsData[$floor->name] = $floor->totalEnergy();
+            }
+            $buildingEnergyData[$building->building_name] = $floorsData;
         }
-        $buildingEnergyData[$building->building_name] = $floorsData;
-    }
+    
+        // Pass data to the dashboard view
+        return view('dashboard', compact('totalBuildings', 'buildingEnergyData'));
 
-    return view('dashboard', compact('buildingEnergyData'));
-}
+    }
+    
 
 }

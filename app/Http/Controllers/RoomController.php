@@ -51,16 +51,18 @@ class RoomController extends Controller
         return view('rooms.show', compact('room'));
     }
 
-    public function edit(Room $rooms)
+    public function edit(Room $room)
     {
-        return view('rooms.edit', compact('rooms'));
+        return view('rooms.edit', compact('room'));
     }
+    
 
-    public function update(Request $request, Room $rooms)
+    public function update(Request $request, Room $room)
     {
-        $building->update($request->all());
+        $room->update($request->all());
         return redirect()->route('rooms.index')->with('success','Room updated successfully');
     }
+    
 
     public function destroy($id)
     {

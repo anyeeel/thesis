@@ -193,7 +193,7 @@ body[data-topbar=dark] .logo-light {
 }
 body[data-topbar=dark] .app-search .form-control {
   background-color: rgba(var(--bs-topbar-search-bg), 0.07);
-  color: #fff;
+  color: #be5a5a;
 }
 body[data-topbar=dark] .app-search span,
 body[data-topbar=dark] .app-search input.form-control::-webkit-input-placeholder {

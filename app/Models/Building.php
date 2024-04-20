@@ -32,4 +32,5 @@ class Building extends Model
 
         return $totalEnergy;
     }
+    
 }

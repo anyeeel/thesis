@@ -30,16 +30,6 @@
                     <div class="w-100">
                         <div class="card">
                             <div class="card-body">
-                                <!-- <div>
-                                        <div class="row mb-3">
-                                            <div class="col-xl-3 col-sm-6">
-                                                <div class="mt-2">
-                                                    <h5>Buildings List</h5>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div> -->
-
                                 <div>
                                     <div class="row">
                                         @foreach($buildings as $building)
@@ -56,17 +46,17 @@
                                                                 <div class="dropdown-menu dropdown-menu-end">
                                                                     <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editBuildingModal{{ $building->id }}">Edit</a>
                                                                     <div class="dropdown-divider"></div>
-                                                                    <form action="{{ route('buildings.destroy', $building->id) }}" method="POST">
+                                                                    <form action="{{ route('buildings.destroy', $building->id) }}" method="POST" id="deleteForm{{$building->id}}">
                                                                         @csrf
                                                                         @method('DELETE')
-                                                                        <button type="submit" class="dropdown-item text-danger" onclick="return confirm('Are you sure you want to delete this building?')">Remove</button>
+                                                                        <button type="button" class="dropdown-item text-danger delete-building-btn" data-building-id="{{ $building->id }}">Remove</button>
                                                                     </form>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div class="avatar-xs me-3 mb-3">
                                                             <div class="avatar-title bg-transparent rounded">
-                                                                <i class="bx bxs-folder font-size-24 text-warning"></i>
+                                                                <i class="bx bx-buildings font-size-24 text-warning"></i>
                                                             </div>
                                                         </div>
                                                         <div class="d-flex">
@@ -76,9 +66,10 @@
 
                                                                 <p class="text-muted text-truncate mb-0">{{ $building->num_of_floors }} Floors</p>
                                                             </div>
+                                                            
                                                             <div class="align-self-end ms-2">
                                                                 <!-- Display total energy consumption for the room -->
-                                                                <p class="text-muted mb-0">{{ number_format($building->totalEnergy(), 2) }} kWh</p>
+                                                                <p class="text-muted mb-0" style="white-space: nowrap;">{{ number_format($building->totalEnergy(), 2) }} kWh</p>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -135,7 +126,7 @@
                         <div class="row mb-3">
                             <label for="numOfFloors" class="col-sm-2 col-form-label">Number of Floors:</label>
                             <div class="col-sm-10">
-                                <input type="number" class="form-control" id="numOfFloors" name="num_of_floors">
+                                <input type="number" class="form-control" id="numOfFloors" name="num_of_floors"  min='0'>
                             </div>
                         </div>
                     </div>
@@ -153,7 +144,7 @@
 <div id="successMessage" class="alert alert-success" role="alert" style="display: none;"></div>
 
 <!-- edit building -->
-@isset($building)
+@foreach($buildings as $building)
 <div class="modal fade bs-example-modal-center" id="editBuildingModal{{ $building->id }}" tabindex="-1" aria-labelledby="editBuildingModal{{ $building->id }}Label" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -171,7 +162,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="editNumOfFloors" class="form-label">Number of Floors</label>
-                        <input type="number" class="form-control" id="editNumOfFloors" name="num_of_floors" value="{{ $building->num_of_floors }}">
+                        <input type="number" class="form-control" id="editNumOfFloors" name="num_of_floors" value="{{ $building->num_of_floors }}" min='0'>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -182,31 +173,53 @@
         </div>
     </div>
 </div>
-@endisset
+@endforeach
 
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
         // Get all input fields in the form
         const inputs = document.querySelectorAll('.form-control');
 
         // Add focus event listener to each input field
         inputs.forEach(input => {
-            input.addEventListener('focus', function() {
+            input.addEventListener('focus', function () {
                 // Change the border color when the input field is focused
                 this.style.borderColor = '#007bff'; // Change to your desired border color
             });
 
             // Remove the border color when the input field loses focus
-            input.addEventListener('blur', function() {
+            input.addEventListener('blur', function () {
                 this.style.borderColor = ''; // Reset to default border color
             });
         });
     });
 
     var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-    var tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
         return new bootstrap.Tooltip(tooltipTriggerEl)
     })
+
+    document.addEventListener('DOMContentLoaded', function () {
+        // Handle click event on delete button
+        $('.delete-building-btn').on('click', function () {
+            var buildingId = $(this).data('building-id');
+            // Show SweetAlert confirmation dialog
+            Swal.fire({
+                title: 'Are you sure?',
+                text: 'You won\'t be able to revert this!',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // If user confirms deletion, submit the form
+                    $('#deleteForm'+buildingId).submit();
+                }
+            });
+        });
+    });
 
     $(document).ready(function() {
         $('#addBuildingForm').on('submit', function(e) {
@@ -228,5 +241,6 @@
             });
         });
     });
+
 </script>
 @endsection
