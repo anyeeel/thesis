@@ -14,10 +14,7 @@
                 <div class="container-fluid">
                     <div class="row mb-4">
                         <div class="col-lg-12">
-                            <div class="d-flex align-items-center">
-                                
-                                
-                                <!-- Live date and time display inside a box -->
+                            <div class="d-flex align-items-center">                              
                                 
                             </div>
                         </div><!--end col-->
@@ -90,23 +87,19 @@
                         <div class="card-body">
                             <div class="d-flex flex-wrap align-items-start">
                                 <h5 class="card-title me-2">Comparison of Total Energy Consumption: Meter vs Device Consumption</h5>
-                                <!-- <div class="ms-auto">
+                                <div class="ms-auto">
                                     <div class="toolbar d-flex flex-wrap gap-2 text-end">
-                                        <button type="button" class="btn btn-light btn-sm">
-                                            ALL
-                                        </button>
-                                        <button type="button" class="btn btn-light btn-sm">
-                                            1M
-                                        </button>
-                                        <button type="button" class="btn btn-light btn-sm">
-                                            6M
-                                        </button>
-                                        <button type="button" class="btn btn-light btn-sm active">
-                                            1Y
-                                        </button>
-                                        
+                                        <!-- Add this dropdown in your HTML -->
+                                        <select id="filterDropdown" class="form-select">
+                                            <option value="daily">Daily</option>
+                                            <option value="weekly">Weekly</option>
+                                            <option value="monthly">Monthly</option>
+                                            <option value="yearly">Yearly</option>
+                                        </select>
+
+                                                                                
                                     </div>
-                                </div> -->
+                                </div>
                             </div>
                             <div id="double-line-chart-container">
                                 <canvas id="double-line-chart" height="300"></canvas>
@@ -178,32 +171,83 @@
                        
                     </div>
                     <div class="row">
+                        @foreach($buildingEnergyData as $buildingName => $floorData)
+                            <div class="col-xl-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="card-title mb-4">{{ $buildingName }} Energy Consumption by Floor</h4>
+                                        <canvas id="buildingChart_{{ $loop->index }}" class="chartjs-chart" height="400"></canvas>
+                                    </div>
+                                </div>
+                            </div>
 
-                    @foreach($buildingEnergyData as $buildingName => $floorData)
-                        <div class="col-xl-6">
+                            <script>
+                                document.addEventListener("DOMContentLoaded", function () {
+                                    var ctx = document.getElementById('buildingChart_{{ $loop->index }}').getContext('2d');
+
+                                    
+                                    new Chart(ctx, {
+                                        type: 'bar',
+                                        data: {
+                                            labels: {!! json_encode(array_keys($floorData)) !!},
+                                            datasets: [{
+                                                label: 'Energy Consumption (kWh)',
+                                                data: {!! json_encode(array_values($floorData)) !!},
+                                                backgroundColor: 'rgba(128, 0, 0, 0.6)',
+                                                borderWidth: 1
+                                            }]
+                                        },
+                                        options: {
+                                            responsive: true,
+                                            maintainAspectRatio: false,
+                                            scales: {
+                                                y: {
+                                                    beginAtZero: true,
+                                                    title: {
+                                                        display: true,
+                                                        text: 'Energy Consumption (kWh)'
+                                                    }
+                                                },
+                                                x: {
+                                                    title: {
+                                                        display: true,
+                                                        text: 'Floor'
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    });
+                                });
+                            </script>
+                        @endforeach   
+                    </div> 
+                    
+                    <div class="row">
+                        @foreach($buildingDeviceCounts as $buildingName => $deviceCounts)
+                        <div class="col-lg-6">
                             <div class="card">
                                 <div class="card-body">
-                                    <h4 class="card-title mb-4">{{ $buildingName }} Energy Consumption by Floor</h4>
-                                    <canvas id="buildingChart_{{ $loop->index }}" class="chartjs-chart" height="400"></canvas>
+                                    <h4 class="card-title mb-4">{{ $buildingName }} Device Counts by Type</h4>
+                                    <canvas id="buildingDeviceChart_{{ $loop->index }}" class="chartjs-chart" height="400"></canvas>
                                 </div>
                             </div>
                         </div>
 
                         <script>
                             document.addEventListener("DOMContentLoaded", function () {
-                                var ctx = document.getElementById('buildingChart_{{ $loop->index }}').getContext('2d');
+                                var ctx = document.getElementById('buildingDeviceChart_{{ $loop->index }}').getContext('2d');
 
-                                
                                 new Chart(ctx, {
                                     type: 'bar',
                                     data: {
-                                        labels: {!! json_encode(array_keys($floorData)) !!},
+                                        labels: {!! json_encode($deviceCounts->keys()->toArray()) !!},
                                         datasets: [{
-                                            label: 'Energy Consumption (kWh)',
-                                            data: {!! json_encode(array_values($floorData)) !!},
-                                            backgroundColor: 'rgba(128, 0, 0, 0.6)',
+                                            label: 'Device Count',
+                                            data: {!! json_encode($deviceCounts->values()->toArray()) !!},
+                                            backgroundColor: 'rgba(54, 162, 235, 0.6)', // Example color
                                             borderWidth: 1
                                         }]
+
                                     },
                                     options: {
                                         responsive: true,
@@ -213,13 +257,13 @@
                                                 beginAtZero: true,
                                                 title: {
                                                     display: true,
-                                                    text: 'Energy Consumption (kWh)'
+                                                    text: 'Device Count'
                                                 }
                                             },
                                             x: {
                                                 title: {
                                                     display: true,
-                                                    text: 'Floor'
+                                                    text: 'Device Type'
                                                 }
                                             }
                                         }
@@ -227,19 +271,19 @@
                                 });
                             });
                         </script>
-                    @endforeach
-                                  
-
+                        @endforeach
+                    </div>                                
                 </div>
             </div> <!-- container-fluid -->
     </div>
-</div>
-<!-- END layout-wrapper -->
+</div> <!-- END layout-wrapper -->
+
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
     <script>
             document.addEventListener("DOMContentLoaded", function () {
+                
             // Retrieve data passed from the controller
             var labels = @json($pieLabels);
             var data = @json($pieData);
@@ -287,12 +331,12 @@
             });
 
          // Retrieve data passed from the controller
-         var labels = @json($labels);
+            var labels = @json($labels);
             var meterData = @json($meterData);
             var computedData = @json($computedData);
-            
+                
 
-            // Get the canvas element for the double line chart
+                // Get the canvas element for the double line chart
             var ctxDoubleLine = document.getElementById('double-line-chart').getContext('2d');
 
             // Create the double line chart
@@ -336,7 +380,7 @@
                 
             });
         });
-        
+   
         const buildingEnergyData = @json($buildingEnergyData);
 
         // Creating labels and datasets for Chart.js
@@ -426,29 +470,26 @@
         );
 
         function updateDateTime() {
-    var currentDate = new Date();
+        var currentDate = new Date();
 
-    // Date options
-    var dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-    var dateString = currentDate.toLocaleDateString('en-US', dateOptions);
+        // Date options
+        var dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        var dateString = currentDate.toLocaleDateString('en-US', dateOptions);
 
-    // Time options
-    var timeOptions = { hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true };
-    var timeString = currentDate.toLocaleTimeString('en-US', timeOptions);
+        // Time options
+        var timeOptions = { hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true };
+        var timeString = currentDate.toLocaleTimeString('en-US', timeOptions);
 
-    // Update date and time separately
-    document.getElementById("currentDate").innerText = dateString;
-    document.getElementById("currentTime").innerText = timeString;
-}
+        // Update date and time separately
+        document.getElementById("currentDate").innerText = dateString;
+        document.getElementById("currentTime").innerText = timeString;
+    }
 
-// Initial update
-updateDateTime();
+    // Initial update
+    updateDateTime();
 
-// Update every second
-setInterval(updateDateTime, 1000);
-
-
-        
+    // Update every second
+    setInterval(updateDateTime, 1000);    
      
     </script>
 @endsection
