@@ -95,6 +95,31 @@
                                                     </div>
                                                 </div>
                                             </div>
+
+                                            <div class="modal fade bs-example-modal-center" id="editRoomModal{{ $room->id }}" tabindex="-1" aria-labelledby="editRoomModal{{ $room->id }}Label" aria-hidden="true" style="position: absolute;">
+                                                <div class="modal-dialog modal-dialog-centered">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="editRoomModal{{ $room->id }}Label">Edit Room</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <form action="{{ route('rooms.update', $room->id) }}" method="POST">
+                                                            @csrf
+                                                            @method('PUT')
+                                                            <div class="modal-body">
+                                                                <div class="mb-3">
+                                                                    <label for="editRoomName" class="form-label">Room Name</label>
+                                                                    <input type="text" class="form-control" id="editRoomName" name="room_name" value="{{ $room->name }}">
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                                <button type="submit" class="btn btn-primary">Save changes</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         @endforeach
   
                                         <div class="col-xl-4 col-sm-6">
@@ -155,34 +180,6 @@
     </div><!-- /.modal -->
 
     <div id="successMessage" class="alert alert-success" role="alert" style="display: none;"></div>
-
-    <!-- edit room -->
-    @foreach($rooms as $room)
-        <div class="modal fade bs-example-modal-center" id="editRoomModal{{ $room->id }}" tabindex="-1" aria-labelledby="editRoomModal{{ $room->id }}Label" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="editRoomModal{{ $room->id }}Label">Edit Room</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <form action="{{ route('rooms.update', $room->id) }}" method="POST">
-                        @csrf
-                        @method('PUT')
-                        <div class="modal-body">
-                            <div class="mb-3">
-                                <label for="editRoomName" class="form-label">Room Name</label>
-                                <input type="text" class="form-control" id="editRoomName" name="room_name" value="{{ $room->room_name }}">
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Save changes</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    @endforeach
    
 
 <script>

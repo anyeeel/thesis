@@ -11,14 +11,7 @@
     <div class="main-content">
 
             <div class="page-content">
-                <div class="container-fluid">
-                    <div class="row mb-4">
-                        <div class="col-lg-12">
-                            <div class="d-flex align-items-center">                              
-                                
-                            </div>
-                        </div><!--end col-->
-                    </div><!--end row-->
+                <div class="container-fluid">                 
 
                 <!-- Total consumption card-->
                 <div class="row">
@@ -92,9 +85,7 @@
                                         <!-- Add this dropdown in your HTML -->
                                         <select id="filterDropdown" class="form-select">
                                             <option value="daily">Daily</option>
-                                            <option value="weekly">Weekly</option>
-                                            <option value="monthly">Monthly</option>
-                                            <option value="yearly">Yearly</option>
+                                            <option value="weekly">Weekly</option>                                            
                                         </select>
 
                                                                                 
@@ -330,56 +321,129 @@
                 }
             });
 
-         // Retrieve data passed from the controller
-            var labels = @json($labels);
-            var meterData = @json($meterData);
-            var computedData = @json($computedData);
-                
+            document.getElementById('filterDropdown').addEventListener('change', function () {
+        // Retrieve the selected value
+        var filterValue = this.value;
 
-                // Get the canvas element for the double line chart
-            var ctxDoubleLine = document.getElementById('double-line-chart').getContext('2d');
+        // Retrieve data passed from the controller
+        var labels = @json($labels);
+        var meterData = @json($meterData);
+        var computedData = @json($computedData);
 
-            // Create the double line chart
-            var myDoubleLineChart = new Chart(ctxDoubleLine, {
-                type: 'line',
-                data: {
-                    labels: labels,
-                    datasets: [{
-                        label: 'Metered Consumption',
-                        data: meterData,
-                        borderColor: 'rgba(110, 6, 6, 1)', 
-                        backgroundColor: 'rgba(110, 6, 6, 0.5)', 
-                    }, {
-                        label: 'Estimated Device Energy Usage',
-                        data: computedData,
-                        borderColor: 'rgba(255, 206, 86, 1)', 
-                        backgroundColor: 'rgba(255, 206, 86, 0.2)', 
+        // If weekly filter is selected, multiply daily data by 7
+        if (filterValue === 'weekly') {
+            labels = labels.filter(function (_, index) {
+                return index % 7 === 0; // Filter labels to show only weekly data
+            });
 
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        x: {
+            meterData = meterData.reduce(function (acc, val, index) {
+                if (index % 7 === 0) { // Sum up data for each week
+                    acc.push(meterData.slice(index, index + 7).reduce((a, b) => a + b, 0));
+                }
+                return acc;
+            }, []);
+
+            computedData = computedData.reduce(function (acc, val, index) {
+                if (index % 7 === 0) { // Sum up data for each week
+                    acc.push(computedData.slice(index, index + 7).reduce((a, b) => a + b, 0));
+                }
+                return acc;
+            }, []);
+        }
+
+        // Get the canvas element for the double line chart
+        var ctxDoubleLine = document.getElementById('double-line-chart').getContext('2d');
+
+        // Destroy previous chart instance if exists
+        if (window.myDoubleLineChart) {
+            window.myDoubleLineChart.destroy();
+        }
+
+        // Create the double line chart with updated data
+        window.myDoubleLineChart = new Chart(ctxDoubleLine, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Metered Consumption',
+                    data: meterData,
+                    borderColor: 'rgba(110, 6, 6, 1)', 
+                    backgroundColor: 'rgba(110, 6, 6, 0.5)', 
+                }, {
+                    label: 'Estimated Device Energy Usage',
+                    data: computedData,
+                    borderColor: 'rgba(255, 206, 86, 1)', 
+                    backgroundColor: 'rgba(255, 206, 86, 0.2)', 
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        display: true,
+                        title: {
                             display: true,
-                            title: {
-                                display: true,
-                                text: 'Date'
-                            }
-                        },
-                        y: {
+                            text: 'Date'
+                        }
+                    },
+                    y: {
+                        display: true,
+                        title: {
                             display: true,
-                            title: {
-                                display: true,
-                                text: 'Total Consumption (kWh)'
-                            }
+                            text: 'Total Consumption (kWh)'
                         }
                     }
                 }
-                
-            });
+            }
         });
+    });
+
+    // Initial chart setup with daily data
+    var labels = @json($labels);
+    var meterData = @json($meterData);
+    var computedData = @json($computedData);
+    var ctxDoubleLine = document.getElementById('double-line-chart').getContext('2d');
+
+    // Create the double line chart
+    window.myDoubleLineChart = new Chart(ctxDoubleLine, {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Metered Consumption',
+                data: meterData,
+                borderColor: 'rgba(110, 6, 6, 1)', 
+                backgroundColor: 'rgba(110, 6, 6, 0.5)', 
+            }, {
+                label: 'Estimated Device Energy Usage',
+                data: computedData,
+                borderColor: 'rgba(255, 206, 86, 1)', 
+                backgroundColor: 'rgba(255, 206, 86, 0.2)', 
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                x: {
+                    display: true,
+                    title: {
+                        display: true,
+                        text: 'Date'
+                    }
+                },
+                y: {
+                    display: true,
+                    title: {
+                        display: true,
+                        text: 'Total Consumption (kWh)'
+                    }
+                }
+            }
+        }
+    });
+});
    
         const buildingEnergyData = @json($buildingEnergyData);
 
