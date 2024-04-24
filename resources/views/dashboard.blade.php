@@ -174,9 +174,7 @@
 
                             <script>
                                 document.addEventListener("DOMContentLoaded", function () {
-                                    var ctx = document.getElementById('buildingChart_{{ $loop->index }}').getContext('2d');
-
-                                    
+                                    var ctx = document.getElementById('buildingChart_{{ $loop->index }}').getContext('2d');                                   
                                     new Chart(ctx, {
                                         type: 'bar',
                                         data: {
