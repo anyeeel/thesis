@@ -50,8 +50,8 @@
                                     <div class="card-body">
                                         <div class="d-flex">
                                             <div class="flex-grow-1">
-                                                <p class="text-muted fw-medium">Overall No. of Active Devices</p>
-                                                <h4 class="mb-0">{{ number_format($totalDevices) }}</h4>
+                                                <p class="text-muted fw-medium text-center">Overall No. of Active Devices</p>
+                                                <h4 class="mb-0 text-center">{{ number_format($totalDevices) }}</h4>
                                             </div>
                             
                                             <div class="flex-shrink-0 align-self-center">
