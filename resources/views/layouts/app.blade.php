@@ -69,8 +69,7 @@
         <script src="{{ asset('assets/js/pages/dashboard-blog.init.js') }}"></script>
         <!-- Modal -->
         <script src="{{ asset('assets/js/pages/modal.init.js') }}"></script>
-        <!-- dragula plugins -->
-        <script src="{{ asset('assets/libs/dragula/dragula.min.js') }}"></script>
+        
 
         <!-- App js -->
         <script src="{{ asset('assets/js/app.js') }}"></script>

@@ -7,6 +7,7 @@ use App\Models\Floor;
 use App\Models\Room;
 use App\Models\Devices;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class RoomController extends Controller
 {
@@ -19,7 +20,7 @@ class RoomController extends Controller
     {
         $floorId = $request->query('floor_id');
         $floor = Floor::where('id', $floorId)->get();
-        $rooms = Room::where('floor_id', $floorId)->get();
+        $rooms = Room::where('floor_id', $floorId)->paginate(10);
 
         $buildingId = Floor::where('id', $floorId)->pluck('building_id')->first();
         $building = Building::where('id', $buildingId)->get();

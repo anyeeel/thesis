@@ -17,7 +17,7 @@ class BuildingController extends Controller
     public function index()
     {
         // Fetch all buildings from the database
-        $buildings = Building::all();
+        $buildings = Building::paginate(10);
         
         // Pass the buildings data to the index view
         return view('buildings.index', ['buildings' => $buildings]);

@@ -21,9 +21,9 @@
                                     <ol class="breadcrumb m-0">
                                         <li class="breadcrumb-item"><a href="{{ route('buildings.index') }}">Buildings</a></li>
                                         @foreach($building as $building)
-                                        <li class="breadcrumb-item"><a href="">{{ $building->building_name }}</a></li>
+                                        <li class="breadcrumb-item"><a href="javascript:history.go(-2);">{{ $building->building_name }}</a></li>
                                         @endforeach
-                                        <li class="breadcrumb-item"><a href="" >{{ $floor->name}}</a></li>
+                                        <li class="breadcrumb-item"><a href="javascript:history.back();" >{{ $floor->name}}</a></li>
                                         
                                     </ol>
                                 </div>
@@ -121,7 +121,8 @@
                                                 </div>
                                             </div>
                                         @endforeach
-  
+  <!-- Pagination -->
+
                                         <div class="col-xl-4 col-sm-6">
                                             <div class="card shadow-none border" id="room">
                                                 <div class="card-body p-3 d-flex align-items-center justify-content-center">
@@ -131,7 +132,9 @@
                                                 </div>                                        
                                             </div>
                                         </div>
-                                           
+                                        <div class="d-flex justify-content-center">
+                            {{ $rooms->links() }}
+                        </div>
                                             <!-- end col -->
                                         </div>
                                         <!-- end row -->

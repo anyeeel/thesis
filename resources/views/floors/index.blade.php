@@ -17,7 +17,7 @@
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
                                     <li class="breadcrumb-item"><a href="{{ route ('buildings.index') }}">Buildings</a></li>
-                                    <li class="breadcrumb-item active"><a href="">{{ $building->building_name}}</a></li>
+                                    <li class="breadcrumb-item active"><a href="javascript:history.back();">{{ $building->building_name}}</a></li>
                                 </ol>
                             </div>
                         </div>

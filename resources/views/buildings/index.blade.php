@@ -86,7 +86,10 @@
                                             </div>
                                         </div>
                                         <!-- end col -->
-
+                                    <!-- Pagination -->
+                                    <div class="d-flex justify-content-center">
+                                        {{ $buildings->links() }}
+                                    </div>
                                     </div>
                                     <!-- end row -->
                                 </div>

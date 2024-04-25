@@ -22,6 +22,7 @@
 
             $buildingId = Floor::where('id', $floorId)->pluck('building_id')->first();
             $building = Building::where('id', $buildingId)->get();
+
     
             return view('devices.index', ['room_id' => $room_id, 'devices' => $devices, 'room' => $room, 'floorId' => $floorId, 'floor'=> $floor, 'buildingId' => $buildingId, 'building'=> $building]);
         }
@@ -115,6 +116,6 @@
             });
 
             return view('dashboard')->with(compact('pieLabels', 'pieData', 'polarLabels', 'polarData', 'overallTotalEnergy', 'totalDevices', 'buildingDeviceCounts'));
-        }
-                    
+        }   
+                 
 }
