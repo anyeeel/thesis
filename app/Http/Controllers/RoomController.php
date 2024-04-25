@@ -7,6 +7,7 @@ use App\Models\Floor;
 use App\Models\Room;
 use App\Models\Devices;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class RoomController extends Controller
 {
@@ -19,7 +20,7 @@ class RoomController extends Controller
     {
         $floorId = $request->query('floor_id');
         $floor = Floor::where('id', $floorId)->get();
-        $rooms = Room::where('floor_id', $floorId)->get();
+        $rooms = Room::where('floor_id', $floorId)->paginate(10);
 
         $buildingId = Floor::where('id', $floorId)->pluck('building_id')->first();
         $building = Building::where('id', $buildingId)->get();
@@ -59,8 +60,10 @@ class RoomController extends Controller
 
     public function update(Request $request, Room $room)
     {
-        $room->update($request->all());
-        return redirect()->route('rooms.index')->with('success','Room updated successfully');
+        $room = Room::findOrFail($room->id);
+        $room->name = $request->input('room_name');
+        $room->save();
+        return redirect()->back()->with('success','Room updated successfully');
     }
     
 

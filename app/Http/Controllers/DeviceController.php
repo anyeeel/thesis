@@ -22,6 +22,7 @@
 
             $buildingId = Floor::where('id', $floorId)->pluck('building_id')->first();
             $building = Building::where('id', $buildingId)->get();
+
     
             return view('devices.index', ['room_id' => $room_id, 'devices' => $devices, 'room' => $room, 'floorId' => $floorId, 'floor'=> $floor, 'buildingId' => $buildingId, 'building'=> $building]);
         }
@@ -108,9 +109,13 @@
         
             // Get the total number of devices
             $totalDevices = Devices::sum('active_quantity');
-        
-            // Pass data to the dashboard view
-            return view('dashboard')->with(compact('pieLabels', 'pieData', 'polarLabels', 'polarData', 'overallTotalEnergy', 'totalDevices'));
-        }
-        
+            $buildingDeviceCounts = Building::with('floors.rooms.devices')
+            ->get(['id', 'building_name'])
+            ->mapWithKeys(function ($building) {
+                return [$building->building_name => $building->floors->flatMap->rooms->flatMap->devices->groupBy('type')->map->count()];
+            });
+
+            return view('dashboard')->with(compact('pieLabels', 'pieData', 'polarLabels', 'polarData', 'overallTotalEnergy', 'totalDevices', 'buildingDeviceCounts'));
+        }   
+                 
 }

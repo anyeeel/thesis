@@ -45,7 +45,14 @@
         <script src="{{ asset('assets/libs/metismenu/metisMenu.min.js') }}"></script>
         <script src="{{ asset('assets/libs/simplebar/simplebar.min.js') }}"></script>
         <script src="{{ asset('assets/libs/node-waves/waves.min.js') }}"></script>
+        
+<!-- App favicon -->
+<link rel="shortcut icon" href="assets/images/favicon.ico">
 
+<!-- owl.carousel css -->
+<link rel="stylesheet" href="assets/libs/owl.carousel/assets/owl.carousel.min.css">
+
+<link rel="stylesheet" href="assets/libs/owl.carousel/assets/owl.theme.default.min.css">
 
         <script src="{{ asset('assets/js/pages/table-editable.int.js') }}"></script>
         <!--tinymce js-->
@@ -62,8 +69,7 @@
         <script src="{{ asset('assets/js/pages/dashboard-blog.init.js') }}"></script>
         <!-- Modal -->
         <script src="{{ asset('assets/js/pages/modal.init.js') }}"></script>
-        <!-- dragula plugins -->
-        <script src="{{ asset('assets/libs/dragula/dragula.min.js') }}"></script>
+        
 
         <!-- App js -->
         <script src="{{ asset('assets/js/app.js') }}"></script>

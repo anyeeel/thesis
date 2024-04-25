@@ -77,9 +77,7 @@
                                                         </div>
                                                         <div class="d-flex">
                                                             <div class="overflow-hidden me-auto">
-                                                                <h5 class="font-size-14 text-truncate mb-1"><a href="{{ route('floors.index', ['building_id' => $building->id]) }}" class="text-body">{{ $building->building_name }}</a></h5>
-
-
+                                                                <h5 class="font-size-14 text-truncate mb-1" id="buildingName"><a href="{{ route('floors.index', ['building_id' => $building->id]) }}" >{{ $building->building_name }}</a></h5>
                                                                 <p class="text-muted text-truncate mb-0">{{ $building->num_of_floors }} Floors</p>
                                                             </div>
                                                             
@@ -114,7 +112,10 @@
                                                 </div>
                                             </div>
 
-
+                                    <!-- Pagination -->
+                                    <div class="d-flex justify-content-center">
+                                        {{ $buildings->links() }}
+                                    </div>
                                     </div>
                                     <!-- end row -->
                                 </div>

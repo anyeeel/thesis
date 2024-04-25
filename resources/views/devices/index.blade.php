@@ -20,12 +20,12 @@
                                 <ol class="breadcrumb m-0">
                                 <li class="breadcrumb-item"><a href="{{ route('buildings.index') }}">Buildings</a></li>
                                         @foreach($building as $building)
-                                        <li class="breadcrumb-item"><a href="">{{ $building->building_name }}</a></li>
+                                        <li class="breadcrumb-item"><a href="javascript:history.go(-3);">{{ $building->building_name }}</a></li>
                                         @endforeach
                                         @foreach($floor as $floor)
-                                        <li class="breadcrumb-item"><a href="">{{ $floor->name }}</a></li>
+                                        <li class="breadcrumb-item"><a href="javascript:history.go(-2);">{{ $floor->name }}</a></li>
                                         @endforeach
-                                        <li class="breadcrumb-item">{{ $room->name}}</li>
+                                        <li class="breadcrumb-item"><a href="javascript:history.back();"> {{ $room->name}}</a></li>
                                 </ol>
                             </div>
                         </div>
@@ -54,21 +54,20 @@
                                     </div>
                 </div>
                                 <div class="d-flex align-items-center">
-                                    <h5 class="mb-0 card-title flex-grow-1">Devices List</h5>
+                                    <h5 class="mb-0 card-title flex-grow-1">
+                                    <div class="col-xxl-4 col-lg-6">
+                                        <!-- App Search-->
+                                    <form class="app-search d-none d-lg-block">
+                                        <div class="position-relative">
+                                            <input type="text" class="form-control" placeholder="Search...">
+                                            <span class="bx bx-search-alt"></span>
+                                        </div>
+                                    </form>
+                                    </div>
+                                    </h5>
                                     <div class="flex-shrink-0">
                                         <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                            data-bs-target="#addDeviceModal">Add New Device</button>
-                                        <a href="#!" class="btn btn-light"><i class="mdi mdi-refresh"></i></a>
-                                        <div class="dropdown d-inline-block">
-                                            <button type="menu" class="btn btn-success" id="dropdownMenuButton1"
-                                                data-bs-toggle="dropdown" aria-expanded="false"><i
-                                                    class="mdi mdi-dots-vertical"></i></button>
-                                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                                <li><a class="dropdown-item" href="#">Another action</a></li>
-                                                <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                            </ul>
-                                        </div>
+                                            data-bs-target="#addDeviceModal">Add New Device</button>                                        
                                     </div>
                                 </div>
                             </div>
@@ -315,43 +314,55 @@
 <!-- Modal for viewing device details -->
 @foreach($devices as $device)
 <div class="modal fade" id="viewDeviceModal{{ $device->id }}" tabindex="-1" role="dialog" aria-labelledby="viewDeviceModalLabel{{ $device->id }}" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="viewDeviceModalLabel{{ $device->id }}">View Device Details</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                
                 <!-- Display all device details here -->
-                <p><strong>Name:</strong> {{ $device->name }}</p>
-                <p><strong>Type:</strong> {{ $device->type }}</p>
-                <p><strong>Brand:</strong> {{ $device->brand }}</p>
-                <p><strong>Model:</strong> {{ $device->model }}</p>
-                <p><strong>Date Installed:</strong>
-                    @if(isset($device->installed_date))
-                        {{ \Carbon\Carbon::parse($device->installed_date)->format('m-d-Y') }}
-                    @else
-                        Not Specified
-                    @endif
-                </p>
-                <p><strong>Life Expectancy:</strong>
-                    @if(isset($device->life_expectancy))
-                        {{ $device->life_expectancy }}
-                    @else
-                        Not Specified
-                    @endif
-                </p>                
-                <p><strong>No. of Active:</strong> {{ $device->active_quantity }}</p>
-                <p><strong>No. of Inactive:</strong> {{ $device->inactive_quantity }}</p>
-                <p><strong>Power (watts):</strong> {{ $device->power }}</p>
-                <p><strong>Hours Used:</strong> {{ $device->hours_used }}</p>
-                <p><strong>Energy (kWh):</strong> {{ $device->energy }}</p>
+                <div class="row">
+                    <div class="col-md-5">
+                        <p><strong>Name:</strong> </p>
+                        <p><strong>Type:</strong> </p>
+                        <p><strong>Brand:</strong> </p>
+                        <p><strong>Model:</strong> </p>
+                        <p><strong>Date Installed:</strong>
+                        <p><strong>Life Expectancy:</strong></p>
+                        <p><strong>No. of Active:</strong> </p>
+                        <p><strong>No. of Inactive:</strong> </p>
+                        <p><strong>Power (watts):</strong> </p>
+                        <p><strong>Hours Used:</strong> </p>
+                        <p><strong>Energy (kWh):</strong> </p>
+                    </div>
+                    <div class="col-md-7">
+                        <p>{{ $device->name }}</p>
+                        <p>{{ $device->type }}</p>
+                        <p>{{ $device->brand }}</p>
+                        <p>{{ $device->model }}</p>
+                        <p>@if(isset($device->installed_date))
+                                {{ \Carbon\Carbon::parse($device->installed_date)->format('m-d-Y') }}
+                            @else
+                                Not Specified
+                            @endif</p>
+                        <p>
+                            @if(isset($device->life_expectancy))
+                                {{ $device->life_expectancy }}
+                            @else
+                                Not Specified
+                            @endif
+                        </p>                
+                        <p>{{ $device->active_quantity }}</p>
+                        <p>{{ $device->inactive_quantity }}</p>
+                        <p>{{ $device->power }}</p>
+                        <p>{{ $device->hours_used }}</p>
+                        <p> {{ $device->energy }}</p>
+                    </div>
+                </div>
             </div>
-
-        
-            <?php
-
+            <div class="modal-footer">
+                <?php
                 $installedDate = strtotime($device->installed_date); // Convert the installed date to a timestamp
                 $dateExpectancy = $device->life_expectancy; // Life expectancy of the device in years
 
@@ -365,15 +376,14 @@
                     $formattedReplacementDate = "Not Specified";
                 }
                 ?>
-
-                <div class="modal-footer">
-                <p>The device replacement date is</p>
-                    <strong>{{ $formattedReplacementDate }}</strong>
-                </div>
+                <p>The device replacement date is <strong>{{ $formattedReplacementDate }}</strong></p>
+            </div>
         </div>
     </div>
 </div>
 @endforeach
+
+
 
 
 <script>
@@ -399,23 +409,6 @@
         @endforeach
     });
 </script>
-<script>
-    $(document).ready(function() {
-        // Search button click event
-        $('#searchButton').click(function() {
-            var searchText = $('#searchInput').val().toLowerCase();
 
-            // Loop through each table row and hide/show based on search text
-            $('table tbody tr').each(function() {
-                var rowText = $(this).text().toLowerCase();
-                if (rowText.includes(searchText)) {
-                    $(this).show();
-                } else {
-                    $(this).hide();
-                }
-            });
-        });
-    });
-</script>
 
 @endsection

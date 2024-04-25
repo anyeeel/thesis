@@ -17,7 +17,7 @@
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
                                     <li class="breadcrumb-item"><a href="{{ route ('buildings.index') }}">Buildings</a></li>
-                                    <li class="breadcrumb-item active"><a href="">{{ $building->building_name}}</a></li>
+                                    <li class="breadcrumb-item active"><a href="javascript:history.back();">{{ $building->building_name}}</a></li>
                                 </ol>
                             </div>
                         </div>
@@ -33,18 +33,19 @@
 
                                 <div class="d-flex justify-content-between">
                                     <div class="page-title-right">
-                                        <div><a href="{{ route('buildings.index') }}" class="btn btn-secondary"><i class="bx bx-chevron-left"></i></a></div>
+                                        <a href="{{ route('buildings.index') }}"><i class="bx bx-left-arrow-alt bx-sm"></i></a>
                                     </div>
                                     
                                     <div class="page-title-left">
-                                        <span class="text-muted fw-medium">Total: </span>
-                                        <span class="font-size-14 mb-0">{{ number_format($building->totalEnergy(), 2) }} kWh</span>
+                                        <span class="text-muted fw-medium" >Total: </span>
+                                        <span class="font-size-15 mb-0" style="color: #6e0606; font-weight: 500;">{{ number_format($building->totalEnergy(), 2) }} kWh</span>
                                     </div>
                                 </div>
 
 
+
                                     @forelse ($floors as $floor)
-                                        <div class="col-xl-4 col-sm-6">
+                                        <div class="col-xl-4 col-sm-6 p-3">
                                             <div class="border p-3 rounded mt-4">
                                                 <div class="d-flex align-items-center mb-3">
                                                     <div class="avatar-xs me-3">
