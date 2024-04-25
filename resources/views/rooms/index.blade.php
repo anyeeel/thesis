@@ -39,13 +39,12 @@
                                 <div class="card-body">                              
                                         <div class="row">
                                             
-                                        <div class="d-flex justify-content-between">
-                                            <div class="d-flex justify-content-start">
+
+                                            <div class="d-flex justify-content-between">
                                                 <div class="page-title-right">
-                                                    <div><a href="{{ route('floors.index', ['building_id' => $building->id]) }}" class="btn btn-secondary"><i class="bx bx-chevron-left"></i></a></div>
+                                                    <a href="{{ route('floors.index', ['building_id' => $building->id]) }}"><i class="bx bx-left-arrow-alt bx-sm"></i></a>
                                                 </div>
-                                            </div>
-                                            
+                                                        
                                             <div class="page-title-left">
                                                 <span class="text-muted fw-medium">Total: </span>
                                                 <span class="font-size-14 mb-0">{{ number_format($floor->totalEnergy(), 2) }} kWh</span>

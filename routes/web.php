@@ -88,6 +88,8 @@ Route::get('/about', [AboutController::class,'index'])->name('about');
 
 
 Route::get('/search', [BuildingController::class, 'search'])->name('buildings_name.search');
+Route::get('/search', 'DeviceController@search')->name('devices.search');
+
 
 
 require __DIR__.'/auth.php';

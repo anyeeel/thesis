@@ -40,12 +40,12 @@
                         <div class="card">
                             <div class="card-body border-bottom">
                             <div class="row">
-                <div class="d-flex justify-content-between">
-                                        <div class="d-flex justify-content-start">
-                                            <div class="page-title-right">
-                                                <div><a href="{{ route('rooms.index', ['floor_id' => $floor->id]) }}" class="btn btn-secondary"><i class="bx bx-chevron-left"></i></a></div>
-                                            </div>
-                                        </div>
+               
+
+                                        <div class="d-flex justify-content-between">
+                                    <div class="page-title-right">
+                                        <a href="{{ route('rooms.index', ['floor_id' => $floor->id]) }}"><i class="bx bx-left-arrow-alt bx-sm"></i></a>
+                                    </div>
 
                                         <div class="page-title-left">
                                             <span class="text-muted fw-medium">Total: </span>
@@ -55,15 +55,15 @@
                 </div>
                                 <div class="d-flex align-items-center">
                                     <h5 class="mb-0 card-title flex-grow-1">
-                                    <div class="col-xxl-4 col-lg-6">
-                                        <!-- App Search-->
-                                    <form class="app-search d-none d-lg-block">
+                                     <!-- App Search -->
+                                        <div class="col-xxl-4 col-lg-6">
+                                        <form id="searchForm" class="app-search d-none d-lg-block" action="{{ route('devices.index', ['room_id' => $room_id]) }}" method="GET">
                                         <div class="position-relative">
-                                            <input type="text" class="form-control" placeholder="Search...">
-                                            <span class="bx bx-search-alt"></span>
+                                            <input type="text" class="form-control" id="searchInput" name="query" placeholder="Search..." value="{{ request('query') }}" autocomplete="off">
+                                            
                                         </div>
                                     </form>
-                                    </div>
+
                                     </h5>
                                     <div class="flex-shrink-0">
                                         <button type="button" class="btn btn-primary" data-bs-toggle="modal"
@@ -72,19 +72,12 @@
                                 </div>
                             </div>
                             
-                            <div class="card-body border-bottom">
-                                <div class="row g-3">
-                                    <div class="col-xxl-4 col-lg-6">
-                                        <input type="search" class="form-control" id="searchInput"
-                                            placeholder="Search for ...">
-                                    </div>
-                                </div>
-                            </div>
+            
 
                             <div class="card-body">
                                 <div class="table-responsive">
                                 <table class="table table-bordered align-middle nowrap" style="text-align: center;">
-
+                                
                                         <thead>
                                             <tr>
                                                 <th scope="col">No</th>
@@ -384,9 +377,29 @@
 @endforeach
 
 
-
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
+$(document).ready(function() {
+    // Bind event listener to the search input field
+    $('#searchInput').on('input', function() {
+        var searchTerm = $(this).val().toLowerCase(); // Get the search query and convert to lowercase
+        $('.table tbody tr').each(function() {
+            var deviceName = $(this).find('td:nth-child(2)').text().toLowerCase(); // Get the device name column text
+            var deviceBrand = $(this).find('td:nth-child(3)').text().toLowerCase(); // Get the device brand column text
+            var deviceType = $(this).find('td:nth-child(4)').text().toLowerCase(); // Get the device type column text
+            var deviceModel = $(this).find('td:nth-child(5)').text().toLowerCase(); // Get the device model column text
+
+            // Check if any of the columns contain the search term
+            if (deviceName.includes(searchTerm) || deviceBrand.includes(searchTerm) || deviceType.includes(searchTerm) || deviceModel.includes(searchTerm)) {
+                $(this).show(); // Show the row if any column contains the search term
+            } else {
+                $(this).hide(); // Hide the row if none of the columns contain the search term
+            }
+        });
+    });
+});
+
+
     $(document).ready(function() {
         // Handle form submission for each device edit modal
         @foreach($devices as $device)

@@ -24,6 +24,19 @@
             $building = Building::where('id', $buildingId)->get();
 
     
+            // Check if a search query is submitted
+    if ($request->has('query')) {
+        $searchTerm = $request->input('query');
+        $devices->where(function ($query) use ($searchTerm) {
+            $query->where('type', 'like', '%' . $searchTerm . '%')
+                ->orWhere('name', 'like', '%' . $searchTerm . '%')
+                ->orWhere('mode', 'like', '%' . $searchTerm . '%')
+                ->orWhere('brand', 'like', '%' . $searchTerm . '%');
+        });
+    }
+
+
+ 
             return view('devices.index', ['room_id' => $room_id, 'devices' => $devices, 'room' => $room, 'floorId' => $floorId, 'floor'=> $floor, 'buildingId' => $buildingId, 'building'=> $building]);
         }
     
@@ -73,6 +86,7 @@
             return redirect()->route('devices.index', ['room_id' => $device->room_id])->with('success','Device updated successfully');
         }
 
+        
         public function destroy($id)
         {
             $device = Devices::findOrFail($id);
