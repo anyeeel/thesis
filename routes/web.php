@@ -87,7 +87,7 @@ Route::get('/energy', [EnergyConsumptionController::class, 'index'])->name('ener
 Route::get('/about', [AboutController::class,'index'])->name('about');
 
 
-Route::get('/search', [BuildingController::class, 'search'])->name('buildings_name.search');
+Route::get('/search/buildings', 'BuildingController@search')->name('buildings.search');
 Route::get('/search', 'DeviceController@search')->name('devices.search');
 
 

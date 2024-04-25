@@ -34,15 +34,18 @@
 
                                 <div class="card-body border-bottom">
                                 <div class="row g-3">
+                               <!-- Add a search input field -->
                                 <div class="col-xxl-4 col-lg-6">
-                                <div class="input-group">
-                                    <input type="search" class="form-control" id="searchInput" placeholder="Search for ...">
-                                    <button class="btn btn-primary" id="searchButton">Search</button>
-                                </div>
-                            </div>
-                            <div id="searchResults"></div>
+                                <form id="searchForm" class="app-search d-none d-lg-block" action="{{ route('buildings.index') }}" method="GET">
+                                    <div class="position-relative">
+                                        <input type="text" class="form-control" id="searchInput" name="query" placeholder="Search for buildings..." value="{{ request('query') }}" autocomplete="off">
+                           
+                                    </div>
+                                </form>
 
-                            </div>
+                                </div>
+                                <div id="searchResults"></div>
+
                           </div>
 
                                     <div class="row">
@@ -194,8 +197,64 @@
     </div>
 </div>
 @endforeach
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    // Function to handle search
+    function search() {
+        // Get the search query from the input field
+        var query = document.getElementById('searchInput').value;
+
+        // Send AJAX request to backend
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', '/search/buildings?query=' + encodeURIComponent(query), true);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    // Handle successful response
+                    var response = JSON.parse(xhr.responseText);
+                    // Update UI with search results
+                    displayResults(response.buildings);
+                } else {
+                    // Handle error response
+                    console.error('Error:', xhr.status);
+                }
+            }
+        };
+        xhr.send();
+    }
+
+   // Function to display search results
+function displayResults(buildings) {
+    // Hide all building cards initially
+    var buildingCards = document.querySelectorAll('.card.shadow-none.border');
+    buildingCards.forEach(function (card) {
+        card.style.display = 'none';
+    });
+
+    // Show only the cards of the buildings that match the search query
+    buildings.forEach(function (building) {
+        var buildingCard = document.querySelector(`#building-${building.id}`);
+        if (buildingCard) {
+            buildingCard.style.display = 'block';
+        }
+    });
+}
+
+    
+    // Function to handle search button click
+    document.getElementById('searchButton').addEventListener('click', function () {
+        search();
+    });
+
+    // Add event listener to the search input field to handle live search
+    document.getElementById('searchInput').addEventListener('input', function () {
+        // Call the search function when the user types in the search input field
+        search();
+    });
+</script>
 
 <script>
+//form
     document.addEventListener('DOMContentLoaded', function () {
         // Get all input fields in the form
         const inputs = document.querySelectorAll('.form-control');
