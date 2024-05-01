@@ -9,6 +9,10 @@ use App\Http\Controllers\RoomController;
 use App\Http\Controllers\DeviceController;
 use App\Http\Controllers\EnergyConsumptionController;   
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\featuresController;
+use App\Http\Controllers\faqsController;
+use App\Http\Controllers\piechartController;
+use App\Http\Controllers\BarChartController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -85,6 +89,10 @@ Route::get('/dashboard', function () {
 
 Route::get('/energy', [EnergyConsumptionController::class, 'index'])->name('energy.index');
 Route::get('/about', [AboutController::class,'index'])->name('about');
+Route::get('/features', [featuresController::class,'index'])->name('features');
+Route::get('/faqs', [faqsController::class,'index'])->name('faqs');
+Route::get('/piechart', [piechartController::class,'index'])->name('piechart');
+Route::get('/barchart', [BarChartController::class,'index'])->name('barchart');
 
 
 Route::get('/search/buildings', 'BuildingController@search')->name('buildings.search');

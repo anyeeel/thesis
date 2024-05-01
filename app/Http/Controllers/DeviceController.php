@@ -40,10 +40,10 @@
             return view('devices.index', ['room_id' => $room_id, 'devices' => $devices, 'room' => $room, 'floorId' => $floorId, 'floor'=> $floor, 'buildingId' => $buildingId, 'building'=> $building]);
         }
     
+       
+
         public function store(Request $request)
         {
-            
-
             // Validate incoming request data
             $validatedData = $request->validate([
                 'room_id' => 'required|exists:rooms,id',
@@ -55,20 +55,23 @@
                 'model' => 'required|string',
                 'installed_date' => 'nullable|date',
                 'life_expectancy' => 'nullable|integer',
-                'power' => 'required|integer',
-                'hours_used' => 'required|integer',
+                'power' => 'required|numeric', // Updated to allow decimal values
+                'hours_used' => 'required|numeric', // Updated to allow decimal values
             ]);
         
-        
-            // Calculate and set energy before storing
-            
-
+            // Create the device
             $device = Devices::create($validatedData);
-            $room_id = $request->input ('room_id');
         
-            // Redirect back with success message or handle it in your preferred way
-            return redirect()->route('devices.index', ['room_id' => $room_id])->with('success', 'Device added successfully!');
+            // Check if the device was created successfully
+            if ($device) {
+                // Redirect back to the devices index page with a success message
+                return redirect()->route('devices.index', ['room_id' => $validatedData['room_id']])->with('success', 'Device added successfully!');
+            } else {
+                // Redirect back with an error message
+                return redirect()->back()->with('error', 'Failed to add device. Please try again.');
+            }
         }
+        
     
         public function show(Devices $device)
         {

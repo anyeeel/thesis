@@ -34,14 +34,15 @@
 
                                 <div class="card-body border-bottom">
                                 <div class="row g-3">
-                               <!-- Add a search input field -->
+                               <!-- Add a search input field 
                                 <div class="col-xxl-4 col-lg-6">
                                 <form id="searchForm" class="app-search d-none d-lg-block" action="{{ route('buildings.index') }}" method="GET">
                                     <div class="position-relative">
                                         <input type="text" class="form-control" id="searchInput" name="query" placeholder="Search for buildings..." value="{{ request('query') }}" autocomplete="off">
                            
                                     </div>
-                                </form>
+                                </form>-->
+
 
                                 </div>
                                 <div id="searchResults"></div>

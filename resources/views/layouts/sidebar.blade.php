@@ -9,13 +9,23 @@
             <!-- Left Menu Start -->
             <ul class="metismenu list-unstyled" id="side-menu">
                 <li class="menu-title" key="t-menu">Menu</li>
-
                 <li>
                     <a href="{{ route('dashboard') }}" class="waves-effect">
                         <i class="bx bx-home-circle"></i>
                         <span key="t-dashboards">Dashboard</span>
                     </a>
                 </li>
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                    <i class="fas fa-chart-bar"></i>
+                        <span key="t-dashboards">Data Visualization</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="{{ route('piechart') }}" key="t-saas">Pie Chart</a></li>
+                        <li><a href="{{ route('barchart') }}" key="t-crypto">Bar Chart</a></li>
+                    </ul>
+                </li>
+              
 
                 <li>
                     <a href="{{ route('buildings.index') }}" class="waves-effect">
@@ -30,13 +40,19 @@
                         <span key="t-layouts">Energy Consumption</span>
                     </a>
                 </li>
-
                 <li>
-                    <a href="{{ route('about') }}" class="waves-effect">
-                        <i class="bx bxs-group"></i>
-                        <span key="t-layouts">About Us</span>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="bx bx-home-circle"></i>
+                        <span key="t-dashboards">About Us</span>
                     </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="{{ route('about') }}" key="t-default">What is EMS</a></li>
+                        <li><a href="{{ route('features') }}" key="t-saas">Features</a></li>
+                        <li><a href="{{ route('faqs') }}" key="t-crypto">FAQs</a></li>
+                     
+                    </ul>
                 </li>
+              
 
 
                 @can(['create-user', 'edit-user', 'delete-user'])
