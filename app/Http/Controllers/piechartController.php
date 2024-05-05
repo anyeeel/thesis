@@ -7,11 +7,38 @@ use App\Models\Devices;
 use App\Models\Room;
 use App\Models\Floor;
 use App\Models\Building;
+use App\Models\EnergyMeterConsumption;
+use App\Models\EnergyComputedConsumption;
+
 
 class PiechartController extends Controller
 {
     public function index()
         {
+             // Retrieve all buildings
+        $buildings = Building::all();
+    
+        // Count the total number of buildings
+        $totalBuildings = $buildings->count();
+    
+        // Prepare data for building energy consumption
+        $buildingEnergyData = [];
+    
+        // Iterate over each building to calculate energy consumption for each floor
+        foreach ($buildings as $building) {
+            $floorsData = [];
+            foreach ($building->floors as $floor) {
+                $floorsData[$floor->name] = $floor->totalEnergy();
+            }
+            $buildingEnergyData[$building->building_name] = $floorsData;
+        }
+
+            $meterConsumptions = EnergyMeterConsumption::pluck('consumption', 'date')->toArray();
+            $computedConsumptions = EnergyComputedConsumption::pluck('computed_consumption', 'date')->toArray();
+        
+            $labels = array_keys($meterConsumptions); // Assuming both tables have same dates
+            $meterData = array_values($meterConsumptions);
+            $computedData = array_values($computedConsumptions);
             // Retrieve data for the pie chart (total energy consumption by device types)
             $deviceTypes = Devices::groupBy('type')
                 ->selectRaw('type, SUM(active_quantity * power * hours_used / 1000) AS total_energy_consumption')
@@ -44,7 +71,7 @@ class PiechartController extends Controller
                 return [$building->building_name => $building->floors->flatMap->rooms->flatMap->devices->groupBy('type')->map->count()];
             });
 
-            return view('piechart')->with(compact('pieLabels', 'pieData', 'polarLabels', 'polarData', 'overallTotalEnergy', 'totalDevices', 'buildingDeviceCounts'));
+            return view('piechart')->with(compact('labels','totalBuildings', 'buildingEnergyData', 'meterData', 'computedData','pieLabels', 'pieData', 'polarLabels', 'polarData', 'overallTotalEnergy', 'totalDevices', 'buildingDeviceCounts'));
         }   
                  
 }
