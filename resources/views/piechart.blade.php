@@ -255,7 +255,7 @@
 
         // Create the polar area chart
         var myPolarChart = new Chart(ctxPolar, {
-            type: 'polarArea',
+            type: 'pie',
             data: {
                 labels: polarLabels,
                 datasets: [{

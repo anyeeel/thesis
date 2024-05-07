@@ -20,7 +20,7 @@
                                     <div class="card-body">
                                         <div class="d-flex">
                                             <div class="flex-grow-1">
-                                                <p class="text-muted fw-medium text-center">Overall Energy Consumption</p>
+                                                <p class="text-muted fw-medium text-center">Overall Energy Consumption (kWh)</p>
                                                 <h4 class="mb-0 text-center">{{ number_format($overallTotalEnergy, 2) }} kWh</h4>
                                             </div>
                                 
@@ -110,14 +110,14 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <h4 class="card-title mb-4">Estimated Total Consumption of Device Types</h4>
+                                    <h4 class="card-title mb-4">Estimated Weekly Consumption of Device Types (kWh)</h4>
                                     <button type="button" class="btn btn-l btn-secondary" id="infoBtn" data-toggle="modal" data-target="#deviceTypesModal">
                                         <i class="fas fa-info-circle"></i>
                                     </button>
 
                                 </div>
                                 <canvas id="pieChart" class="chartjs-chart" width="600" height="600"></canvas> <!-- Adjust width and height here -->
-                                <p class="text-muted mt-3"><em><strong>Note:</strong> Estimated Total consumption reflects user-input device usage, not meter readings.</em></p>
+                                <p class="text-muted mt-3"><em><strong>Note:</strong> Estimated consumption reflects user-input device usage, not meter readings.</em></p>
                             </div>
                         </div>
                     </div>
@@ -125,7 +125,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <h4 class="card-title mb-4">Estimated Total Consumption of Device Types</h4>
+                                    <h4 class="card-title mb-4">Estimated Weekly Consumption of Device Types (kWh)</h4>
                                     <button type="button" class="btn btn-l btn-secondary" id="infoBtn" data-toggle="modal" data-target="#deviceTypesModal">
                                         <i class="fas fa-info-circle"></i>
                                     </button>
@@ -137,7 +137,16 @@
                         </div>
                     </div>
 
-                    
+                    <div class="row">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h4 class="card-title mb-4">Estimated Weekly Total Consumption of Peripheral Devices (kWh)</h4>
+                            </div>
+                            <canvas id="outputDevicePieChart" class="chartjs-chart" width="600" height="600"></canvas>
+                        </div>
+                    </div>
+                </div>
                 </div>
                 
             </div>
@@ -148,7 +157,7 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="deviceTypesModalLabel">What are Device Types</h5>
+                    <h5 class="modal-title" id="deviceTypesModalLabel">What are Device Types?</h5>
                    
                 </div>
                 <div class="modal-body">
@@ -157,7 +166,7 @@
                         <li><strong style="color: rgba(54, 162, 235, 0.6);">Desktop:</strong> Desktop computers, monitors, printers - These devices are powered by electricity and are commonly found in computer labs, administrative offices, and libraries.</li><br>
                         <li><strong style="color: rgba(255, 206, 86, 0.6);">HVAC (Heating, Ventilation, and Air Conditioning):</strong> Air conditioning units, electric heaters, ventilation fans - HVAC systems require electricity to regulate temperature and air quality throughout the building.</li><br>
                         <li><strong style="color: rgba(75, 192, 192, 0.6);">Lighting:</strong> Overhead lights, emergency exit signs, decorative lighting fixtures - Lighting fixtures are powered by electricity and play a crucial role in illuminating indoor spaces for visibility and safety.</li><br>
-                        <li><strong style="color: rgba(153, 102, 255, 0.6);">Output:</strong> Output devices are used to display information or produce tangible outputs. This category includes printers, projectors, and screens that facilitate the dissemination of information, presentations, and educational materials.</li>
+                        <li><strong style="color: rgba(153, 102, 255, 0.6);">Peripheral:</strong> Peripheral devices are used to display information or produce tangible outputs. This category includes printers, projectors, and screens that facilitate the dissemination of information, presentations, and educational materials.</li>
                     </ul>
                 </div>
             </div>
@@ -169,7 +178,39 @@
 
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Retrieve data for the peripheral device pie chart
+            var outputDeviceLabels = @json($outputDeviceLabels);
+            var outputDeviceData = @json($outputDeviceData);
 
+            // Get the canvas element for the peripheral device pie chart
+            var ctxOutputDevicePie = document.getElementById('outputDevicePieChart').getContext('2d');
+
+            // Create the peripheral device pie chart
+            var outputDevicePieChart = new Chart(ctxOutputDevicePie, {
+                type: 'pie',
+                data: {
+                    labels: outputDeviceLabels,
+                    datasets: [{
+                        data: outputDeviceData,
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.6)', // Red
+                            'rgba(54, 162, 235, 0.6)', // Blue
+                            'rgba(255, 206, 86, 0.6)', // Yellow
+                            'rgba(75, 192, 192, 0.6)', // Green
+                            'rgba(153, 102, 255, 0.6)' // Purple
+                            // Add more colors if needed
+                        ]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false
+                }
+            });
+        });
+    </script>
     <script>
             document.addEventListener("DOMContentLoaded", function () {
                 
@@ -368,7 +409,8 @@
         });
         
         });
-        
+
+
         // Retrieve data passed from the controller
         var polarLabels = @json($polarLabels);
         var polarData = @json($polarData);
@@ -405,6 +447,8 @@
                 maintainAspectRatio: false
             }
         });
+
+        
 
         // Configuration for the chart
         const config = {
@@ -452,6 +496,8 @@
 
     // Update every second
     setInterval(updateDateTime, 1000);    
+
+    
      
 </script>
 @endsection

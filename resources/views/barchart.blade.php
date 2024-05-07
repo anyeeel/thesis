@@ -23,7 +23,7 @@
                         @endforeach
                     </select>
                 </div>
-                <div id="chartContainer" class="row justify-content-center"></div>
+                <div id="chartContainer" class="row justify-content-center" style="margin-top: 1rem;"></div>
             </div>
         </div>
     </div>
@@ -38,7 +38,7 @@
                         @endforeach
                     </select>
                 </div>
-                <div id="chartContainer2" class="row justify-content-center"></div>
+                <div id="chartContainer2" class="row justify-content-center" style="margin-top: 1rem;"></div>
             </div>
         </div>
     </div>

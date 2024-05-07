@@ -21,7 +21,7 @@
                         <span key="t-dashboards">Data Visualization</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="{{ route('piechart') }}" key="t-saas">Pie Chart</a></li>
+                        <li><a href="{{ route('piechart') }}" key="t-saas">Device & Building Stats</a></li>
                         <li><a href="{{ route('barchart') }}" key="t-crypto">Bar Chart</a></li>
                     </ul>
                 </li>
