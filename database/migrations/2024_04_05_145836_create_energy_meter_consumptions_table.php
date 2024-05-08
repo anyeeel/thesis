@@ -14,7 +14,8 @@ class CreateEnergyMeterConsumptionsTable extends Migration
         Schema::create('energy_meter_consumptions', function (Blueprint $table) {
             $table->id();
             $table->date('date');
-            $table->float('consumption');
+            $table->time('time');
+            $table->float('kilowatts_per_hour');
             $table->timestamps();
         });
     }

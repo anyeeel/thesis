@@ -84,11 +84,10 @@
                                     <div class="toolbar d-flex flex-wrap gap-2 text-end">
                                         <!-- Add this dropdown in your HTML -->
                                         <select id="filterDropdown" class="form-select">
+                                            <option value="hourly" selected>Hourly</option>
                                             <option value="daily">Daily</option>
                                             <option value="weekly">Weekly</option>                                            
-                                        </select>
-
-                                                                                
+                                        </select>                                            
                                     </div>
                                 </div>
                             </div>
@@ -122,9 +121,9 @@
                                     <h4 class="card-title mb-4">What are Device Types</h4>
                                         <ul class="list-unstyled">
                                             <li><strong style="color: rgba(255, 99, 132, 0.6);">Appliance:</strong> Refrigerators, microwaves, water coolers, vending machines - These devices consume electrical power for their operation and are typically found in common areas such as break rooms, cafeterias, or dormitories.</li><br>
-                                            <li><strong style="color: rgba(54, 162, 235, 0.6);">Desktop:</strong> Desktop computers, monitors, printers - These devices are powered by electricity and are commonly found in computer labs, administrative offices, and libraries.</li><br>
+                                            <li><strong style="color: rgba(54, 162, 235, 0.6);">Desktop:</strong> These devices such as computers and televisions are powered by electricity and are commonly found in computer labs, administrative offices, and classrooms.</li><br>
                                             <li><strong style="color: rgba(255, 206, 86, 0.6);">HVAC (Heating, Ventilation, and Air Conditioning):</strong> Air conditioning units, electric heaters, ventilation fans - HVAC systems require electricity to regulate temperature and air quality throughout the building.</li><br>
-                                            <li><strong style="color: rgba(75, 192, 192, 0.6);">Lighting:</strong> Overhead lights, emergency exit signs, decorative lighting fixtures - Lighting fixtures are powered by electricity and play a crucial role in illuminating indoor spaces for visibility and safety.</li><br>
+                                            <li><strong style="color: rgba(75, 192, 192, 0.6);">Lighting:</strong> Overhead lights, decorative lighting fixtures - Lighting fixtures are powered by electricity and play a crucial role in illuminating indoor spaces for visibility and safety.</li><br>
                                             <li><strong style="color: rgba(153, 102, 255, 0.6);">Output:</strong> Output devices are used to display information or produce tangible outputs. This category includes printers, projectors, and screens that facilitate the dissemination of information, presentations, and educational materials.</li>
                                         </ul>
                                     </div>
@@ -268,9 +267,94 @@
 </div> <!-- END layout-wrapper -->
 
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    
-    <script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+        document.addEventListener("DOMContentLoaded", function () {
+    // Function to update the double line chart based on filter value
+    function updateDoubleLineChart(labels, meterData, computedData) {
+        // Get the canvas element for the double line chart
+        var ctxDoubleLine = document.getElementById('double-line-chart').getContext('2d');
+
+        // Destroy previous chart instance if exists
+        if (window.myDoubleLineChart) {
+            window.myDoubleLineChart.destroy();
+        }
+
+        // Create the double line chart with updated data
+        window.myDoubleLineChart = new Chart(ctxDoubleLine, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Metered Consumption',
+                    data: meterData,
+                    borderColor: 'rgba(110, 6, 6, 1)',
+                    backgroundColor: 'rgba(110, 6, 6, 0.5)',
+                }, {
+                    label: 'Estimated Device Energy Usage',
+                    data: computedData,
+                    borderColor: 'rgba(255, 206, 86, 1)',
+                    backgroundColor: 'rgba(255, 206, 86, 0.2)',
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        display: true,
+                        title: {
+                            display: true,
+                            text: 'Time'
+                        }
+                    },
+                    y: {
+                        display: true,
+                        title: {
+                            display: true,
+                            text: 'Total Consumption (kWh)'
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    // Initial data for the double line chart
+    var labels = @json($labelsHourly);
+    var meterData = @json($meterDataHourly);
+    var computedData = @json($computedDataHourly);
+
+    // Update the double line chart with hourly data
+    updateDoubleLineChart(labels, meterData, computedData);
+
+    // Dropdown change event listener
+    document.getElementById('filterDropdown').addEventListener('change', function () {
+        // Retrieve the selected value
+        var filterValue = this.value;
+
+        // Update chart data based on filter value
+        if (filterValue === 'hourly') {
+            labels = @json($labelsHourly);
+            meterData = @json($meterDataHourly);
+            computedData = @json($computedDataHourly);
+        } else if (filterValue === 'daily') {
+            labels = @json($labelsDaily);
+            meterData = @json($meterDataDaily);
+            computedData = @json($computedDataDaily);
+        } else if (filterValue === 'weekly') {
+            labels = @json($weeklyLabels);
+                meterData = @json($weeklyMeterData);
+                computedData = @json($weeklyComputedData);
+        }
+
+        // Update the double line chart with new data
+        updateDoubleLineChart(labels, meterData, computedData);
+    });
+    });
+
+</script>
+<script>
             document.addEventListener("DOMContentLoaded", function () {
                 
             // Retrieve data passed from the controller
@@ -319,129 +403,7 @@
                 }
             });
 
-            document.getElementById('filterDropdown').addEventListener('change', function () {
-        // Retrieve the selected value
-        var filterValue = this.value;
-
-        // Retrieve data passed from the controller
-        var labels = @json($labels);
-        var meterData = @json($meterData);
-        var computedData = @json($computedData);
-
-        // If weekly filter is selected, multiply daily data by 7
-        if (filterValue === 'weekly') {
-            labels = labels.filter(function (_, index) {
-                return index % 7 === 0; // Filter labels to show only weekly data
-            });
-
-            meterData = meterData.reduce(function (acc, val, index) {
-                if (index % 7 === 0) { // Sum up data for each week
-                    acc.push(meterData.slice(index, index + 7).reduce((a, b) => a + b, 0));
-                }
-                return acc;
-            }, []);
-
-            computedData = computedData.reduce(function (acc, val, index) {
-                if (index % 7 === 0) { // Sum up data for each week
-                    acc.push(computedData.slice(index, index + 7).reduce((a, b) => a + b, 0));
-                }
-                return acc;
-            }, []);
-        }
-
-        // Get the canvas element for the double line chart
-        var ctxDoubleLine = document.getElementById('double-line-chart').getContext('2d');
-
-        // Destroy previous chart instance if exists
-        if (window.myDoubleLineChart) {
-            window.myDoubleLineChart.destroy();
-        }
-
-        // Create the double line chart with updated data
-        window.myDoubleLineChart = new Chart(ctxDoubleLine, {
-            type: 'line',
-            data: {
-                labels: labels,
-                datasets: [{
-                    label: 'Metered Consumption',
-                    data: meterData,
-                    borderColor: 'rgba(110, 6, 6, 1)', 
-                    backgroundColor: 'rgba(110, 6, 6, 0.5)', 
-                }, {
-                    label: 'Estimated Device Energy Usage',
-                    data: computedData,
-                    borderColor: 'rgba(255, 206, 86, 1)', 
-                    backgroundColor: 'rgba(255, 206, 86, 0.2)', 
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    x: {
-                        display: true,
-                        title: {
-                            display: true,
-                            text: 'Date'
-                        }
-                    },
-                    y: {
-                        display: true,
-                        title: {
-                            display: true,
-                            text: 'Total Consumption (kWh)'
-                        }
-                    }
-                }
-            }
-        });
     });
-
-    // Initial chart setup with daily data
-    var labels = @json($labels);
-    var meterData = @json($meterData);
-    var computedData = @json($computedData);
-    var ctxDoubleLine = document.getElementById('double-line-chart').getContext('2d');
-
-    // Create the double line chart
-    window.myDoubleLineChart = new Chart(ctxDoubleLine, {
-        type: 'line',
-        data: {
-            labels: labels,
-            datasets: [{
-                label: 'Metered Consumption',
-                data: meterData,
-                borderColor: 'rgba(110, 6, 6, 1)', 
-                backgroundColor: 'rgba(110, 6, 6, 0.5)', 
-            }, {
-                label: 'Estimated Device Energy Usage',
-                data: computedData,
-                borderColor: 'rgba(255, 206, 86, 1)', 
-                backgroundColor: 'rgba(255, 206, 86, 0.2)', 
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            scales: {
-                x: {
-                    display: true,
-                    title: {
-                        display: true,
-                        text: 'Date'
-                    }
-                },
-                y: {
-                    display: true,
-                    title: {
-                        display: true,
-                        text: 'Total Consumption (kWh)'
-                    }
-                }
-            }
-        }
-    });
-});
    
         const buildingEnergyData = @json($buildingEnergyData);
 
@@ -553,5 +515,5 @@
     // Update every second
     setInterval(updateDateTime, 1000);    
      
-    </script>
+</script>
 @endsection

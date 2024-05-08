@@ -14,7 +14,8 @@ class CreateEnergyComputedConsumptionsTable extends Migration
         Schema::create('energy_computed_consumptions', function (Blueprint $table) {
             $table->id();
             $table->date('date');
-            $table->float('computed_consumption');
+            $table->time('time');
+            $table->float('kilowatts_per_hour');
             $table->timestamps();
         });
     }

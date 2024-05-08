@@ -80,9 +80,9 @@
                                                 <td>{{ $device->type }}</td>
                                                 <td>{{ $device->active_quantity }}</td> 
                                                 <td>{{ $device->inactive_quantity }}</td>                                           
-                                                <td>{{ $device->power }}</td>
-                                                <td>{{ $device->hours_used }}</td>
-                                                <td>{{ $device->energy }}</td>
+                                                <td>{{ number_format($device->power, 2) }}</td>
+                                                <td>{{ number_format($device->hours_used, 2) }}</td>
+                                                <td>{{ number_format($device->energy, 2) }}</td>
                                                 <td>
                                                 <ul class="list-unstyled hstack gap-1 mb-0">
                                                     <!-- View button in the loop -->
@@ -329,9 +329,9 @@
                         </p>                
                         <p>{{ $device->active_quantity }}</p>
                         <p>{{ $device->inactive_quantity }}</p>
-                        <p>{{ $device->power }}</p>
-                        <p>{{ $device->hours_used }}</p>
-                        <p> {{ $device->energy }}</p>
+                        <p>{{ number_format($device->power, 2) }}</p>
+                        <p>{{ number_format($device->hours_used, 2) }}</p>
+                        <p>{{ number_format($device->energy, 2) }}</p>
                     </div>
                 </div>
             </div>

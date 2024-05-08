@@ -19,9 +19,9 @@ class CreateDevicesTable extends Migration
             $table->string('model');
             $table->date('installed_date')->nullable();
             $table->integer('life_expectancy')->nullable(); // in years
-            $table->integer('power'); // in watts
-            $table->integer('hours_used'); // in hours
-            $table->float('energy')->virtualAs('active_quantity * power * hours_used / 1000'); // in kWh
+            $table->decimal('power', 10, 4); // in watts, with a total of 10 digits and 2 decimal places
+            $table->decimal('hours_used', 10, 4); // in hours, with a total of 10 digits and 2 decimal places
+            $table->decimal('energy', 10, 4)->virtualAs('active_quantity * power * hours_used / 1000'); // in kWh, with a total of 10 digits and 2 decimal places
             $table->timestamps();
 
             $table->foreign('room_id')->references('id')->on('rooms')->onDelete('cascade');

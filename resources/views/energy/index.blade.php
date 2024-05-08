@@ -29,14 +29,16 @@
                                 <thead>
                                     <tr>
                                         <th>Date</th>
-                                        <th>Consumption</th>
+                                        <th>Time</th>
+                                        <th>KiloWatts per Hour</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach($meterConsumptions as $consumption)
                                     <tr>
                                         <td>{{ $consumption->date }}</td>
-                                        <td>{{ $consumption->consumption }}</td>
+                                        <td>{{ $consumption->time }}</td>
+                                        <td>{{ $consumption->kilowatts_per_hour }}</td>
                                     </tr>
                                     @endforeach
                                 </tbody>
@@ -58,13 +60,15 @@
                                 <thead>
                                     <tr>
                                         <th>Date</th>
-                                        <th>Computed Consumption</th>
+                                        <th>Time</th>
+                                        <th>KiloWatts per Hour</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach($computedConsumptions as $computed)
                                     <tr>
                                         <td>{{ $computed->date }}</td>
+                                        <td>{{ $computed->time }}</td>
                                         <td>{{ $computed->computed_consumption }}</td>
                                     </tr>
                                     @endforeach

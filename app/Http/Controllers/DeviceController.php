@@ -42,8 +42,8 @@
                 'model' => 'required|string',
                 'installed_date' => 'nullable|date',
                 'life_expectancy' => 'nullable|integer',
-                'power' => 'required|integer',
-                'hours_used' => 'required|integer',
+                'power' => 'required|numeric',
+                'hours_used' => 'required|numeric',
             ]);
         
         
