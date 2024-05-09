@@ -85,6 +85,6 @@ Route::get('/dashboard', function () {
 
 Route::get('/energy', [EnergyConsumptionController::class, 'index'])->name('energy.index');
 Route::get('/about', [AboutController::class,'index'])->name('about');
-
+Route::get('/fetch-data', 'EnergyConsumptionController@fetchData');
 
 require __DIR__.'/auth.php';

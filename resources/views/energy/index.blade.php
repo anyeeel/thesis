@@ -19,7 +19,12 @@
                         </div>
                     </div>
                 </div>
-                   
+                <div class="card mt-4">
+    <div class="card-body">
+        <h5 class="mb-4 card-title">Hourly Energy Consumption</h5>
+        <div id="chart"></div>
+    </div>
+</div>
                 <!-- Daily Energy Consumption Table -->
                 <div class="card">
                     <div class="card-body">
@@ -38,7 +43,7 @@
                                     <tr>
                                         <td>{{ $consumption->date }}</td>
                                         <td>{{ $consumption->time }}</td>
-                                        <td>{{ $consumption->kilowatts_per_hour }}</td>
+                                        <td>{{ $consumption->consumption }}</td>
                                     </tr>
                                     @endforeach
                                 </tbody>
@@ -85,5 +90,50 @@
         </div> <!-- end page-content -->
     </div> <!-- main-content -->
 </div> <!-- layout-wrapper -->
+
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<script>
+    // Sample data for meter consumption
+    const meterData = {!! json_encode($meterConsumptions) !!};
+    const computedData = {!! json_encode($computedConsumptions) !!};
+
+    // Prepare data for ApexCharts
+    const chartData = {
+      x: [], // Array to hold timestamps
+      meter: [], // Array to hold meter consumption values
+      computed: [] // Array to hold computed consumption values
+    };
+
+    // Parse and format data
+    meterData.data.forEach(item => {
+        chartData.x.push(item.time); // Pushing only the time
+        chartData.meter.push(item.consumption);
+    });
+
+    computedData.data.forEach(item => {
+        chartData.computed.push(item.computed_consumption);
+    });
+
+    // Initialize ApexCharts
+    var options = {
+      chart: {
+        type: 'line'
+      },
+      series: [{
+        name: 'Meter Consumption',
+        data: chartData.meter
+      }, {
+        name: 'Computed Consumption',
+        data: chartData.computed
+      }],
+      xaxis: {
+        categories: chartData.x,
+      }
+    };
+
+    var chart = new ApexCharts(document.querySelector("#chart"), options);
+
+    chart.render();
+</script>
 
 @endsection

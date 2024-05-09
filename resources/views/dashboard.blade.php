@@ -76,44 +76,41 @@
                             </div><!--end col-->
                         </div><!--end row-->
 
-                                <div class="card">
-                        <div class="card-body">
-                            <div class="d-flex flex-wrap align-items-start">
-                                <h5 class="card-title me-2">Comparison of Total Energy Consumption: Meter vs Device Consumption</h5>
-                                <div class="ms-auto">
-                                    <div class="toolbar d-flex flex-wrap gap-2 text-end">
-                                        <!-- Add this dropdown in your HTML -->
-                                        <select id="filterDropdown" class="form-select">
-                                            <option value="hourly" selected>Hourly</option>
-                                            <option value="daily">Daily</option>
-                                            <option value="weekly">Weekly</option>                                            
-                                        </select>                                            
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="double-line-chart-container">
-                                <canvas id="double-line-chart" height="300"></canvas>
-                            </div>
-                            <div id="legend-container" class="mt-4"></div>
-
-                        </div>
-                    </div>          
-                          
-
-                     
-                    <div class="row">
-                    <div class="col-xl-6">
-              
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title mb-4">Estimated Total Consumption of Device Types</h4>
-                                <canvas id="pieChart" class="chartjs-chart" height="400"></canvas>
-                                <p class="text-muted mt-3"><em>Note: <br><br>Estimated Total consumption reflects user-input device usage, not meter readings.</em></p>
+                                <div class="d-flex flex-wrap align-items-start">
+                                    <h5 class="card-title me-2">Comparison of Total Energy Consumption: Meter vs Device Consumption</h5>
+                                    <div class="ms-auto">
+                                        <div class="toolbar d-flex flex-wrap gap-2 text-end">
+                                            <!-- Add this dropdown in your HTML -->
+                                            <select id="filterDropdown" class="form-select">
+                                                <option value="daily" selected>Daily</option>
+                                                <option value="weekly">Weekly</option>                                            
+                                            </select>       
+                                            <!-- Date Picker Input -->
+                                            <input type="date" id="dateforhour" class="form-control" placeholder="Select Date">                                    
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="double-line-chart-container">
+                                    <canvas id="double-line-chart" height="300"></canvas>
+                                </div>
+                                <div id="legend-container" class="mt-4"></div>
                             </div>
                         </div>
-                    </div> <!-- end col -->
-
-
+                    </div>          
+ 
+                    <div class="row">
+                        <div class="col-xl-6">
+                
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="card-title mb-4">Estimated Total Consumption of Device Types</h4>
+                                    <canvas id="pieChart" class="chartjs-chart" height="400"></canvas>
+                                    <p class="text-muted mt-3"><em>Note: <br><br>Estimated Total consumption reflects user-input device usage, not meter readings.</em></p>
+                                </div>
+                            </div>
+                        </div> <!-- end col -->
                         <div class="col-lg-6">
                             <div class="card ">
                                 <div class="card-body py-3">
@@ -130,8 +127,6 @@
                                 </div>
                             </div>
                         </div>
-
-                     
                     </div>
 
                     <div class="row">
@@ -269,7 +264,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-        document.addEventListener("DOMContentLoaded", function () {
+    document.addEventListener("DOMContentLoaded", function () {
     // Function to update the double line chart based on filter value
     function updateDoubleLineChart(labels, meterData, computedData) {
         // Get the canvas element for the double line chart
@@ -321,9 +316,9 @@
     }
 
     // Initial data for the double line chart
-    var labels = @json($labelsHourly);
-    var meterData = @json($meterDataHourly);
-    var computedData = @json($computedDataHourly);
+    var labels = @json($labelsDaily);
+    var meterData = @json($meterDataDaily);
+    var computedData = @json($computedDataDaily);
 
     // Update the double line chart with hourly data
     updateDoubleLineChart(labels, meterData, computedData);
@@ -333,27 +328,24 @@
         // Retrieve the selected value
         var filterValue = this.value;
 
-        // Update chart data based on filter value
-        if (filterValue === 'hourly') {
-            labels = @json($labelsHourly);
-            meterData = @json($meterDataHourly);
-            computedData = @json($computedDataHourly);
-        } else if (filterValue === 'daily') {
-            labels = @json($labelsDaily);
-            meterData = @json($meterDataDaily);
-            computedData = @json($computedDataDaily);
-        } else if (filterValue === 'weekly') {
-            labels = @json($weeklyLabels);
-                meterData = @json($weeklyMeterData);
-                computedData = @json($weeklyComputedData);
-        }
+        if (filterValue === 'daily') {
+                labels = @json($labelsDaily);
+                meterData = @json($meterDataDaily);
+                computedData = @json($computedDataDaily);
+            } else if (filterValue === 'weekly') {
+                labels = @json($weeklyLabels);
+                    meterData = @json($weeklyMeterData);
+                    computedData = @json($weeklyComputedData);
+            }
 
         // Update the double line chart with new data
         updateDoubleLineChart(labels, meterData, computedData);
     });
+ 
     });
 
 </script>
+
 <script>
             document.addEventListener("DOMContentLoaded", function () {
                 

@@ -15,7 +15,7 @@ class CreateEnergyComputedConsumptionsTable extends Migration
             $table->id();
             $table->date('date');
             $table->time('time');
-            $table->float('kilowatts_per_hour');
+            $table->float('consumption');
             $table->timestamps();
         });
     }
