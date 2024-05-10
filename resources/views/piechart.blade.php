@@ -11,34 +11,42 @@
     <div class="main-content">
         <div class="page-content">
             <div class="container-fluid">
-            <div class="row">
-                        <div class="col-xl-6">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h4 class="card-title mb-4"> Total Number of Devices by Type</h4>
-                                    <canvas id="polarAreaChart" class="chartjs-chart"></canvas>
+                <div class="row">
+                    <div class="col-xl-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title mb-4"> Total Number of Devices by Type</h4>
+                                <canvas id="polarAreaChart" class="chartjs-chart"></canvas>
+                            </div>
+                        </div>
+                    </div> <!-- end col -->
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-sm-flex flex-wrap">
+                                    <h4 class="card-title mb-4">Estimated Total Consumption of Buildings</h4>
+                                    
                                 </div>
+                            <div class="chart-container">
+                                <canvas id="stacked-bar-chart" width="400" height="255"></canvas>
+                            </div>                       
+                        </div>
+                    </div>
+                       
+                </div>
+
+                <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h4 class="card-title mb-4">Estimated Weekly Total Consumption of Peripheral Devices (kWh)</h4>
                             </div>
-                        </div> <!-- end col -->
-                        <div class="col-lg-6">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="d-sm-flex flex-wrap">
-                                        <h4 class="card-title mb-4">Estimated Total Consumption of Buildings</h4>
-                                        
-                                    </div>
-                                <div class="chart-container">
-                                    <canvas id="stacked-bar-chart" width="400" height="255"></canvas>
-                                </div>                       
-                            </div>
+                            <canvas id="outputDevicePieChart" class="chartjs-chart" width="600" height="600"></canvas>
+                        </div>
+                    </div>
+                </div>
 
                             
         
-                        </div>
-                       
-                    </div>
-
-                
                    </div>                                
                 </div>
             </div>
@@ -46,7 +54,39 @@
     </div>
 
      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+     <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Retrieve data for the peripheral device pie chart
+            var outputDeviceLabels = @json($outputDeviceLabels);
+            var outputDeviceData = @json($outputDeviceData);
 
+            // Get the canvas element for the peripheral device pie chart
+            var ctxOutputDevicePie = document.getElementById('outputDevicePieChart').getContext('2d');
+
+            // Create the peripheral device pie chart
+            var outputDevicePieChart = new Chart(ctxOutputDevicePie, {
+                type: 'pie',
+                data: {
+                    labels: outputDeviceLabels,
+                    datasets: [{
+                        data: outputDeviceData,
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.6)', // Red
+                            'rgba(54, 162, 235, 0.6)', // Blue
+                            'rgba(255, 206, 86, 0.6)', // Yellow
+                            'rgba(75, 192, 192, 0.6)', // Green
+                            'rgba(153, 102, 255, 0.6)' // Purple
+                            // Add more colors if needed
+                        ]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false
+                }
+            });
+        });
+    </script>
     <script>
             document.addEventListener("DOMContentLoaded", function () {
                 
@@ -96,128 +136,6 @@
                 }
             });
 
-            document.getElementById('filterDropdown').addEventListener('change', function () {
-        // Retrieve the selected value
-        var filterValue = this.value;
-
-        // Retrieve data passed from the controller
-        var labels = @json($labels);
-        var meterData = @json($meterData);
-        var computedData = @json($computedData);
-
-        // If weekly filter is selected, multiply daily data by 7
-        if (filterValue === 'weekly') {
-            labels = labels.filter(function (_, index) {
-                return index % 7 === 0; // Filter labels to show only weekly data
-            });
-
-            meterData = meterData.reduce(function (acc, val, index) {
-                if (index % 7 === 0) { // Sum up data for each week
-                    acc.push(meterData.slice(index, index + 7).reduce((a, b) => a + b, 0));
-                }
-                return acc;
-            }, []);
-
-            computedData = computedData.reduce(function (acc, val, index) {
-                if (index % 7 === 0) { // Sum up data for each week
-                    acc.push(computedData.slice(index, index + 7).reduce((a, b) => a + b, 0));
-                }
-                return acc;
-            }, []);
-        }
-
-        // Get the canvas element for the double line chart
-        var ctxDoubleLine = document.getElementById('double-line-chart').getContext('2d');
-
-        // Destroy previous chart instance if exists
-        if (window.myDoubleLineChart) {
-            window.myDoubleLineChart.destroy();
-        }
-
-        // Create the double line chart with updated data
-        window.myDoubleLineChart = new Chart(ctxDoubleLine, {
-            type: 'line',
-            data: {
-                labels: labels,
-                datasets: [{
-                    label: 'Metered Consumption',
-                    data: meterData,
-                    borderColor: 'rgba(110, 6, 6, 1)', 
-                    backgroundColor: 'rgba(110, 6, 6, 0.5)', 
-                }, {
-                    label: 'Estimated Device Energy Usage',
-                    data: computedData,
-                    borderColor: 'rgba(255, 206, 86, 1)', 
-                    backgroundColor: 'rgba(255, 206, 86, 0.2)', 
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    x: {
-                        display: true,
-                        title: {
-                            display: true,
-                            text: 'Date'
-                        }
-                    },
-                    y: {
-                        display: true,
-                        title: {
-                            display: true,
-                            text: 'Total Consumption (kWh)'
-                        }
-                    }
-                }
-            }
-        });
-    });
-
-    // Initial chart setup with daily data
-    var labels = @json($labels);
-    var meterData = @json($meterData);
-    var computedData = @json($computedData);
-    var ctxDoubleLine = document.getElementById('double-line-chart').getContext('2d');
-
-    // Create the double line chart
-    window.myDoubleLineChart = new Chart(ctxDoubleLine, {
-        type: 'line',
-        data: {
-            labels: labels,
-            datasets: [{
-                label: 'Metered Consumption',
-                data: meterData,
-                borderColor: 'rgba(110, 6, 6, 1)', 
-                backgroundColor: 'rgba(110, 6, 6, 0.5)', 
-            }, {
-                label: 'Estimated Device Energy Usage',
-                data: computedData,
-                borderColor: 'rgba(255, 206, 86, 1)', 
-                backgroundColor: 'rgba(255, 206, 86, 0.2)', 
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            scales: {
-                x: {
-                    display: true,
-                    title: {
-                        display: true,
-                        text: 'Date'
-                    }
-                },
-                y: {
-                    display: true,
-                    title: {
-                        display: true,
-                        text: 'Total Consumption (kWh)'
-                    }
-                }
-            }
-        }
-    });
     });
    
         const buildingEnergyData = @json($buildingEnergyData);

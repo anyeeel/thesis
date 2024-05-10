@@ -71,7 +71,16 @@ class PiechartController extends Controller
                 return [$building->building_name => $building->floors->flatMap->rooms->flatMap->devices->groupBy('type')->map->count()];
             });
 
-            return view('piechart')->with(compact('labels','totalBuildings', 'buildingEnergyData', 'meterData', 'computedData','pieLabels', 'pieData', 'polarLabels', 'polarData', 'overallTotalEnergy', 'totalDevices', 'buildingDeviceCounts'));
+            // Retrieve data for the  devices
+            $outputDevices = Devices::where('type', 'Peripheral')->groupBy('name')
+                ->selectRaw('name, SUM(active_quantity * power * hours_used / 1000) AS total_energy_consumption')
+                ->get();
+        
+            // Prepare data for the  devices chart
+            $outputDeviceLabels = $outputDevices->pluck('name');
+            $outputDeviceData = $outputDevices->pluck('total_energy_consumption');
+
+            return view('piechart')->with(compact('labels','totalBuildings', 'buildingEnergyData', 'meterData', 'computedData','pieLabels', 'pieData', 'polarLabels', 'polarData', 'overallTotalEnergy', 'totalDevices', 'buildingDeviceCounts', 'outputDeviceLabels', 'outputDeviceData'));
         }   
                  
 }
